@@ -1,0 +1,197 @@
+/* Your existing CSS */
+
+.dropdown-toggle {
+  cursor: pointer;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+  color: #333;
+  font-size: 14px;
+}
+
+#termsservices {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  margin-bottom: 10px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #ddb373;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #000000;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+#button a {
+  margin-right: 10px;
+  padding: 8px 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  text-decoration: none;
+  color: white;
+}
+
+#button .btn-secondary {
+  background-color: #6c757d;
+}
+
+#button .btn-info1 {
+  background-color: #17a2b8;
+}
+
+#button .btn-secondary:hover, 
+#button .btn-info1:hover {
+  opacity: 0.8;
+}
+
+.custom-dropdown {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.dropdown-checkbox {
+  display: none;
+}
+
+.dropdown-label {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 8px; /* Reduce padding */
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: white;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top: 4px; /* Reduce margin */
+}
+
+.dropdown-item {
+  padding: 4px 8px; /* Reduce padding */
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown-checkbox:checked ~ .dropdown-menu {
+  display: block;
+}
+
+.button-container .btn {
+  margin-right: 10px; /* Add margin to the right of each button */
+}
+
+.button-container .btn:last-child {
+  margin-right: 0; /* Remove margin from the last button */
+}
+
+/* Additional CSS to ensure the card body displays properly */
+
+.card {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+  padding: 15px; /* Adjust padding to ensure content fits well */
+  overflow-x: auto; /* Ensure horizontal overflow is handled */
+}
+
+.form-group {
+  margin-bottom: 15px; /* Ensure consistent spacing between form groups */
+}
+
+.text-center {
+  display: flex;
+  justify-content: center;
+  gap: 10px; /* Space between buttons */
+}
+
+.text-right {
+  text-align: right;
+}
+
+#content {
+  padding: 20px; /* Padding around the content */
+}
+
+h2.colorp img {
+  margin-right: 10px; /* Space between image and heading text */
+}
+
+.custom-dropdown .dropdown-menu {
+  padding: 10px; /* Padding inside the dropdown menu */
+}
+
+.dropdown-item {
+  margin-bottom: 5px; /* Space between dropdown items */
+}

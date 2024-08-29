@@ -1,0 +1,101 @@
+.carousel-control-next,
+.carousel-control-prev {
+  width: auto;
+  background: linear-gradient(90deg, #cd212f 0, #e76f26);
+}
+
+.carousel-control-next {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.carousel-control-prev {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.mobileTableShow li a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 0;
+  flex-flow: column wrap;
+}
+.searchlist input {
+  background-color: transparent;
+  border-radius: 100px;
+  box-shadow: none;
+  outline: none;
+}
+
+@keyframes blinker {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.marquee {
+  animation: blinker 5s linear infinite;
+  font-family: sans-serif;
+  padding: 8px;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
+.disabled-link {
+  /* font-size: 12px; */
+  /* color: #fff; */
+  /* padding: 10px 15px; */
+  /* margin: 3px; */
+  border: 1px solid #3e4040 !important;
+  /* border-radius: 60px; */
+  background: #fff0 !important;
+}
+
+.carousel-item-next,
+.carousel-item-prev {
+  display: flex;
+}
+
+.carousel-inner .carousel-item img {
+  width: 18px;
+}
+
+.carousel-inner .nav-link {
+  padding: 0.5rem 1rem 0.5rem 1rem;
+}
+
+.carousel-inner .col-md-3 {
+  margin-right: 1px;
+}
+
+// .mobileTableShow .carousel-inner {
+//   margin: 0 10px;
+// }
+
+.carousel-inner {
+  display: flex !important;
+}
+
+.carousel-item {
+  flex: 0 0 auto; /* Prevent items from shrinking */
+}
+
+.col-md-3 {
+  width: 25%; /* Set the width of each item */
+  box-sizing: border-box; /* Include padding and border in the width */
+  margin-right: 15px; /* Adjust as needed for spacing between items */
+}
+
+/* Remove the right margin from the last item to prevent unnecessary space */
+.col-md-3:last-child {
+  margin-right: 0;
+}

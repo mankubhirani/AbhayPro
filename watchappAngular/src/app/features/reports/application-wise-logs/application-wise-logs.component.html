@@ -1,0 +1,131 @@
+<div id="content" class="p-3">
+  <div class="row">
+    <section class="col-md-12">
+      <div class="education">
+        <div class="card mt-3 mb-5">
+          <div class="card-body">
+            <div class="tab-content" id="pills-tabContent">
+              <div id="bank-management" aria-labelledby="bank-management-tab">
+                <div class="container-fluid">
+                  <div class="row mt-2">
+                    <div class="col-md-12">
+                      <h2 class="colorp">
+                        <img src="assets/images/balanceProgressReport.svg" alt="" />
+                        Application wise Logs
+                      </h2>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="row">
+                            <div class="col-md-4">
+                              <div class="dropdown">
+                                <button class="dropbtn border mt-4 py-2 rounded-2" (click)="toggleDropdown()">
+                                  Column View
+                                  <i class="bi bi-arrow-down"></i>
+                                </button>
+                                <div id="myDropdown" class="dropdown-content" [class.show]="isDropdownOpen">
+                                  <a (click)="toggleSelectAll()">
+                                    <input type="checkbox" [checked]="selectAllChecked" /> Select All
+                                  </a>
+                                  <ng-container *ngFor="let column of ['RowNo', 'App ID', 'App Name', 'App Icon', 'Valid From', 'Valid To', 'Channels', 'Access', 'Status', 'Action']">
+                                    <a>
+                                      <input type="checkbox" (click)="toggleColumnVisibility(column)" [checked]="columnVisibility[column]" /> {{ column }}
+                                    </a>
+                                  </ng-container>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <div class="form-group">
+                                <select class="form-control mt-4" [(ngModel)]="itemsPerPage" (change)="pageChanged({ page: 1 })">
+                                  <option *ngFor="let option of itemsPerPageOptions">{{ option }}</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-md-4 mt-4">
+                              <div class="dropdown">
+                                <button class="btn btn-secondary dropbtn" (click)="toggleActionDropdown()">Action <i class="bi bi-chevron-down"></i></button>
+                                <div class="dropdown-content" [class.show]="isActionDropdownOpen">
+                                  <a (click)="editItem(selectedItem)">Edit</a>
+                                  <a (click)="deleteItem(selectedItem)">Delete</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="row">
+                            <div class="col-md-8 mt-4">
+                              <form class="">
+                                <input class="form-control fw-bold" type="search" placeholder="Search" aria-label="Search" />
+                              </form>
+                            </div>
+                            <div class="col-md-4">
+                              <a type="button" class="btn btn-info1 mt-4" style="color: black" (click)="newApp()">+ New App</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-12 mt-4">
+                      <div class="table-responsive">
+                        <table class="table table-hover mt-3 table-striped">
+                          <thead>
+                            <tr class="btn-s">
+                              <th id="table_Head"><input type="checkbox" [checked]="selectAllChecked" (click)="toggleSelectAll()" /></th>
+                              <th *ngIf="columnVisibility['RowNo']" id="table_Head">RowNo</th>
+                              <th *ngIf="columnVisibility['App ID']" id="table_Head">App ID</th>
+                              <th *ngIf="columnVisibility['App Name']" id="table_Head">App Name</th>
+                              <th *ngIf="columnVisibility['App Icon']" id="table_Head">App Icon</th>
+                              <th *ngIf="columnVisibility['Valid From']" id="table_Head">Valid From</th>
+                              <th *ngIf="columnVisibility['Valid To']" id="table_Head">Valid To</th>
+                              <th *ngIf="columnVisibility['Channels']" id="table_Head">Channels</th>
+                              <th *ngIf="columnVisibility['Access']" id="table_Head">Access</th>
+                              <th *ngIf="columnVisibility['Status']" id="table_Head">Status</th>
+                              <th *ngIf="columnVisibility['Action']" id="table_Head">Action</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let item of pagedItems" (click)="selectItem(item)">
+                              <td><input type="checkbox" [checked]="selectAllChecked" /></td>
+                              <td *ngIf="columnVisibility['RowNo']">{{ 1 }}</td>
+                              <td *ngIf="columnVisibility['App ID']">{{ item.AppId }}</td>
+                              <td *ngIf="columnVisibility['App Name']">{{ item.AppName }}</td>
+                              <td *ngIf="columnVisibility['App Icon']">
+                                <img src="assets/img/product_logo.svg" alt="" width="20px" />
+                              </td>
+                              <td *ngIf="columnVisibility['Valid From']">{{ item.VadilFrom }}</td>
+                              <td *ngIf="columnVisibility['Valid To']">{{ item.ValidTo }}</td>
+                              <td *ngIf="columnVisibility['Channels']">{{ "Email"}}</td>
+                              <td *ngIf="columnVisibility['Access']">{{ "Read" }}</td>
+                              <td *ngIf="columnVisibility['Status']" class="one">
+                                <label class="switch">
+                                  <input type="checkbox" checked />
+                                  <span class="slider round"></span>
+                                </label>
+                              </td>
+                              <td *ngIf="columnVisibility['Action']">
+                                <button class="btn creat-studio-btn btn-info1" type="button" (click)="toggleActionDropdown()">Action <i class="bi bi-chevron-down"></i></button>
+                                <div class="dropdown-content" [class.show]="isActionDropdownOpen">
+                                  <a (click)="editItem(item)">Edit</a>
+                                  <a (click)="deleteItem(item)">Delete</a>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <pagination-controls (pageChange)="pageChanged($event)" class="mt-3"></pagination-controls>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

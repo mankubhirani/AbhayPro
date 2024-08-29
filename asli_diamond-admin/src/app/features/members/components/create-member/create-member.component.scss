@@ -1,0 +1,28 @@
+
+.main-container {
+  padding-top: 10px;
+}
+ 
+.add-account h4 {
+  font-weight: 700;
+  color: var(--secondary-color);
+  background-color: var(--theme2-bg);
+  padding: 5px 10px;
+  font-size: 18px;
+}
+.m-t-20 {
+  margin-top: 20px !important;
+}
+.m-b-20 {
+  margin-bottom: 20px !important;
+}
+.error {
+  color: #ff0000;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  float: left;
+  display: none;
+}
+.form-group {
+  margin-bottom: 1rem;
+}

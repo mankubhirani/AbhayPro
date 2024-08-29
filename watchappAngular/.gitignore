@@ -1,0 +1,5 @@
+node_modules/
+dist/
+.angular/*
+src/assets/.DS_Store
+src/assets/images/.DS_Store

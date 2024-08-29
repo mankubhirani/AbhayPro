@@ -1,0 +1,91 @@
+<!-- Page Content  -->
+<div id="content" class="p-3">
+  <div class="row">
+    <section class="col-md-12">
+      <div class="education">
+        <div class="card mt-3 mb-5">
+          <div class="card-boby">
+            <div class="tab-content" id="pills-tabContent">
+              <div id="bank-magement" aria-labelledby="bank-magement-tab">
+                <div class="container-fluid">
+                  <div class="row mt-2">
+                    <div class="col-md-12">
+                      <h2 class="colorp">
+                        <img src="assets/images/balanceProgressReport.svg" alt="" />
+                        Add Server Details
+                      </h2>
+                    </div>
+                    <div class="col-md-12">
+                      <main id="main" class="main">
+                        <!-- <div class="row p-3">
+                                <div class="form-group col-md-12">
+                                  <h5 class="mt-4">
+                                    <b>App-Id - 8983-8374374-2873</b>
+                                  </h5>
+                                </div> -->
+                        
+                                <form [formGroup]="mapForm" novalidate (ngSubmit)="submitmap()">
+                                  <div class="row p-3">
+                                    <div class="form-group col-md-6 mt-3">
+                                      <label for="">Server Name</label>
+                                      <input class="form-control mt-2" type="text" placeholder="Enter Server Name" formControlName="server_name" />
+                                      <div *ngIf="getcontrol('server_name')?.errors && getcontrol('server_name')?.touched">
+                                        <small class="text-danger" *ngIf="getcontrol('server_name')?.errors?.['required']">server name is Required.</small>
+                                      </div> 
+                                    </div>
+                                    <div class="form-group col-md-5 mt-3">
+                                      <label for="">Server IP</label>
+                                      <input class="form-control mt-2" type="text" placeholder="Enter Server IP" formControlName="server_ip" />
+                                   <div *ngIf="getcontrol('server_ip')?.errors && getcontrol('server_ip')?.touched">
+                                        <small class="text-danger" *ngIf="getcontrol('server_ip')?.errors?.['required']">server ip is Required.</small>
+                                      </div> 
+                                    </div>
+                                
+                                    <div class="form-group col-md-1 mt-5">
+                                      <button type="button" class="btn btn-info1" (click)="addServer()">+</button>
+                                    </div>
+                                    <div class="form-group col-md-12 mt-3">
+                                      <label for="description">Description</label>
+                                      <angular-editor 
+                                          id="description" 
+                                          rows="6" cols="8"
+                                          formControlName="server_description" 
+                                          [config]="config " 
+                                          
+                                            >
+                                      </angular-editor>
+                                      <div *ngIf="getcontrol('server_description')?.errors && getcontrol('server_description')?.touched">
+                                          <small class="text-danger" *ngIf="getcontrol('server_description')?.errors?.['required']">
+                                              server description is Required.
+                                          </small>
+                                      </div>
+                                  </div>
+                                  
+                                  </div>
+                                
+                                  <div class="col-md-12 mt-3 text-end">
+                                    <a class="btn btn-secondary" routerLink="/settings/map-server">Cancel</a>
+                                    <button type="submit" class="btn btn-info1 m-2">Add</button>
+                                  </div>
+                                </form>
+                                <div *ngIf="AddMapServerArr.length > 0" class="mt-4">
+                                  <h5>Add Servers:</h5>
+                                  <ul>
+                                    <li *ngFor="let server of AddMapServerArr">
+                                      {{ server.server_name }}   -   {{ server.server_ip }}   -   {{ server.server_description }}
+                                    </li>
+                                  </ul>
+                                </div>
+
+                      </main>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

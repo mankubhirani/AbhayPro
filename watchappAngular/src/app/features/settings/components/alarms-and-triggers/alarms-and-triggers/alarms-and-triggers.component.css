@@ -1,0 +1,216 @@
+/* .dropdown-toggle {
+  cursor: pointer;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+}
+.dropbtn {
+  background-color: inherit;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 301px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown a:hover {
+  background-color: #ddd;
+}
+
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  } */
+
+  /* .dropdown a:hover {
+    background-color: #ddd;
+  } */
+  #dropdown-item{
+    display: block;
+    padding: 0.375rem;
+    width: 100%;
+    margin-top: 25px;
+    border-radius: 5px;
+    border: 1px solid #ced4da
+  
+  }
+  #action-menu{
+    display: block;
+    padding: 0.375rem;
+    width: 100%;
+    /* margin-top: 25px; */
+    border-radius: 5px;
+    /* border: 1px solid #ced4da; */
+    background-color:  #6c757d;
+    border: none;
+    color: white;
+    font-size: bold;
+    font-weight: 400;
+    
+  
+  }
+  #am {
+    background-color: #ccc;
+  }
+    .show {
+      display: block;
+    }
+  
+    .show {
+      display: block;
+    }
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+    }
+  
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+  
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      -webkit-transition: 0.4s;
+      transition: 0.4s;
+    }
+  
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      -webkit-transition: 0.4s;
+      transition: 0.4s;
+    }
+  
+    input:checked + .slider {
+      background-color: #ddb373;
+    }
+  
+    input:focus + .slider {
+      box-shadow: 0 0 1px #000000;
+    }
+  
+    input:checked + .slider:before {
+      -webkit-transform: translateX(26px);
+      -ms-transform: translateX(26px);
+      transform: translateX(26px);
+    }
+  
+    /* Rounded sliders */
+    .slider.round {
+      border-radius: 34px;
+    }
+  
+    .slider.round:before {
+      border-radius: 50%;
+    }
+    .education {
+      overflow-y: auto; /* Add vertical scrollbar */
+      max-height: 80vh; /* Set maximum height for scrollbar */
+  }
+  .card-body {
+    padding: 20px; /* Adjust padding for the card body */
+  }
+  
+  
+  .row {
+    margin-left: 1px; /* Reduce left margin to decrease space between left panel and content */
+    margin-right: 1px; /* Keep right margin for space between content and right edge */
+  }
+  .show-dropdown {
+    width: 100%; /* Make dropdown width same as parent container */
+}
+
+#action-menu {
+    width: 100%; /* Make dropdown width same as parent container */
+}
+
+.dropdown-menu.show {
+    display: block;
+    max-height: 200px;
+    overflow-y: auto;
+}
+/* ************** */
+ 
+.drop{
+  height: 35px;
+  width: 90px;
+  background-color: #0085b2;
+  color: white;
+  border-radius: 5px;
+}
+ 
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #ffffff;
+  min-width: 300px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  z-index: 1;
+}
+ 
+/* Links inside the dropdown */
+.dropdown-content label {
+  display: block;
+  padding: 10px 16px;
+  text-decoration: none;
+  color: #000000;
+}
+ 
+.dropdown-content label:hover {
+  background-color: #f9f9f9;
+}
+ 
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+ 
+/* Style the dropdown menu items (checkboxes) */
+.dropdown-content input[type="checkbox"] {
+  margin-right: 5px;
+}
+#show {
+  width: 70px;
+}
+#hide{
+  display: none;
+}

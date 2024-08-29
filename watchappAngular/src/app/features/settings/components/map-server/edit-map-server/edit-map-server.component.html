@@ -1,0 +1,188 @@
+
+
+      <!-- Page Content  -->
+      <div id="content" class="p-3">
+        <div class="row">
+          <section class="col-md-12">
+            <div class="education">
+              <div class="card mb-5">
+                <div class="card-boby">
+                  <div class="tab-content" id="pills-tabContent">
+                    <div id="bank-magement" aria-labelledby="bank-magement-tab">
+                      <div class="container-fluid">
+                        <div class="row mt-2">
+                          <div class="col-md-12">
+                            <h2 class="colorp">
+                              <img
+                                src="assets/images/balanceProgressReport.svg"
+                                alt=""
+                              />
+                              Map Server
+                            </h2>
+                          </div>
+                          <div class="col-md-12">
+                            <div class="row">
+                              <div class="col-md-12">
+                                <form class="">
+                                  <div class="row align-items-center">
+                                    <div class="col-md-4">
+                                      <div class="mb-3">
+                                        <label
+                                          for="serverStatus"
+                                          class="form-label"
+                                          >Server Status</label
+                                        >
+                                        <select
+                                          name=""
+                                          id="serverStatus"
+                                          class="form-select"
+                                          (change)="onStatusChange($event)"
+                                        >
+                                          <option value="">Connected</option>
+                                          <option value="">Disconnected</option>
+                                        </select>
+                                      </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                      <div class="mb-3">
+                                        <label
+                                          for="exampleInputEmail1"
+                                          class="form-label"
+                                         
+                                          >Search</label
+                                        >
+                                        <div class="d-flex align-items-center">
+                                          <input
+                                            type="search"
+                                            name=""
+                                            id=""
+                                            aria-label="search"
+                                            class="form-control"
+                            
+                                          />
+                                          <button class="btn btn-info ml-2">
+                                            <i
+                                              class="fa fa-search"
+                                              aria-hidden="true"
+                                            ></i>
+                                          </button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                      <div class="row justify-content-end">
+                                        <div class="col-md-6">
+                                          <div class="form-group">
+                                            <select
+                                              class="form-control" style="margin-top: 21px;"
+                                               (change)="updateItemsPerPage($event)"
+                                            >
+                                              <option>Show</option>
+                                              <option>10</option>
+                                              <option>25</option>
+                                              <option>50</option>
+                                              <option>100</option>
+                                            </select>
+                                          </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                          <a
+                                            type="button"
+                                            class="btn btn-info "  style="margin-top: 21px;"  
+                                            (click)="addServer()"
+                                            >+ New Server</a
+                                          >
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-md-12 mt-4">
+                            <div class="table-responsive overflow-unset" >
+                              <table class="table table-hover mt-3 table-striped">
+                                <thead>
+                                  <tr class="btn-s">
+                                    <th id="table_Head">
+                                      <input type="checkbox" />
+                                    </th>
+                                    <th id="table_Head">S.No</th>
+                                    <th id="table_Head">Server name</th>
+                                    <th id="table_Head">IP Address</th>
+                                    <th id="table_Head" class="pl-5">Status</th>
+                                    <th></th>
+                                    <th id="table_Head">Action</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <ng-container *ngIf="getMapServerArr.length != 0">
+                                    <tr *ngFor="let value of getMapServerArr | paginate: { itemsPerPage: itemsPerPage, currentPage: p }; let i = index">
+                                      <td><input type="checkbox"/></td>
+                                      <td>{{i + 1}}</td>
+                                      <td id="for_table_color">{{value.server_name}}</td>
+                                      <td>{{value.server_ip}}</td>
+                                      <td>
+                                        <!--******** checked value *********-->
+                                        <label class="radioBTN connected">
+                                          <input type="radio" [checked]="value.active" /> 
+                                          <span class="checkmark"></span>
+                                        </label>
+                                      </td>
+                                      <td style="width: 20px">
+                                        <ul class="list-unstyled d-flex justify-content-center align-items-center p-0">
+                                          <li class="mx-3">
+                                            <label class="switch">
+                                              <input type="checkbox" checked />
+                                              <span class="slider round"></span>
+                                            </label>
+                                          </li>
+                                          <!-- <li class="mx-3">
+                                            <img src="assets/images/pause-circle.svg" alt="" />
+                                          </li> -->
+                                        </ul>
+                                      </td>
+                                      <td>
+                                        <div class="col-md-4">
+                                          <div class="dropdown1">
+                                            <button class="btn btn-info1" type="button" id="dropdownMenuButton" (click)="toggleDropdown1(i)">
+                                              <span>Action <i class="bi bi-chevron-down"></i></span>
+                                            </button>
+                                            <ul class="dropdown-menu" [class.show]="isDropdownOpen(i)" aria-labelledby="dropdownMenuButton1">
+                                              <li><a class="dropdown-item" href="#">Edit</a></li>
+                                              <li><a class="dropdown-item" href="#" (click)="deleteDocument(value.id)">Delete</a></li>
+                                            </ul>
+                                          </div>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                  </ng-container>
+                                  <ng-container *ngIf="getMapServerArr.length == 0">
+                                    <tr>
+                                      <td colspan="7">No data found!</td>
+                                    </tr>
+                                  </ng-container>
+                                </tbody>
+                              </table>
+                              
+                            </div>
+                            <div class="list">
+                                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    
+
+   

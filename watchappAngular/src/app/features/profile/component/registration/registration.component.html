@@ -1,0 +1,118 @@
+<div class="outer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-8 mt-4">
+        <div class="border bg-white p-3">
+          <div class="panel-heading">
+            <h3 class="pt-3 font-weight-bold">Create an Account</h3>
+          </div>
+          <hr>
+          <form [formGroup]="signupForm">
+            <div class="row">
+              <div class="form-group pt-3 col-md-6">
+                <p class="fw-normal">Your Name <span class="text-danger">*</span></p>
+                <div class="input-field">
+                  <input type="text" class="form__input" autocomplete="off" placeholder="Name" id="name"
+                    formControlName="name" name="name"
+                    [ngClass]="{errors:getcontrol('name')?.errors && getcontrol('name')?.touched}" maxlength="30">
+                </div>
+                <div *ngIf="getcontrol('name')?.errors && getcontrol('name')?.touched">
+                  <small class="text-danger" *ngIf="getcontrol('name')?.errors?.['required']">Name is Required.</small>
+                  <small class="text-danger" *ngIf="getcontrol('name')?.errors?.['minlength']">3 words are required.</small>
+                </div>
+              </div>
+
+              <div class="form-group pt-3 col-md-6">
+                <p class="fw-normal">Your Email <span class="text-danger">*</span></p>
+                <div class="input-field">
+                  <input type="text" placeholder="Email" autocomplete="off" formControlName="email" name="email"
+                    [ngClass]="{errors:getcontrol('email')?.errors && getcontrol('email')?.touched}" maxlength="50">
+                </div>
+                <div *ngIf="getcontrol('email')?.errors && getcontrol('email')?.touched">
+                  <small class="text-danger" *ngIf="getcontrol('email')?.errors?.['required']">Email is required.</small>
+                  <small class="text-danger" *ngIf="getcontrol('email')?.errors?.['email']">Please insert a valid email address.</small>
+                </div>
+              </div>
+
+              <div class="col-md-6 pt-3">
+                <p class="fw-normal">Phone Number</p>
+                <div class="row">
+                  <div class="col-2">
+
+                    <select name="dropdown" (change)="updateDisplayedValue($event)" 
+                            class="form-select w-10" id="designation" formControlName="CountryName">
+                      <option value="null" selected disabled>Country code</option>
+                      <option [value]="code.PhoneCode" *ngFor="let code of getCountryCodeArr">{{code.CountryName}} +{{ code.PhoneCode }}</option>
+                    </select>
+                  </div>
+                  <div class="col-3">
+                        <input type="text" name="" readonly maxlength="12" id="" class="form-control border-input" formControlName="country_code">
+                  </div>
+                  <div class="col-7">
+                    <input  type="text" placeholder="Phone number" class="form-control border-input" autocomplete="off" formControlName="phone" name="phone" id="phone" maxlength="15" [ngClass]="{errors:getcontrol('phone')?.errors && getcontrol('phone')?.touched}" (keypress)="keyPressNumbers($event)" />
+
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="form-group pt-3 col-md-6">
+                <p class="fw-normal">Password <span class="text-danger">*</span></p>
+                <div class="input-field">
+                  <input [type]="type" placeholder="Password" autocomplete="off" formControlName="password"
+                    name="password"
+                    [ngClass]="{errors:getcontrol('password')?.errors && getcontrol('password')?.touched}"
+                    maxlength="20">
+                  <span (click)="hideShowPass()" class="fa {{eyeIcon}}"></span>
+                </div>
+                <div *ngIf="getcontrol('password')?.errors && getcontrol('password')?.touched">
+                  <small class="text-danger" *ngIf="getcontrol('password')?.errors?.['required']">Password required.</small>
+                  <small class="text-danger" *ngIf="getcontrol('password')?.errors?.['pattern']">The password must contain one or more lowercase characters, numeric values, and uppercase characters.</small>
+                </div>
+              </div>
+
+              <div class="form-group pt-3 col-md-6">
+                <p class="fw-normal">Confirm Password <span class="text-danger">*</span></p>
+                <div class="input-field form-control">
+                  <input [type]="type1" placeholder="Confirm Password" autocomplete="off"
+                    formControlName="confirm_password" class="form-control" name="confirm_password"
+                    [ngClass]="{errors:getcontrol('confirm_password')?.errors && getcontrol('confirm_password')?.touched}"
+                    maxlength="20">
+                  <span (click)="hideShow()" class="fa {{eyeIcon1}}"></span>
+                </div>
+                <div *ngIf="getcontrol('confirm_password')?.errors && getcontrol('confirm_password')?.touched">
+                  <small class="text-danger" *ngIf="getcontrol('confirm_password')?.errors?.['required']">Password required.</small>
+                  <small class="text-danger" *ngIf="getcontrol('confirm_password')?.errors?.['pattern']">The password must contain one or more lowercase characters, numeric values, and uppercase characters.</small>
+                  <small *ngIf="signupForm.get('confirm_password')?.errors?.['passwordMismatch']" class="text-danger small">Passwords do not match.</small>
+                </div>
+              </div>
+
+              <div class="form-inline fr mt-4">
+                <input type="checkbox" [disabled]="signupForm.get('terms')?.value == false" id="checkbox"
+                  formControlName="terms" /> &nbsp;
+                <!-- <mat-checkbox class="example-margin" [disabled]="signupForm.invalid"  ></mat-checkbox> -->
+                <!-- <input type="checkbox" name="" id=""> -->
+                <span>I agree and accept the<a id="forget" class="font-weight-bold" (click)="TermsAndConditions()"> terms and conditions</a>
+                </span>
+                <!-- <div  *ngIf="getcontrol('checkbox')?.errors && getcontrol('checkbox')?.touched">
+                  <small class="text-danger" *ngIf="getcontrol('checkbox')?.errors?.['requiredTrue']">checkbox Required.</small>
+ 
+                </div> -->
+              </div>
+
+              <div class="form-inline fr mt-3">
+                <input type="checkbox" id="checkbox" formControlName="IsCompany" /> &nbsp;
+                <span>I am an Individual not a company</span>
+              </div>
+
+              <button class="btn btn-info1 btn-block mt-4 w-100" (click)="signup()" type="submit">Create Account</button>
+              <div class="text-center pt-4 text-muted">Already have an account? <a id="forget" routerLink="/login">Login</a></div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+  </div>
+</div>

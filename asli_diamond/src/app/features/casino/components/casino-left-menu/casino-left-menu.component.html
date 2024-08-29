@@ -1,0 +1,64 @@
+<div class="row" *ngIf="!isMobileView">
+  <div class="col-md-12 asidenav mobileTableHide lftFixed">
+    <ul class="">
+      <li
+        class="nav-item leftuser animate__animated animate__flipInX"
+        *ngIf="isLoggedIn"
+      >
+        <span class="userb-icon float-start"><i class="fa fa-user"></i> </span>
+        <span class="leftuserhead mt-1">
+          {{ userDetails["username"] | titlecase }}
+        </span>
+      </li>
+      <hr class="text-color ms-2 me-2" *ngIf="isLoggedIn" />
+      <li class="text-color text-center">PROVIDER</li>
+
+      <li class="mx-2 casinodpdn"></li>
+
+      <li
+        [ngStyle]="
+          casino.providerCode == currentProvider
+            ? { background: 'linear-gradient(90deg, #cd212f 0, #e76f26)' }
+            : { 'background-image': '' }
+        "
+        class="nav-item animate__animated animate__backInLeft mt-2"
+        *ngFor="let casino of casinoMenu"
+      >
+        <a (click)="selectProvider(casino)" class="nav-link pointer">
+          <img width="20px" class="me-2" [src]="casino.imgUrl" />
+          <span> {{ casino.providerName }} </span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div *ngIf="isMobileView">
+  <select
+    [ngModel]="selectedCasino"
+    (ngModelChange)="selectProvider($event)"
+    class="border-colour bg-dark text-white p-2 rounded-3"
+    style="width: 100%"
+  >
+    <option
+      [ngValue]="null"
+      class="nav-item animate__animated animate__backInLeft mt-2 pointer"
+    >
+      <span> -- Select Provider -- </span>
+    </option>
+
+    <option
+      [ngValue]="casino"
+      *ngFor="let casino of casinoMenu"
+      [ngStyle]="
+        casino.providerCode == currentProvider
+          ? { background: 'linear-gradient(90deg, #cd212f 0, #e76f26)' }
+          : { 'background-image': '' }
+      "
+      class="nav-item animate__animated animate__backInLeft mt-2"
+    >
+      <img width="20px" [src]="casino.imgUrl" />
+      <span> {{ casino.providerName }} </span>
+    </option>
+  </select>
+</div>

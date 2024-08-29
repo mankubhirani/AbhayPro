@@ -1,0 +1,641 @@
+<div id="content" class="p-3">
+  <div class="row" style="margin-bottom: 6%">
+    <!-- last transection -->
+    <div class="col-md-4 my-3" *ngIf="dashboardServer.length > 0">
+      <div class="card xs-card-group h-100">
+        <div class="card-body px-1">
+          <div class="d-flex align-items-start">
+            <div class="flex-shrink-0">
+              <img src="assets/images/total_server.svg" alt="..." />
+            </div>
+            <div class="flex-grow-1">
+              <b>Total Server</b>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="d-inline-flex w-100 align-items-center">
+                    <label class="radioBTN connected p-0">
+                      <input type="radio" checked="checked" name="radioTop1" />
+                      <span class="checkmark"></span>
+                    </label>
+                    <p class="small m-0 ps-4">
+                      {{ dashboardServer[0]?.active }} Servers
+                    </p>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="d-inline-flex w-100 align-items-center">
+                    <label class="radioBTN disconnected p-0">
+                      <input type="radio" checked="checked" name="radioTop2" />
+                      <span class="checkmark"></span>
+                    </label>
+                    <p class="small m-0 ps-4">
+                      :{{ dashboardServer[0]?.inactive }} Servers
+                    </p>
+                  </div>
+                </div>
+                <!-- <div class="col-md-12">
+                  <p class="small m-0">{{ lastUpdated }}</p>
+                </div> -->
+              </div>
+            </div>
+            <div class="flex-grow-1">
+              {{ dashboardServer[0]?.active + dashboardServer[0]?.inactive }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Repeat similar structure for Task Scheduler and Console Apps -->
+    
+    <div class="col-md-4 my-3" *ngIf="dashboardServer.length > 0">
+      <div class="card xs-card-group h-100">
+        <div class="card-body px-1">
+          <div class="d-flex align-items-start">
+            <div class="flex-shrink-0">
+              <img src="assets/images/total_utility.svg" alt="..." />
+            </div>
+            <div class="flex-grow-1">
+              <b>Task Schedular</b>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="d-inline-flex w-100 align-items-center">
+                    <label class="radioBTN connected p-0">
+                      <input type="radio" checked="checked" name="radioTop3" />
+                      <span class="checkmark"></span>
+                    </label>
+                    <p class="small m-0 ps-4">
+                      : {{ dashboardServer[1]?.active }} Servers
+                    </p>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="d-inline-flex w-100 align-items-center">
+                    <label class="radioBTN disconnected p-0">
+                      <input type="radio" checked="checked" name="radioTop4" />
+                      <span class="checkmark"></span>
+                    </label>
+                    <p class="small m-0 ps-4">
+                      : {{ dashboardServer[1]?.inactive }} Servers
+                    </p>
+                  </div>
+                </div>
+                <!-- <div class="col-md-12">
+                  <p class="small m-0">{{ lastUpdated }}</p>
+                </div> -->
+              </div>
+            </div>
+            <div class="flex-grow-1">
+              {{ dashboardServer[1]?.active + dashboardServer[1]?.inactive }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 my-3" *ngIf="dashboardServer.length > 0">
+      <div class="card xs-card-group h-100">
+        <div class="card-body px-1">
+          <div class="d-flex align-items-start">
+            <div class="flex-shrink-0">
+              <img src="assets/images/total_utility_run.svg" alt="..." />
+            </div>
+            <div class="flex-grow-1">
+              <b>Console Apps</b>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="d-inline-flex w-100 align-items-center">
+                    <label class="radioBTN connected p-0">
+                      <input type="radio" checked="checked" name="radioTop5" />
+                      <span class="checkmark"></span>
+                    </label>
+                    <p class="small m-0 ps-4">
+                      : {{ dashboardServer[2]?.active }} Servers
+                    </p>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="d-inline-flex w-100 align-items-center">
+                    <label class="radioBTN disconnected p-0">
+                      <input type="radio" checked="checked" name="radioTop6" />
+                      <span class="checkmark"></span>
+                    </label>
+                    <p class="small m-0 ps-4">
+                      : {{ dashboardServer[2]?.inactive }} Servers
+                    </p>
+                  </div>
+                </div>
+                <!-- <div class="col-md-12">
+                  <p class="small m-0">{{ lastUpdated }}</p>
+                </div> -->
+              </div>
+            </div>
+            <div class="flex-grow-1">
+              {{ dashboardServer[2]?.active + dashboardServer[2]?.inactive }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="col-md-3 my-3">
+      <div class="card xs-card-group h-100">
+        <div class="card-body px-1">
+          <div class="d-flex align-items-center h-100">
+            <div class="flex-shrink-0">
+              <img src="assets/images/total_utility_running.svg" alt="..." />
+            </div>
+            <div class="flex-grow-1">
+              Alarm
+            </div>
+            <div class="flex-grow-1">
+              <i class="fa fa-clock-o"></i>{{ fifteenMinutes }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+    <div class="col-md-12 my-3">
+      <div class="card xs-card-group h-100">
+        <div class="card-body">
+          <div class="row align-items-center">
+            <div class="col-4">
+              <h6 class="colorp m-0">
+                <img src="assets/images/server_info.svg" alt="" />
+                Task Schedular
+              </h6>
+            </div>
+            <div class="col-8">
+              <ul
+                class="list-unstyled p-0 m-0 d-flex align-items-center justify-content-between"
+              >
+              <ul
+                          class="list-unstyled p-0 m-0 d-flex align-items-center justify-content-between"
+                        >
+                          <li class="d-flex align-items-center">
+                            <button class="disabled pr-5"></button>
+                            <span class="ml-2">Disabled</span>
+                          </li>
+                          
+                          <li class="d-flex align-items-center">
+                            <button class="ready ml-3"></button>
+                            <span class="ml-2">Ready</span>
+                          </li>
+                        </ul>
+                <!-- <li>
+                   Last Updated :
+                   <p class="small m-0">
+                    <span class="text-warning">12 April 2024</span>
+                  </p>
+                </li> -->
+                <!-- <li>
+                  <p class="small m-0">
+                    Server :
+                    <span class="text-warning">
+                      <select name="" id="">
+                        <option value="">All</option>
+                        <option value="">Server 1</option>
+                        <option value="">Server 2</option>
+                        <option value="">Server 3</option>
+                        <option value="">Server 4</option>
+                      </select>
+                    </span>
+                  </p>
+                </li> -->
+                <!-- <li>
+                  <p class="small m-0">
+                    Detail :
+                    <span class="text-warning">
+                      <select name="" id="">
+                        <option value="">Today</option>
+                        <option value="">7 days</option>
+                        <option value="">1 month</option>
+                        <option value="">1 year</option>
+                      </select>
+                    </span>
+                  </p>
+                </li> -->
+              </ul>
+            </div>
+
+            <div class="col-md-12">
+              <canvas id="piechart"  width="500"
+              height="150"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="col-md-5 my-3">
+      <div class="card xs-card-group h-100">
+        <div class="card-body">
+          <div class="row align-items-center h-100">
+            <div class="col-5">
+              <h6 class="colorp m-0">
+                <img src="assets/images/server_info.svg" alt="" />
+                Total Server Storage
+              </h6>
+            </div>
+            <div class="col-7 p-0">
+              <ul
+                class="list-unstyled p-0 m-0 d-flex align-items-center justify-content-between"
+              >
+                <li>
+                  <p class="small m-0">
+                    Server :
+                    <span class="text-warning">
+                      <select name="" id="">
+                        <option value="">All</option>
+                        <option value="">Server 1</option>
+                        <option value="">Server 2</option>
+                        <option value="">Server 3</option>
+                        <option value="">Server 4</option>
+                      </select>
+                    </span>
+                  </p>
+                </li>
+                <li>
+                  <p class="small m-0">
+                    Last Updated :
+                    <span class="text-warning">12 April 2024</span>
+                  </p>
+                </li>
+                <li>
+                  <img src="assets/images/three_dot.svg" alt="" />
+                </li>
+              </ul>
+            </div>
+            <div class="col-md-12">
+              <canvas id="myChart"></canvas>
+            </div>            
+          </div>
+        </div>
+      </div>
+    </div>
+     -->
+    <div class="col-md-12 my-3">
+      <div class="education">
+        <div class="card lg-card">  
+          <div class="card-body">
+            <div class="row align-items-center">
+              <div class="col-md-6 my-2">
+                <h6 class="colorp m-0">
+                  <img src="assets/images/server_info.svg" alt="" />
+                  Server Information
+                </h6>
+              </div>         
+              <div class="col-md-12">
+                <div class="table-responsive">
+                  <table class="table table-hover mt-3 table-striped">
+                    <thead>
+                      <tr class="btn-s">
+                        <!-- <th id="table_Head"><input type="checkbox" /></th> -->
+                        <th id="table_Head">Sr. No.</th>
+                        <th id="table_Head">Server Name</th>
+                        <th id="table_Head">IP Address</th>
+                        <th id="table_Head" class="pl-5 text-center">Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <ng-container *ngIf="serverInformationData.length != 0">
+                        <tr *ngFor="let item of serverInformationData | paginate: { itemsPerPage: itemsPerPage, currentPage: p }; let i = index">
+                          <!-- <td><input type="checkbox" /></td> -->
+                          <td id="for_table_color">{{i+1}}</td>
+                          <td >{{ item.server_name }}</td>
+                          <td>{{ item.server_ip }}</td>
+
+                          <td>
+                            <!--******** checked value *********-->
+                            <label class="radioBTN connected text-center">
+                              <input type="radio" [checked]="item.active" />
+                              <span class="checkmark"></span>
+                            </label>
+                          </td>
+                        </tr>
+                      </ng-container>
+                      <ng-container *ngIf="serverInformationData.length == 0">
+                        <tr>
+                          <td colspan="4">No data found!</td>
+                        </tr>
+                      </ng-container>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="list">
+                  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 my-3">
+      <div class="education h-100">
+        <div class="card lg-card h-100">
+          <div class="card-body">
+            <div class="row align-items-center">
+              <div class="col-md-4 my-2">
+                <h6 class="colorp m-0">
+                  <img src="assets/images/application_performance.svg" alt="" />
+                  File Summary
+                </h6>
+              </div>
+              <div class="col-md-8 my-2 text-end">
+                <ul
+                  class="list-unstyled p-0 m-0 d-flex align-items-center justify-content-end"
+                >
+                  <!-- <li class="me-3">
+                    <p class="small m-0">
+                      Last Updated :
+                      <span class="text-warning">12 April 2024</span>
+                    </p>
+                  </li> -->
+                  <!-- <li class="me-3">
+                    <p class="small m-0">
+                      Server :
+                      <span class="text-warning">
+                        <select name="" id="">
+                          <option value="">All</option>
+                          <option value="">Server 1</option>
+                          <option value="">Server 2</option>
+                          <option value="">Server 3</option>
+                          <option value="">Server 4</option>
+                        </select>
+                      </span>
+                    </p>
+                  </li> -->
+                  <!-- <li>
+                    <p class="small m-0">
+                      Detail :
+                      <span class="text-warning">
+                        <select name="" id="">
+                          <option value="">Today</option>
+                          <option value="">7 days</option>
+                          <option value="">1 month</option>
+                          <option value="">1 year</option>
+                        </select>
+                      </span>
+                    </p>
+                  </li> -->
+                </ul>
+              </div>
+              <div class="col-md-12">
+                <div class="table-responsive">
+                  <table class="table table-hover mt-3 table-striped">
+                    <thead>
+                      <tr class="btn-s">
+                        <!-- <th id="table_Head">
+                          <input type="checkbox" />
+                        </th> -->
+                        <th id="table_Head">Sr. No.</th>
+                        <th id="table_Head">App name</th>
+                        <th id="table_Head">File Name</th>
+                        <th id="table_Head" class="">File Path</th>
+                        <th id="table_Head" class="">File Size</th>
+                        <th id="table_Head" class="">File Extension</th>
+                        <th id="table_Head" class="">Created Date</th>
+                        <th id="table_Head" class="">Remark</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <ng-container *ngIf="fileSummaryData.length != 0">
+                        <tr *ngFor="let item of fileSummaryData | paginate: { itemsPerPage: itemsPerPage, currentPage: p }; let i = index">
+                          <!-- <td>
+                            <input type="checkbox" />
+                          </td> -->
+                          <td id="for_table_color">{{i+1}}</td>
+                          <td>{{ item.appName }}</td>
+                          <td>{{ item.filename }}</td>
+                          <td>{{item.filepath}}</td>
+                          <td>{{item.filesize}}</td>
+                          <td>{{item.fileextension}}</td>
+                          <td>{{item.createddate}}</td>
+                          <td>{{ item.remark }}</td>
+                        </tr>
+                      </ng-container>
+                      <ng-container *ngIf="fileSummaryData.length == 0">
+                        <tr>
+                          <td colspan="8">No data found!</td>
+                        </tr>
+                      </ng-container>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="list">
+                  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 my-3">
+      <div class="education">
+        <div class="card lg-card">
+          <div class="card-body">
+            <div class="row align-items-center">
+              <div class="col-md-6 my-2">
+                <h6 class="colorp m-0">
+                  <img src="assets/images/application_performance.svg" alt="" />
+                  Error Log
+                </h6>
+              </div>
+              <div class="col-md-6 my-2 text-end">
+                <ul
+                  class="list-unstyled p-0 m-0 d-flex align-items-center justify-content-end"
+                >
+                  <li class="me-3">
+                    <p class="small m-0">
+                      Last Updated :
+                      <span class="text-warning">12 April 2024</span>
+                    </p>
+                  </li>
+                  <!-- <li class="me-3">
+                    <p class="small m-0">
+                      Server :
+                      <span class="text-warning">
+                        <select name="" id="">
+                          <option value="">All</option>
+                          <option value="">Server 1</option>
+                          <option value="">Server 2</option>
+                          <option value="">Server 3</option>
+                          <option value="">Server 4</option>
+                        </select>
+                      </span>
+                    </p>
+                  </li> -->
+                  <!-- <li>
+                    <p class="small m-0">
+                      Detail :
+                      <span class="text-warning">
+                        <select name="" id="">
+                          <option value="">Today</option>
+                          <option value="">7 days</option>
+                          <option value="">1 month</option>
+                          <option value="">1 year</option>
+                        </select>
+                      </span>
+                    </p>
+                  </li> -->
+                </ul>
+              </div>
+              <div class="col-md-12">
+                <div class="table-responsive">
+                  <table class="table table-hover mt-3 table-striped">
+                    <thead>
+                      <tr class="btn-s">
+                        <th id="table_Head">Sr. No.</th>
+                        <th id="table_Head">App Name</th>
+                        <th id="table_Head">Log Level</th>
+                        <th id="table_Head">Message</th>
+                        <th id="table_Head">Exception Type</th>
+
+                        <th id="table_Head">Source</th>
+                        <th id="table_Head">Method</th>
+                        <th id="table_Head">Url</th>
+                        <th id="table_Head">TimeStamp</th>
+                        <th id="table_Head">ErrorCode</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <ng-container *ngIf="errorLogData.length != 0">
+                        <tr *ngFor="let item of errorLogData | paginate: { itemsPerPage: itemsPerPage, currentPage: p }; let i = index" >
+                          <td>{{ i + 1 }}</td>
+                          <td>{{ item.appname }}</td>
+                          <td id="for_table_color">
+                            {{ item.loglevel }}
+                          </td>
+                          <td>{{ item.Message }}</td>
+                          <td>{{ item.ExceptionType }}</td>
+                          <td>{{ item.source }}</td>
+                          <td>{{ item.method }}</td>
+                          <td>{{ item.Url }}</td>
+                          <td>{{ item.timestamp }}</td>
+                          <td>{{ item.ErrorCode }}</td>
+                        </tr>
+                      </ng-container>
+                      <ng-container *ngIf="errorLogData.length == 0">
+                        <tr>
+                          <td colspan="10">No data found!</td>
+                        </tr>
+                       
+                      </ng-container>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="list">
+                  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 my-3">
+      <div class="education">
+        <div class="card lg-card">
+          <div class="card-body">
+            <div class="row align-items-center">
+              <div class="col-md-6 my-2">
+                <h6 class="colorp m-0">
+                  <img src="assets/images/application_performance.svg" alt="" />
+                  Health Check-Up
+                </h6>
+              </div>
+              <div class="col-md-6 my-2 text-end">
+                <ul
+                  class="list-unstyled p-0 m-0 d-flex align-items-center justify-content-end"
+                >
+                  <!-- <li class="me-3">
+                    <p class="small m-0">
+                      Last Updated :
+                      <span class="text-warning">12 April 2024</span>
+                    </p>
+                  </li> -->
+                  <!-- <li class="me-3">
+                    <p class="small m-0">
+                      Server :
+                      <span class="text-warning">
+                        <select name="" id="">
+                          <option value="">All</option>
+                          <option value="">Server 1</option>
+                          <option value="">Server 2</option>
+                          <option value="">Server 3</option>
+                          <option value="">Server 4</option>
+                        </select>
+                      </span>
+                    </p>
+                  </li> -->
+                  <!-- <li>
+                    <p class="small m-0">
+                      Detail :
+                      <span class="text-warning">
+                        <select name="" id="">
+                          <option value="">Today</option>
+                          <option value="">7 days</option>
+                          <option value="">1 month</option>
+                          <option value="">1 year</option>
+                        </select>
+                      </span>
+                    </p>
+                  </li> -->
+                </ul>
+              </div>
+              <div class="col-md-12 pb-5 mb-3">
+                <div class="table-responsive">
+                  <table class="table table-hover mt-3 table-striped">
+                    <thead>
+                      <tr class="btn-s">
+                        <!-- <th id="table_Head">
+                          <input type="checkbox" />
+                        </th> -->
+                        <th id="table_Head">Sr. No.</th>
+                        <th id="table_Head">App Name</th>
+                        <th id="table_Head">Health Status</th>
+                        <th id="table_Head">Cpu Usage</th>
+                        <th id="table_Head">Memory Usage</th>
+                        <th id="table_Head" class="text-center">Disk Usage</th>
+                        <th id="table_Head" class="text-center">Response Time</th>
+                        <th id="table_Head" class="text-center">Errors</th>
+                        <th id="table_Head" class="text-center">Warnings</th>
+                        <th id="table_Head" class="text-center">Checked At</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <ng-container *ngIf="healthCheckUpData.length != 0">
+                        <tr
+                          *ngFor="let item of healthCheckUpData | paginate: { itemsPerPage: itemsPerPage, currentPage: p }; let i = index"
+                        >
+                          <!-- <td><input type="checkbox" /></td> -->
+                          <td>{{ i + 1 }}</td>
+                          <td>{{item.appname }}</td>
+                          <td id="for_table_color">{{item.HealthStatus}}</td>
+                          <td>{{ item.CpuUsage }}</td>
+                          <td>{{ item.MemoryUsage }}</td>
+                          <td>{{item.DiskUsage}}</td>
+                          <td>{{item.ResponseTime}}</td>
+                          <td>{{item.Errors}}</td>
+                          <td>{{item.Warnings}}</td>
+                          <td>{{item.CheckedAt}}</td>
+                         
+                        </tr>
+                      </ng-container>
+                      <ng-container *ngIf="healthCheckUpData.length == 0">
+                        <tr>
+                          <td colspan="10">No data found!</td>
+                        </tr>
+                      </ng-container>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="list">
+                  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

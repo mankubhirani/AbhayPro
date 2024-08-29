@@ -1,0 +1,185 @@
+<div id="content" class="p-3">
+  <div class="row">
+    <section class="col-md-12">
+      <div class="education">
+        <div class="card mbb">
+          <div class="card-body">
+            <div class="tab-content" id="pills-tabContent">
+              <div id="bank-management" aria-labelledby="bank-management-tab">
+                <div class="container-fluid">
+                  <div class="row mt-2">
+                    <div class="col-md-12">
+                      <h2 class="colorp">
+                        <img src="assets/images/balanceProgressReport.svg" alt="" />
+                        Auto Clear Logs Details
+                      </h2>
+                    </div>
+ 
+                    <div class="col-md-12">
+                      <div class="row">
+                        <div class="col-md-4">
+                          <div class="row">
+                            <div class="col-md-10 mt-4">
+                              <form>
+                                <input
+                                  class="form-control fw-bold"
+                                  type="search"
+                                  placeholder="Search"
+                                  aria-label="Search"
+                                />
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-8">
+                          <div class="row">
+                            <div class="col-md-4">
+                              <div class="dropdown">
+                                <button
+                                  (click)="toggleDropdown()"
+                                  class="dropbtn border mt-4 py-1 rounded-2 form-select"
+                                >
+                                  Column View
+                                  <i class="bi bi-arrow-down"></i>
+                                </button>
+                                <div id="hidecheckbox" class="dropdown-content" [ngClass]="dropdownVisible ? 'show' : ''">
+                                  <a href="#">
+                                    <input
+                                      type="checkbox"
+                                      (change)="selectAllColumns($event)"
+                                      [checked]="allColumnsSelected"
+                                    />
+                                    Select All
+                                  </a>
+                                 
+                                  <a href="#">
+                                    <input
+                                      type="checkbox"
+                                      (change)="toggleColumnVisibility('getTimeSpanArray')"
+                                      [checked]="!columnVisibility.logDetails"
+                                    />
+                                    Schedule Auto clear
+                                  </a>
+                                  <a href="#">
+                                    <input
+                                      type="checkbox"
+                                      (change)="toggleColumnVisibility('applicationName')"
+                                      [checked]="!columnVisibility.applicationName"
+                                    />
+                                    Application Name
+                                  </a>
+                                  <a href="#">
+                                    <input
+                                      type="checkbox"
+                                      (change)="toggleColumnVisibility('occurTime')"
+                                      [checked]="!columnVisibility.occurTime"
+                                    />
+                                    Occur Time
+                                  </a>
+                                  <a href="#">
+                                    <input
+                                      type="checkbox"
+                                      (change)="toggleColumnVisibility('pageFunction')"
+                                      [checked]="!columnVisibility.pageFunction"
+                                    />
+                                    Page/Function
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-2">
+                              <div class="form-group">
+                                <select
+                                      class="form-control show-dropdown mt-4"
+                                      id=""
+                                      [(ngModel)]="selectedOption"
+                                      (ngModelChange)="onSelectionChange()"
+                                  
+                                    >
+                                      <option>Show</option>
+                                      <option>5</option>
+                                      <option>10</option>
+                                      <option>25</option>
+                                      <option>50</option>
+                                      <option>100</option>
+                                    </select>
+                              </div>
+                            </div>
+                            <div class="col-md-2 mt-4">
+                              <div class="dropdown1">
+                                <button
+                                  class="btn btn-secondary"
+                                  type="button"
+                                  id="dropdownMenuButton"
+                                  (click)="toggleDropdown1()"
+                                >
+                                  <span>Action<i class="bi bi-chevron-down"></i></span>
+                                </button>
+                                <ul class="dropdown-menu" [class.show]="isDropdownOpen1" aria-labelledby="dropdownMenuButton1">
+                                  <li>
+                                    <a class="dropdown-item" href="#" (click)="edit()">Edit</a>
+                                  </li>
+                                  <li>
+                                    <a class="dropdown-item" href="#" (click)="delete()">Delete</a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                            <div class="col-md-4 mt-4">
+                              <a type="button" class="btn btn-info1" routerLink="/add-auto-clear-log">+ Add Auto Clear Log</a>
+                            </div>
+                      </div>
+                    </div>
+ 
+                    <div class="col-md-12 mt-4">
+                      <div class="table-responsive">
+                        <table class="table table-hover mt-3 table-striped">
+                          <thead>
+                            <tr class="btn-s">
+                             
+                             
+                              <th *ngIf="columnVisibility.applicationName">Application ID</th>
+                              <th *ngIf="columnVisibility.getTimeSpanArray">Schedule Auto clear</th>
+                              <th *ngIf="columnVisibility.occurTime">Vaild To</th>
+                              
+                              <th *ngIf="columnVisibility.pageFunction">Modified Date</th>
+                              <th *ngIf="columnVisibility.pageFunction">Status</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <ng-container *ngIf="getAutoClearArr.length != 0">
+                              <tr *ngFor="let value of getAutoClearArr | paginate: { itemsPerPage: selectedOption, currentPage: p }">
+                                <td *ngIf="columnVisibility.logCode">{{ value.acl_application_id }}</td>
+                                <td *ngIf="columnVisibility.logDetails">{{ value.acl_clear_schedule_on }}</td>
+                                <td *ngIf="columnVisibility.applicationName">{{ value.acl_created_date }}</td>
+                                <td *ngIf="columnVisibility.pageFunction">{{ value.acl_modified_date }}</td>
+                                <td *ngIf="columnVisibility.occurTime">{{ value.acl_is_active }}</td>
+                               
+                              </tr>
+                            </ng-container>
+                            <ng-container *ngIf="getAutoClearArr.length == 0">
+                              <tr>
+                                <td colspan="5">No data found!</td>
+                              </tr>
+                            </ng-container>
+                          </tbody>
+                        </table>
+                        
+                      </div>
+                      <pagination-controls
+                        (pageChange)="p = $event"
+                      ></pagination-controls>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> 
+  </div>
+    </section>
+    
+  </div>
+</div>

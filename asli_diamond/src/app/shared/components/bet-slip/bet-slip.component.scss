@@ -1,0 +1,24 @@
+.mobileTableShow .innerpagem {
+  background-color: transparent;
+}
+
+.mobileTableHide #myTabContent .card {
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+
+// .minMax {
+//   padding: 5px;
+// }
+
+@media (min-width: 1024px) {
+  .minMax {
+    padding: 3px 6px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .minMax {
+    padding: 6px 6px;
+  }
+}

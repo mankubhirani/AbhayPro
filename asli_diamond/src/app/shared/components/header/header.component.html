@@ -1,0 +1,1436 @@
+<header class="header " *ngIf="!isMobileView">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="header-top col-md-12">
+        <div class="float-left">
+          <a href="/" class="logo router-link-exact-active router-link-active fa-2x">
+            <!-- <img class="logo-icon" src="assets/images/diamond247-logo.png" /> -->
+             MAFIASPORTS888
+          </a>
+        </div>
+        <ul class="float-right d-flex">
+          <li class="bg-body" style="position: relative; z-index: 9;" *ngIf="isMobileView">
+            <img src="assets/images/hamburger.svg" alt="" width="100%" onclick="toggleSidebar()">
+          </li>
+          <li class="search">
+            <div class="completer-holder">
+              <input autocapitalize="off" autocomplete="off" autocorrect="off" class="completer-input" type="search"
+                name="" #inputRef (keydown)="postSearchList(inputRef.value)" [ngModelOptions]="{ standalone: true }"
+                [(ngModel)]="searchText" placeholder="Search for a Sport, Game or Team" maxlength="524288" tabindex="0"
+                [class.show]="isSearchVisible" />
+              <ul *ngIf="searchList?.length > 0" class="dropdown-menu-dark search-dd">
+                <li *ngFor="let singleObj of searchList" (click)="navigateToMatch(singleObj)">
+                  <a><img src="assets/images/{{
+                        singleObj['sportType']['sportName'] | lowercase
+                      }}.png" width="45px" class="pe-4" />
+                    {{ singleObj["matchName"] }}<br />
+                    <span class="ps-5">{{
+                      singleObj["openDate"] | date : "d/MM/yy, h:mm a"
+                      }}</span>
+                  </a>
+                </li>
+              </ul>
+              <i class="fas fa-search-plus search-icon" (click)="toggleSearch()"></i>
+            </div>
+          </li>
+
+          <li class="download-apklink" *ngIf="!isMobileView">
+            <div style="margin-top: 10px">
+              <!-- <a class="rules-link m-r-5"><b>Rules</b></a> -->
+
+              <!-- Button trigger modal -->
+              <a type="button" class="rules-link m-r-5" data-bs-toggle="modal" data-bs-target="#rules">
+                <b>Rules</b>
+              </a>
+            </div>
+          </li>
+
+          <li class="ballance" *ngIf="!isMobileView">
+            <div>
+              <span class="pe-3">Balance:</span><strong><span class="">{{
+                  userBalance?.availableCredit | number
+                  }}</span></strong>
+            </div>
+            <div>
+              <a><span class="t-underline pe-3">Exposure:</span><strong>
+                  <span class="t-underline" *ngIf="userBalance?.exposure != 0" [ngClass]="
+                      userBalance?.exposure > 0 ? 'text-success' : 'text-danger'
+                    ">
+                    {{ userBalance?.exposure | number }}
+                  </span>
+                  <span class="t-underline" class="" *ngIf="userBalance?.exposure == 0">
+                    {{ userBalance?.exposure | number }}
+                  </span></strong></a>
+            </div>
+          </li>
+
+          <li class="account float-left">
+            <!-- <button type="button" class="btn btn-submit btn-login " data-bs-toggle="modal" data-bs-target="#login">
+              Login/Signup
+              <img src="assets/images/login.svg" alt="">
+            </button> -->
+            <div class="dropdown">
+              <span type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                demo 3 <i class="fas fa-chevron-down"></i>
+              </span>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li>
+                  <a routerLink="/account-statement" class=""> Account Statement </a>
+                </li>
+
+                <li>
+                  <a routerLink="/profit-loss" class=""> Profit And Loss </a>
+                </li>
+
+                <!-- <li>
+                  <a href="balance-overview.html" class="">
+                    Deposit And WithDraw
+                  </a>
+                </li> -->
+
+                <li>
+                  <a routerLink="/bet-history" class=""> Bet History </a>
+                </li>
+                <li>
+                  <a routerLink="/unsetteled-bet" class=""> Unsetteled Bet </a>
+                </li>
+                <li>
+                  <a routerLink="/casino-report-history" class="">
+                    Casino Report History
+                  </a>
+                </li>
+
+                <li>
+                  <a routerLink="/set-button-value"> Set Button Value </a>
+                </li>
+                <li>
+                  <a class=""> Security Auth Verification </a>
+                </li>
+
+                <li>
+                  <a routerLink="/change-password" class=""> Change Password </a>
+                </li>
+
+                <!-- <li>
+                  <a href="activity_log.html" class=""> Activity Log </a>
+                </li>
+
+                <li>
+                  <a href="bank_transfer.html" class=""> Bank Transfer </a>
+                </li>
+
+                <li>
+                  <a href="rolling_history.html" class=""> Rolling History </a>
+                </li>
+
+                <li>
+                  <a class=""> Notification History </a>
+                </li> -->
+
+                <!-- <li>
+                  <a class="menu-display-flex"
+                    ><span> Wallet Balance</span><span>0.00 </span></a
+                  >
+                </li> -->
+                <li>
+                  <hr />
+                </li>
+
+                <li>
+                  <a class="dropdown-item" (click)="logout()">Signout</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+        <marquee class="headermq" scrollamount="3">
+          <span style="margin-right: 15px" class="">{{settingsObj?.noticeMessage}}
+          </span>
+        </marquee>
+      </div>
+
+      <div class="header-bottom m-t-10 col-md-12">
+        <nav class="navbar navbar-expand-md btco-hover-menu">
+          <div class="collapse navbar-collapse">
+            <ul class="list-unstyled navbar-nav">
+              <li class="nav-item ">
+                <a routerLink="/" class="router-link-exact-active router-link-active"><b>Home</b></a>
+              </li>
+
+              <li class="nav-item">
+                <a routerLink="game-list/Cricket"><b>Cricket</b></a>
+              </li>
+
+              <li class="nav-item">
+                <a routerLink="game-list/Tennis"><b>Tennis</b></a>
+              </li>
+              <li class="nav-item">
+                <a routerLink="game-list/Football"><b>Football</b></a>
+              </li>
+              <li class="nav-item active">
+                <a routerLink="game-list/table-tennis"><b>Table Tennis</b></a>
+              </li>
+              <li class="nav-item active">
+                <a routerLink="game-list/Kabaddi"><b>Kabaddi</b></a>
+              </li>
+              <li class="nav-item active">
+                <a routerLink="game-list/Basketball"><b>Basketball</b></a>
+              </li>
+              <li class="nav-item active">
+                <a routerLink="game-list/Volleyball"><b>Volleyball</b></a>
+              </li>
+              <li class="nav-item ">
+                <a (click)="redirectToCasino('10','XPG')"><b>Baccarat</b></a>
+              </li>
+              <li class="nav-item ">
+                <a (click)="redirectToCasino('80','XPG')"><b>32 Cards</b></a>
+              </li>
+              <li class="nav-item ">
+                <a (click)="redirectToCasino('1000418','EZ')"><b>Teenpatti</b></a>
+              </li>
+              <li class="nav-item ">
+                <a (click)="redirectToCasino('BTV-6poker','QT')"><b>Poker</b></a>
+              </li>
+              <li class="nav-item ">
+                <a (click)="redirectToCasino('BTV-lucky7','QT')"><b>Lucky 7</b></a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+<header class="header " *ngIf="isMobileView">
+  <div class="container-fluid">
+    <div class="row  pt-1 pb-1">
+      <div class="col-6">
+        <div class="logo">
+          <!-- <i class="fas fa-home mr-2"></i> -->
+          <span class="logoBox"><a href="/">
+            <!-- <img src="assets/images/diamond247-logo.png" class="w-75" /> -->
+            MAFIASPORTS888
+          </a>
+          </span>
+        </div>
+      </div>
+
+      <div class="col-6 bal-expo">
+        <p class="mb-0 text-end">
+          <i class="fas fa-landmark mr-1"></i>
+          <b> 0.11 CI</b>
+        </p>
+        <div class="d-flex py-2 justify-content-end">
+          <span class="mr-2 col-5"><u>Exp: 0.00</u></span>
+
+          <div class="dropdown d-inline-block col-5">
+            <span type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              demo 3 <i class="fas fa-chevron-down"></i>
+            </span>
+            <ul class="dropdown-menu p-2" aria-labelledby="dropdownMenuButton1">
+              <li>
+                <a routerLink="/account-statement" class=""> Account Statement </a>
+              </li>
+
+              <li>
+                <a routerLink="/profit-loss" class=""> Profit And Loss </a>
+              </li>
+
+              <!-- <li>
+                <a href="balance-overview.html" class="">
+                  Deposit And WithDraw
+                </a>
+              </li> -->
+
+              <li>
+                <a routerLink="/bet-history" class=""> Bet History </a>
+              </li>
+              <li>
+                <a routerLink="/unsetteled-bet" class=""> Unsetteled Bet </a>
+              </li>
+              <li>
+                <a routerLink="/casino-report-history" class="">
+                  Casino Report History
+                </a>
+              </li>
+
+              <li>
+                <a routerLink="/set-button-value"> Set Button Value </a>
+              </li>
+              <li>
+                <a class=""> Security Auth Verification </a>
+              </li>
+
+              <li>
+                <a routerLink="/change-password" class=""> Change Password </a>
+              </li>
+
+              <!-- <li>
+                <a href="activity_log.html" class=""> Activity Log </a>
+              </li>
+
+              <li>
+                <a href="bank_transfer.html" class=""> Bank Transfer </a>
+              </li>
+
+              <li>
+                <a href="rolling_history.html" class=""> Rolling History </a>
+              </li>
+
+              <li>
+                <a class=""> Notification History </a>
+              </li> -->
+
+              <!-- <li>
+                <a class="menu-display-flex"
+                  ><span> Wallet Balance</span><span>0.00 </span></a
+                >
+              </li> -->
+              <li>
+                <hr />
+              </li>
+
+              <li>
+                <a class="dropdown-item" (click)="logout()">Signout</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="d-flex align-items-center">
+          <div class="search-box-container">
+            <div class="search-box float-left">
+              <div class="completer-holder">
+                <input autocapitalize="off" autocomplete="off" autocorrect="off" class="completer-input" type="search"
+                  name="" #inputRef (keydown)="postSearchList(inputRef.value)" [ngModelOptions]="{ standalone: true }"
+                  [(ngModel)]="searchText" placeholder="Search for a Sport, Game or Team" maxlength="524288"
+                  tabindex="0" [class.show]="isSearchVisible" />
+                <ul *ngIf="searchList?.length > 0" class="dropdown-menu-dark search-dd">
+                  <li *ngFor="let singleObj of searchList" (click)="navigateToMatch(singleObj)">
+                    <a><img src="assets/images/{{
+                          singleObj['sportType']['sportName'] | lowercase
+                        }}.png" width="45px" class="pe-4" />
+                      {{ singleObj["matchName"] }}<br />
+                      <span class="ps-5">{{
+                        singleObj["openDate"] | date : "d/MM/yy, h:mm a"
+                        }}</span>
+                    </a>
+                  </li>
+                </ul>
+                <i class="fas fa-search search-icon" (click)="toggleSearch()" style="background: #fff;
+                border-radius: 100%;
+                padding: 8px;
+                color: #000;"></i>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="announcement_text_wrap">
+            <marquee class="searchClose" scrollamount="3"><span style="margin-right: 15px" class="">In Special Mkt.
+                World
+                Cup Rate nd World Cup Fancy are Available </span><span style="margin-right: 15px" class="">Please note
+                scoreboard is a third party provider and our company
+                does not hold any responsibility, if you place any bets after
+                referring to our scorecard.
+              </span></marquee>
+            <!-- <div class="close_icon">
+      <a><span> x </span></a>
+    </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <ul class="nav nav-tabs game-nav-bar d-flex">
+    <li class="nav-item">
+      <a routerLink="/" class="nav-link router-link-exact-active router-link-active active">
+        In-play
+      </a>
+    </li>
+    <li class="nav-item">
+      <a routerLink="game-list/Cricket" class="nav-link router-link-exact-active router-link-active active">
+        Sports
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="casino_slots.html" class="nav-link router-link-exact-active router-link-active active">
+        Casino + Slot
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link router-link-exact-active router-link-active active">
+        Others
+      </a>
+    </li>
+    <!-- <li class="nav-item">
+      <a class="nav-link router-link-exact-active router-link-active">
+        Virtual Sports
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link router-link-exact-active router-link-active">
+        Special Market
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link router-link-exact-active router-link-active">
+        Games
+      </a>
+    </li> -->
+  </ul>
+</header>
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="edit-stacklLabel">Change Button Value</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="">
+          <ul class="nav nav-tabs buttons-tabs"></ul>
+          <div class="tab-content">
+            <div class="bet-table tab-pane active" id="game-btn">
+              <div class="table-responsive">
+                <table class="table button-value">
+                  <thead>
+                    <tr>
+                      <th>Price Label</th>
+                      <th>Price Value</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="">
+                      <td>
+                        <input appblockcopypaste="" autocomplete="off" class="form-control" data-toggle="tooltip"
+                          disabled="" maxlength="8" norightclick="" positivenumberonly=""
+                          title="Value must be greater or equal to 1" type="text" id="0" />
+                      </td>
+                      <td>
+                        <input appblockcopypaste="" autocomplete="off" class="form-control" data-toggle="tooltip"
+                          maxlength="8" norightclick="" positivenumberonly=""
+                          title="Value must be greater or equal to 1" type="text" id="0" />
+                      </td>
+                    </tr>
+                    <tr class="">
+                      <td>
+                        <input appblockcopypaste="" autocomplete="off" class="form-control" data-toggle="tooltip"
+                          disabled="" maxlength="8" norightclick="" positivenumberonly=""
+                          title="Value must be greater or equal to 1" type="text" id="1" />
+                      </td>
+                      <td>
+                        <input appblockcopypaste="" autocomplete="off" class="form-control" data-toggle="tooltip"
+                          maxlength="8" norightclick="" positivenumberonly=""
+                          title="Value must be greater or equal to 1" type="text" id="1" />
+                      </td>
+                    </tr>
+                    <tr class="">
+                      <td>
+                        <input appblockcopypaste="" autocomplete="off" class="form-control" data-toggle="tooltip"
+                          disabled="" maxlength="8" norightclick="" positivenumberonly=""
+                          title="Value must be greater or equal to 1" type="text" id="2" />
+                      </td>
+                      <td>
+                        <input appblockcopypaste="" autocomplete="off" class="form-control" data-toggle="tooltip"
+                          maxlength="8" norightclick="" positivenumberonly=""
+                          title="Value must be greater or equal to 1" type="text" id="2" />
+                      </td>
+                    </tr>
+                    <tr class="">
+                      <td>
+                        <input appblockcopypaste="" autocomplete="off" class="form-control" data-toggle="tooltip"
+                          disabled="" maxlength="8" norightclick="" positivenumberonly=""
+                          title="Value must be greater or equal to 1" type="text" id="3" />
+                      </td>
+                      <td>
+                        <input appblockcopypaste="" autocomplete="off" class="form-control" data-toggle="tooltip"
+                          maxlength="8" norightclick="" positivenumberonly=""
+                          title="Value must be greater or equal to 1" type="text" id="3" />
+                      </td>
+                    </tr>
+                    <tr class="">
+                      <td>
+                        <input appblockcopypaste="" autocomplete="off" class="form-control" data-toggle="tooltip"
+                          disabled="" maxlength="8" norightclick="" positivenumberonly=""
+                          title="Value must be greater or equal to 1" type="text" id="4" />
+                      </td>
+                      <td>
+                        <input appblockcopypaste="" autocomplete="off" class="form-control" data-toggle="tooltip"
+                          maxlength="8" norightclick="" positivenumberonly=""
+                          title="Value must be greater or equal to 1" type="text" id="4" />
+                      </td>
+                    </tr>
+                    <tr class="">
+                      <td>
+                        <input appblockcopypaste="" autocomplete="off" class="form-control" data-toggle="tooltip"
+                          disabled="" maxlength="8" norightclick="" positivenumberonly=""
+                          title="Value must be greater or equal to 1" type="text" id="5" />
+                      </td>
+                      <td>
+                        <input appblockcopypaste="" autocomplete="off" class="form-control" data-toggle="tooltip"
+                          maxlength="8" norightclick="" positivenumberonly=""
+                          title="Value must be greater or equal to 1" type="text" id="5" />
+                      </td>
+                    </tr>
+                    <tr class="">
+                      <td>
+                        <input appblockcopypaste="" autocomplete="off" class="form-control" data-toggle="tooltip"
+                          disabled="" maxlength="8" norightclick="" positivenumberonly=""
+                          title="Value must be greater or equal to 1" type="text" id="6" />
+                      </td>
+                      <td>
+                        <input appblockcopypaste="" autocomplete="off" class="form-control" data-toggle="tooltip"
+                          maxlength="8" norightclick="" positivenumberonly=""
+                          title="Value must be greater or equal to 1" type="text" id="6" />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div style="text-transform: none">
+                  <h4 style="font-weight: bold">Accept Any Odds</h4>
+                  <ul style="display: flex; margin-bottom: 10px">
+                    <li>
+                      <input id="checkbod11" type="checkbox" /><span style="margin-left: 5px">Match Odds</span>
+                    </li>
+                    <li style="margin-left: 20px">
+                      <input id="checkbod22" type="checkbox" /><span>
+                        BookMaker
+                      </span>
+                    </li>
+                    <li style="margin-left: 20px">
+                      <input id="checkbod33" type="checkbox" /><span>
+                        Fancy</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="text-right">
+                <button class="btn btn-primary btn-block">Update</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- 
+
+<div class="fixedHeader">
+  <div class="container-fluid">
+    <div class="row">
+      <nav
+        class="navbar navbar-expand-lg navbar-light header-one p-0 align-items-center d-flex"
+      >
+        <div class="col-xl-3 col-lg-4 col-md-4 col-7">
+          <ul class="navbar-nav mobNav align-items-center">
+            <li class="d-md-none">
+              <button
+                class="navbar-toggler bg-color col"
+                type="button"
+                (click)="onLeftClick()"
+                (clickOutside)="isShowLeftSideBar = false"
+                *ngIf="!isMobileView"
+              >
+                <i class="fa fa-bars-staggered"></i>
+              </button>
+              <button
+                class="navbar-toggler bg-color col"
+                type="button"
+                (click)="onLeftClick()"
+                (clickOutside)="isShowLeftSideBar = false"
+                *ngIf="isMobileView"
+              >
+                <i class="fa fa-bars"></i>
+              </button>
+            </li>
+            <li *ngIf="!isMobileView">
+              <a class="navbar-brand" [routerLink]="['/in-play']"
+                ><img src="assets/images/logo.svg" class="w-auto"
+              /></a>
+            </li>
+            <li *ngIf="isMobileView">
+              <a class="navbar-brand" [routerLink]="['/in-play']"
+                ><img src="assets/images/logo2.svg" class="w-100 bg-color"
+              /></a>
+            </li>
+
+            <li
+              class="nav-item header-icon pt-2 pointer disnone"
+              (click)="refreshPage()"
+            >
+              <a class="btn-pink p-2">
+                <div class="tooltipnk">
+                  <i class="fas fa-rotate-right pointer fa-lg text-white"></i>
+                  <span class="tooltiptext">Refresh</span>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div
+          class="col-xl-6 col-lg-4 col-md-4 col-7 tabHihe"
+          *ngIf="!isMobileView"
+        >
+          <ul class="list-unstyled m-0">
+            <li class="w-100 m-0 pe-1 text-center">
+              <span class="marquee">{{ settingsObj?.noticeMessage }}</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-xl-3 col-lg-4 col-md-4 col-5">
+          <form class="d-flex float-end align-items-center">
+            <div class="searchs">
+              <a
+                class="text-white"
+                data-bs-toggle="modal"
+                data-bs-target="#staticBackdrop"
+                ><i class="fa fa-search bg-color rounded-circle p-2 me-2"></i
+              ></a>
+            </div>
+
+            <div class="dropdown me-4 searchlist disnone">
+              <div class="dropdown-toggle">
+                <i class="fa fa-search searchi"></i>
+                <input
+                  type="text"
+                  class="form-control searchinput border-colour"
+                  aria-label=""
+                  #inputRef
+                  (keydown)="postSearchList(inputRef.value)"
+                  [ngModelOptions]="{ standalone: true }"
+                  [(ngModel)]="searchText"
+                  placeholder="Search for a Sport, Game or Team"
+                />
+              </div>
+              <ul
+                *ngIf="searchList?.length > 0"
+                class="dropdown-menu-dark search-dd"
+              >
+                <li
+                  *ngFor="let singleObj of searchList"
+                  (click)="navigateToMatch(singleObj)"
+                >
+                  <a
+                    ><img
+                      src="assets/images/{{
+                        singleObj['sportType']['sportName'] | lowercase
+                      }}.png"
+                      width="45px"
+                      class="pe-4"
+                    />
+                    {{ singleObj["matchName"] }}<br />
+                    <span class="ps-5">{{
+                      singleObj["openDate"] | date : "d/MM/yy, h:mm a"
+                    }}</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <button
+              class="btn btn-light btn-pink me-2 rounded-pill"
+              type="button"
+              *ngIf="!isLoggedIn"
+              routerLink="/login"
+            >
+              Login
+            </button>
+            <button
+              class="btn border-colour me-2 text-nowrap rounded-pill disnone headerFont btn-deepblue"
+              type="button"
+              *ngIf="isLoggedIn"
+              [routerLink]="['/bets']"
+              [routerLinkActive]="'active'"
+            >
+              OPEN BETS
+            </button>
+            <a
+              class="btn border-colour text-nowrap rounded-pill headerFont btn-deepblue"
+              *ngIf="isLoggedIn"
+              (click)="onClickAvailableCredit()"
+              (clickOutside)="isShowRightSideBar = false"
+              >{{ userBalance?.availableCredit | number }}
+              <i class="fa fa-user bg-color rounded-circle p-1 text-white"></i>
+            </a>
+          </form>
+        </div>
+
+        <div class="col-md-12 col-12 text-center my-2" *ngIf="isMobileView">
+          {{ settingsObj?.noticeMessage }}
+        </div>
+
+        <div
+          class="collapse navbar-collapse"
+          id="navbarSupportedContent"
+          *ngIf="isMobileView"
+        >
+          <app-left-navigation></app-left-navigation>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <div class="header-tow mobileTableHide" *ngIf="!isMobileView">
+    <div class="row align-items-center">
+      <div class="col-md-2">
+        <img src="assets/images/logo2.svg" alt="" class="w-100" />
+      </div>
+      <div class="col-md-10">
+        <ul class="nav justify-content-around">
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              aria-current="page"
+              [routerLink]="['/in-play']"
+              [routerLinkActive]="'active'"
+              ><img src="assets/images/inplay1.png" /> INPLAY</a
+            >
+          </li>
+
+          <li class="nav-item" *ngFor="let menu of menuList">
+            <a
+              class="nav-link"
+              [ngClass]="{
+                'disabled-link': menu.sportName === 'Casino' && !isUserActive
+              }"
+              [routerLink]="
+                menu.sportName === 'Casino' && !isUserActive
+                  ? null
+                  : menu.sportName === 'Casino'
+                  ? ['/casino']
+                  : ['/sportsbook/' + menu.sportName]
+              "
+              [routerLinkActive]="'active'"
+            >
+              <img [src]="menu.imageUrl" /> {{ menu.sportName | uppercase }}
+            </a>
+          </li>
+
+          <li class="nav-item" *ngIf="isCasinoEnabled">
+            <a
+              class="nav-link pointer"
+              aria-current="page"
+              (click)="redirectToAviatorCasino()"
+              ><img
+                src="https://sportszonegroup9e79.blob.core.windows.net/menuimages/aviator.png"
+                width="20px"
+                class="me-2"
+              />
+              <span>Aviator</span>
+            </a>
+          </li>
+          <li>
+            <a class="nav-link pointer" aria-current="page"
+              ><img
+                src="https://sportszonegroup9e79.blob.core.windows.net/menuimages/aviator.png"
+                width="20px"
+                class="me-2"
+              />
+              <span>Boxing</span>
+            </a>
+          </li>
+          <li>
+            <a class="nav-link pointer" aria-current="page"
+              ><img
+                src="https://sportszonegroup9e79.blob.core.windows.net/menuimages/aviator.png"
+                width="20px"
+                class="me-2"
+              />
+              <span>Boxing</span>
+            </a>
+          </li>
+          <li>
+            <a class="nav-link pointer" aria-current="page"
+              ><img
+                src="https://sportszonegroup9e79.blob.core.windows.net/menuimages/aviator.png"
+                width="20px"
+                class="me-2"
+              />
+              <span>Boxing</span>
+            </a>
+          </li>
+          <li>
+            <a class="nav-link pointer" aria-current="page"
+              ><img
+                src="https://sportszonegroup9e79.blob.core.windows.net/menuimages/aviator.png"
+                width="20px"
+                class="me-2"
+              />
+              <span>Boxing</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="header-tow mobileTableShow" *ngIf="isMobileView">
+    <div
+      id="carouselExampleControls"
+      class="carousel slide"
+      data-bs-ride="carousel"
+      data-bs-interval="false"
+    >
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <ul class="nav justify-content-center">
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                aria-current="page"
+                [routerLink]="['/in-play']"
+                [routerLinkActive]="'active'"
+                ><img src="assets/images/inplay1.png" /> INPLAY</a
+              >
+            </li>
+
+            <li class="nav-item" *ngFor="let menu of menuList">
+              <a
+                class="nav-link"
+                [routerLink]="
+                  menu.sportName === 'Casino'
+                    ? ['/casino']
+                    : ['/sportsbook/' + menu.sportName]
+                "
+                [routerLinkActive]="'active'"
+                ><img [src]="menu.imageUrl" />
+                {{ menu.sportName | uppercase }}</a
+              >
+            </li>
+            <li class="nav-item" *ngIf="isCasinoEnabled">
+              <a
+                class="nav-link"
+                aria-current="page"
+                (click)="redirectToAviatorCasino()"
+                ><img
+                  src="https://sportszonegroup9e79.blob.core.windows.net/menuimages/aviator.png"
+                  width="20px"
+                  class="me-2"
+                />
+                <span>Aviator</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    id="overlay"
+    *ngIf="isShowLeftSideBar"
+    [ngClass]="{ toggled: isShowLeftSideBar }"
+    [style.display]="isShowLeftSideBar ? 'block' : 'none'"
+  >
+    <div id="leftslider">
+      <app-left-navigation
+        (leftSidebarEvent)="getLeftSidebarEvent($event)"
+      ></app-left-navigation>
+    </div>
+  </div>
+
+  <div
+    id="overlay"
+    *ngIf="isShowRightSideBar"
+    [ngClass]="{ toggled: isShowRightSideBar }"
+    [style.display]="isShowRightSideBar ? 'block' : 'none'"
+  >
+    <div id="rightslider">
+      <app-right-sidebar
+        (rightSidebarEvent)="getRightSidebarEvent($event)"
+        [userBalance]="userBalance"
+      ></app-right-sidebar>
+    </div>
+  </div>
+
+  <div
+    class="modal fade"
+    id="staticBackdrop"
+    data-bs-backdrop="static"
+    data-bs-keyboard="false"
+    tabindex="-1"
+    aria-labelledby="staticBackdropLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content bg-dark text-white">
+        <div class="modal-header border-bottom-0">
+          <h5 class="modal-title" id="staticBackdropLabel">Search</h5>
+        </div>
+        <div class="modal-body">
+          <div class="dropdown me-4 searchlist mt-1 w-100">
+            <a
+              class="dropdown-toggle"
+              href="#"
+              role="button"
+              id="dropdownMenuLink"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <i class="fa fa-search searchi"></i>
+              <input
+                type="text"
+                class="form-control searchinput"
+                aria-label=""
+                #inputRef
+                (keydown)="postSearchList(inputRef.value)"
+                [ngModelOptions]="{ standalone: true }"
+                [(ngModel)]="searchText"
+                placeholder="Search for a Sport, Game or Team"
+              />
+            </a>
+            <ul
+              *ngIf="searchList?.length > 0"
+              class="dropdown-menu-dark search-dd"
+            >
+              <li
+                *ngFor="let singleObj of searchList"
+                (click)="navigateToMatch(singleObj)"
+                data-bs-dismiss="modal"
+              >
+                <a
+                  ><img
+                    src="assets/images/{{
+                      singleObj['sportType']['sportName'] | lowercase
+                    }}.png"
+                    width="45px"
+                    class="pe-4"
+                  />
+                  {{ singleObj["matchName"] }}<br />
+                  <span class="ps-5">{{
+                    singleObj["openDate"] | date : "d/MM/yy, h:mm a"
+                  }}</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="modal-footer border-top-0 justify-content-start">
+          <a class="text-color text-decoration-none" data-bs-dismiss="modal"
+            >Close</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/x-template" id="app-template">
+  <v-app>
+    <v-sheet
+      class="mx-auto"
+      max-width="600"
+    >
+      <v-slide-group
+        show-arrows
+      >
+        <v-slide-group-item
+          v-for="n in 5"
+          :key="n"
+          v-slot="{ isSelected, toggle }"
+        >
+          <v-btn
+            class="ma-2"
+            rounded
+            :color="isSelected ? 'primary' : undefined"
+            @click="toggle"
+          >
+            Options {{ n }}
+          </v-btn>
+        </v-slide-group-item>
+      </v-slide-group>
+    </v-sheet>
+  </v-app>
+</script> -->
+
+<!-- Modal -->
+<div class="modal fade" id="rules" tabindex="-1" aria-labelledby="rulesLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="rulesLabel">Rules</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="d-flex align-items-start bg-pink">
+                <div class="nav flex-column nav-pills w-25 rulesPills" id="v-pills-tab" role="tablist"
+                  aria-orientation="vertical">
+                  <button class="nav-link" id="motor-sport" data-bs-toggle="pill" data-bs-target="#motor-sport-pills"
+                    type="button" role="tab" aria-controls="motor-sport-pills" aria-selected="true">
+                    Motor Sport
+                  </button>
+                  <button class="nav-link" id="horse-racing-tab" data-bs-toggle="pill"
+                    data-bs-target="#horse-racing-pills" type="button" role="tab" aria-controls="horse-racing-pills"
+                    aria-selected="false">
+                    Horse Racing
+                  </button>
+                  <button class="nav-link" id="handball-pills-tab" data-bs-toggle="pill"
+                    data-bs-target="#handball-pills" type="button" role="tab" aria-controls="handball-pills"
+                    aria-selected="false">
+                    Handball
+                  </button>
+                  <button class="nav-link" id="table-tennis-tab" data-bs-toggle="pill"
+                    data-bs-target="#table-tennis-pills" type="button" role="tab" aria-controls="table-tennis-pills"
+                    aria-selected="false">
+                    Table Tennis
+                  </button>
+                </div>
+                <div class="tab-content w-100" id="v-pills-tabContent">
+                  <div class="tab-pane fade show active" id="motor-sport-pills" role="tabpanel"
+                    aria-labelledby="motor-sport">
+                    <div class="container-fluid p-0 bg-body">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <h3 class="py-2 px-4" style="background-color: #242423; color: #fff">
+                            Motor Sport
+                          </h3>
+                        </div>
+                        <div class="col-md-12 py-4 px-5">
+                          <div class="card">
+                            <div class="card-header bg-transparent">
+                              Bookmaker
+                            </div>
+                            <div class="card-body p-0">
+                              <ul>
+                                <li>
+                                  All race bets are settled on the official
+                                  classification from the Federation
+                                  Internationale de l’Automobile (FIA),the
+                                  sport’s governing body, at the time of podium
+                                  presentation.
+                                </li>
+                                <li>
+                                  If a race is postponed ( Either before the
+                                  start or via an interruption mid-race) but is
+                                  concluded within 72 hours of the original
+                                  scheduled start time , then all bets will
+                                  stand.
+                                </li>
+                                <li>
+                                  Our exchange management decision will be the
+                                  final decision.
+                                </li>
+                                <li>
+                                  Any query about the result should be contacted
+                                  within 7 days of the specific event, the same
+                                  will not be considered valid post 7 days from
+                                  the event.
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tab-pane fade" id="horse-racing-pills" role="tabpanel" aria-labelledby="horse-racing-tab">
+                    <div class="container-fluid p-0 bg-body">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <h3 class="py-2 px-4" style="background-color: #242423; color: #fff">
+                            Horse Racing
+                          </h3>
+                        </div>
+                        <div class="col-md-12 py-4 px-5">
+                          <div class="card">
+                            <div class="card-header bg-transparent">
+                              General
+                            </div>
+                            <div class="card-body p-0">
+                              <ul>
+                                <li>
+                                  All individual race markets will be determined
+                                  according to the official result at the time
+                                  of the 'weigh-in' announcement (or
+                                  equivalent). Subsequent disqualifications,
+                                  appeals or amendments to the result will be
+                                  disregarded.
+                                </li>
+                                <li>
+                                  If a race is abandoned or otherwise declared
+                                  void, or in the event of a walkover, all bets
+                                  on that race will be void.
+                                </li>
+                                <li>
+                                  If the scheduled venue is changed after the
+                                  market has been loaded by us, all bets will be
+                                  void.
+                                </li>
+                                <li>
+                                  Where a race does not take part on its
+                                  scheduled day, all bets will be void.
+                                </li>
+                                <li>
+                                  If a scheduled surface type is changed (e.g.,
+                                  turf to dirt) all bets will stand.
+                                </li>
+                              </ul>
+                            </div>
+                            <div class="card-header bg-transparent">
+                              Non-Runner Rule
+                            </div>
+                            <div class="card-body p-0">
+                              <ul>
+                                <li>
+                                  Our's non-runner rule relates to the
+                                  adjustment of odds-on bets already matched
+                                  when a horse in a race is declared a
+                                  non-runner. Toadjust We apply a reduction
+                                  factor to the remaining runners. The reduction
+                                  factor allocated to a non-runner is a
+                                  calculation (the details of which are
+                                  described below) of that horse's chances of
+                                  winning (or being placed, etc as appropriate)
+                                  and is applied to bets already matched on the
+                                  other runners in the relevant market or
+                                  markets.
+                                </li>
+                                <li>
+                                  Any horse listed when the relevant market is
+                                  loaded which does not subsequently come under
+                                  the starter's orders is deemed to be a
+                                  non-runner.
+                                </li>
+                                <li>
+                                  When the market is loaded each horse is given
+                                  a 'reduction factor, based on a forecast
+                                  price, which is expressed as a percentage.
+                                  These reduction factors may be updated
+                                  periodically at the discretion of the Us based
+                                  on trading in the market, but after
+                                  approximately 15 minutes (approximately 5
+                                  minutes for Australian and US markets) from
+                                  the scheduled 'off' time of a given race, they
+                                  will be updated only in exceptional
+                                  circumstances. The current reduction factor
+                                  percentage for each horse can be viewed on the
+                                  'info' page on Our website or by asking the
+                                  Helpdesk.
+                                </li>
+                                <li>
+                                  Accurate reduction factors will only be
+                                  applied to selections in the event of a
+                                  non-runner. Once a non-runner is declared each
+                                  selection in the market will be given an
+                                  appropriate reduction factor. Reduction
+                                  factors can be amended at Our’s discretion at
+                                  any time throughout the market life cycle
+                                  (including post-race).
+                                </li>
+                                <li>
+                                  For Australian racing, reduction factors may
+                                  be updated periodically at the discretion of
+                                  the Us based on trading in the market, but
+                                  after approximately five minutes from the
+                                  scheduled off time of a given race, they will
+                                  be updated only in exceptional circumstances.
+                                </li>
+                                <li>
+                                  Reductions will be made to both win and place
+                                  markets but applied differently (as described
+                                  below), and horses will have a different
+                                  reduction factor for each market.
+                                </li>
+                                <li>
+                                  As soon as We become aware that a horse is an
+                                  official non-runner or a highly likely
+                                  non-runner, following a statement to the press
+                                  from connections, the following will happen:
+                                </li>
+                                <li>
+                                  All matched bets on that horse will be void
+                                  and the horse will be removed from the market.
+                                </li>
+                                <li>
+                                  In the win market: if the reduction factor of
+                                  the non-runner is 2.5% or greater, the traded
+                                  price of all the matched bets on the remaining
+                                  horses will be reduced by an amount equal to
+                                  the non-runner final reduction factor and all
+                                  the unmatched offers to lay will be cancelled.
+                                  If the non-runners reduction factor is less
+                                  than 2.5%, reductions will not be applied and
+                                  unmatched bets will not be cancelled.
+                                </li>
+                                <li>
+                                  In the place market, the reduction factor of
+                                  all non-runners will be applied (even if less
+                                  than 2.5%) and the potential winnings
+                                  aboutmatched bets on the remaining horses will
+                                  be reduced by an amount equal to the
+                                  non-runners final reduction factor. Only if
+                                  the non-runners reduction factor is 4.0% or
+                                  greater will all the unmatched offers to lay
+                                  be cancelled.
+                                </li>
+                                <li>
+                                  All the reduction factors on the remaining
+                                  horses will be adjusted to reflect their
+                                  improved chance of winning.
+                                </li>
+                                <li>
+                                  Reduction factors are not applied to bets
+                                  which are struck in play. However, if a market
+                                  is turned in-play prematurely by error (or,
+                                  for example, there is a false start), all bets
+                                  matched during this time will be subject to
+                                  any later reduction factor, provided the
+                                  market is turned out of play before the race
+                                  commences. In the event of a late withdrawal,
+                                  wereserve the right to remove the runner after
+                                  the completion of the race. In this case, only
+                                  those bets matched before the off will be
+                                  affected by a reduction factor.
+                                </li>
+                                <li>
+                                  In the event of a non-runner being removed
+                                  from a race in error or following incorrect
+                                  information regarding a runner’s
+                                  participation, we will reinstate both the
+                                  runner and all previously matched bets
+                                  associated with that runner. All bets made
+                                  between the time of withdrawal and
+                                  reinstatement will be void in both the place
+                                  market and the win market. The reduction
+                                  factor applied to matched bets at the time of
+                                  withdrawal will be reversed and the original
+                                  prices will become valid.
+                                </li>
+                                <li>
+                                  Any non-runners will be removed from the
+                                  relevant markets in the order in which they
+                                  are brought to our attention. If We become
+                                  aware of more than one non-runner at the same
+                                  time, it will remove the non-runners from the
+                                  relevant markets in race card order.
+                                </li>
+                                <li>
+                                  If a runner is not included in a market
+                                  because of an error or because of incorrect
+                                  information regarding a runner’s
+                                  participation, we reserve the right to
+                                  introduce the missing runner into the market
+                                  at any time before settlement (even after the
+                                  race has been run), provided that We are
+                                  determined that the missing runner is not a
+                                  material runner (i.e., a selection with a
+                                  reduction factor of approx. 2.5% or less in
+                                  the win market). In such circumstances, all
+                                  pre-play unmatched and matched bets will
+                                  stand, however, if the runner is not
+                                  introduced before the start of the race, all
+                                  in-play bets will be void. However, if the
+                                  missing runner is deemed to be a material
+                                  runner, then the malformed market will be void
+                                  and a new market will be loaded where
+                                  possible.
+                                </li>
+                              </ul>
+                            </div>
+                            <div class="card-header bg-transparent">
+                              How the Reductions are applied to Exchange markets
+                            </div>
+                            <div class="card-body p-0">
+                              <ul>
+                                <li>
+                                  In the win market, reductions will be made on
+                                  the traded price. For example: if the
+                                  non-runners final reduction factor is 25% the
+                                  traded price on all previously matched bets on
+                                  other horses will be reduced by 25% - the
+                                  traded price of 8.0 would become 6.0 etc. And
+                                  these might be further reduced if another
+                                  horse is subsequently declared a non-runner.
+                                </li>
+                                <li>
+                                  In the EW Market, reductions will be made on
+                                  the traded win price. The advertised place
+                                  terms will then apply to the revised win
+                                  prices. For example: if the non-runners final
+                                  reduction factor is 25% the traded price on
+                                  all previously matched bets on other horses
+                                  will be reduced by 25% - - the traded price of
+                                  8.0 would become 6.0. If each Way terms were
+                                  1/5th odds for 3 places, the corresponding
+                                  price for the Place portion of the bet would
+                                  reduce from 2.4 to 2.0.
+                                </li>
+                                <li>
+                                  In the place market, reductions will be made
+                                  to the potential winnings on the bet only, and
+                                  not the traded price. For example: if the
+                                  non-runners final reduction factor is 25% the
+                                  potential winnings on all previously matched
+                                  bets on the other horses will be reduced by
+                                  25% - a traded price of 8.0 would become 6.25.
+                                  For example, a £10 bet on a horse to be placed
+                                  at a traded price of 8.0 would provide
+                                  winnings of £70. If there is a non-runner with
+                                  a reduction factor of 25% in the race, that
+                                  factor will be applied to the £70 of potential
+                                  winnings leaving potential winnings of £52.50.
+                                  Therefore, the revised traded price will be
+                                  6.25.
+                                </li>
+                                <li>
+                                  The traded price may be further reduced if any
+                                  other horse(s) is subsequently declared a
+                                  non-runner, however, odds cannot be reduced
+                                  below 1.01.
+                                </li>
+                                <li>
+                                  Reserves: A reserve runner may appear in the
+                                  relevant markets but will have a
+                                  non-applicable reduction factor until we are
+                                  received confirmation that it is a confirmed
+                                  runner, in which case an applicable reduction
+                                  factor may apply to it.
+                                </li>
+                                <li>
+                                  For the avoidance of doubt, any reduction
+                                  factor applicable to a non-runner replaced by
+                                  a reserve will be applied to all bets struck
+                                  on the relevant markets, before the removal
+                                  from those markets of such non-runner by Us.
+                                  Likewise, should a reserve runner become a
+                                  confirmed runner but subsequently become a
+                                  non-runner, any reduction factor applicable to
+                                  such non-runner will be applied to all bets
+                                  struck on the relevant markets, before the
+                                  removal from those markets of such non-runner
+                                  by Us.
+                                </li>
+                              </ul>
+                            </div>
+                            <div class="card-header bg-transparent">
+                              Additional rules
+                            </div>
+                            <div class="card-body p-0">
+                              <ul>
+                                <li>
+                                  Card numbers are posted as a guide only: bets
+                                  are placed on a named horse.
+                                </li>
+                                <li>Horses will not be coupled.</li>
+                                <li>
+                                  Where any horse(s) runs for purse money only
+                                  it is deemed a non-runner for betting
+                                  purposes. Should this result in the number of
+                                  possible winners stated in the relevant Market
+                                  Information being equal to or greater than the
+                                  number of runners in the relevant Betfair
+                                  market, all bets in the market will be void.
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tab-pane fade" id="handball-pills" role="tabpanel" aria-labelledby="handball-pills-tab">
+                    <div class="container-fluid p-0 bg-body">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <h3 class="py-2 px-4" style="background-color: #242423; color: #fff">
+                            Handball
+                          </h3>
+                        </div>
+                        <div class="col-md-12 py-4 px-5">
+                          <div class="card">
+                            <div class="card-header bg-transparent">Match</div>
+                            <div class="card-body p-0">
+                              <ul>
+                                <li>
+                                  Match Odds: - Predict which team will be the
+                                  winner. Bets will be void if the match is not
+                                  completed.
+                                </li>
+                                <li>
+                                  Next Goal: - Predict which team will score the
+                                  X-th goal.
+                                </li>
+                                <li>
+                                  Highest Scoring Half: - Predict which half
+                                  will have the most goals scored (1st, 2nd, or
+                                  Draw). Bet will be settled on regulation time
+                                  only and exclude overtime if played:
+                                </li>
+                                <li>
+                                  Halftime/Fulltime: - Predict the result of a
+                                  match at halftime and at the end of regular
+                                  time. If a game is abandoned, bets will be
+                                  void. Example: If you choose 1/X, you bet on
+                                  the home team to lead in the first half and
+                                  the match to end in a draw. Extra time doesn’t
+                                  count.
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tab-pane fade" id="table-tennis-pills" role="tabpanel" aria-labelledby="table-tennis-tab">
+                    <div class="container-fluid p-0 bg-body">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <h3 class="py-2 px-4" style="background-color: #242423; color: #fff">
+                            Table Tennis
+                          </h3>
+                        </div>
+                        <div class="col-md-12 py-4 px-5">
+                          <div class="card">
+                            <div class="card-body p-0">
+                              <ul>
+                                <li>
+                                  Match odds: -Predict which player will win the
+                                  match. In the event of any of the named
+                                  players in a match changing before the match
+                                  starts then all bets are void. In the event of
+                                  a match starting but not being completed, all
+                                  bets will be void.
+                                </li>
+                                <li>
+                                  Set Winner: - The specified set must be
+                                  completed for bets to stand unless the
+                                  specific market outcome is already determined.
+                                </li>
+                                <li>
+                                  Under / Over Points: -For example, a game is
+                                  abandoned at 9-7: bets on Over/Under 16.5 Game
+                                  - Total Points are settled as winners/losers
+                                  respectively, since any natural conclusion to
+                                  the game would have yielded at least 18
+                                  points.
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

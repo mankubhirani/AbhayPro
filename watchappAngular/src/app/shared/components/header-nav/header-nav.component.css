@@ -1,0 +1,13 @@
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.img1{
+       position: relative;
+    width: 3rem;
+}
+.img2{
+    position: relative;
+    width: 10rem;
+    height: 3rem;
+}

@@ -1,0 +1,301 @@
+<!-- <div class="side-nav-content">
+
+    <ul class="nav-list">
+        <li class="nav-list-item">
+            <i class="bi bi-grid"></i>
+            <span>
+                <a href="#">Dashboard</a>
+            </span>
+        </li>
+        <br>
+        <li class="nav-list-item">
+            <i class="bi bi-megaphone"></i>
+            <span>
+                <a href="#">campaigns</a>
+            </span>
+        </li>
+        <br>
+        <li class="nav-list-item">
+            <i class="bi bi-circle"></i>
+            <span>
+                <a href="#">All Contact</a>
+            </span>
+        </li>
+        <br>
+        <li class="nav-list-item">
+            <i class="bi bi-circle"></i>
+            <span>
+                <a href="#">Segment</a>
+            </span>
+        </li>
+    </ul>
+</div> -->
+<!-- 
+<mat-sidenav-container fullscreen>
+  <mat-sidenav #sidenav  mode="side" class="example-sidenav" [ngStyle]="{ 'width.em': sidenavWidth }" opened="true" (mouseenter)="increase()"
+    (mouseleave)="decrease()">
+    <div class="logomain">Logo Part</div>
+    <mat-nav-list>
+      <mat-list-item routerLink="1" routerLinkActive="active" >
+        <i class="bi bi-grid"></i>
+        <span>
+            <a href="#">Dashboard</a>
+        </span>
+      </mat-list-item>
+
+      <mat-list-item routerLink="2" routerLinkActive="active">
+        <i class="bi bi-megaphone"></i>
+        <span>
+            <a href="#">campaigns</a>
+        </span>
+      </mat-list-item>
+
+      <mat-list-item routerLink="3" routerLinkActive="active">
+        <i class="bi bi-circle"></i>
+            <span>
+                <a href="#">All Contact</a>
+            </span>
+      </mat-list-item>
+
+      <mat-list-item routerLink="3" routerLinkActive="active">
+        <i class="bi bi-circle"></i>
+            <span>
+                <a href="#">Segment</a>
+            </span>
+      </mat-list-item>
+
+
+
+    </mat-nav-list>
+
+  </mat-sidenav>
+
+  <div class="example-sidenav-content"> 
+    <router-outlet></router-outlet>
+     <mat-icon (click)="sidenav.toggle()" class="sidenav-menu">menu</mat-icon>
+  </div> 
+
+
+</mat-sidenav-container> -->
+
+<!-- Side Bar Hitesh -->
+
+<aside id="sidebar" class="sidebar">
+
+  <ul class="sidebar-nav" id="sidebar-nav">
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" routerLink="dashboard">
+        <i class="bi bi-grid"></i>
+        <span>Dashboard</span>
+      </a>
+    </li><!-- End Dashboard Nav -->
+
+
+    <li class="nav-item">
+      <!-- <a
+        class="nav-link collapsed"
+        data-bs-target="#components-nav"
+        data-bs-toggle="collapse"
+        href="#">
+        <i class="bi bi-menu-button-wide"></i><span>Audience</span
+        ><i class="bi bi-chevron-down ms-auto"></i>
+      </a> -->
+      <ul id="components-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+        <!-- <li>
+          <a href="Audiance.html">
+            <i class="bi bi-circle"></i><span>Audience Dashboard</span>
+          </a>
+        </li> -->
+        <!-- <li>
+          <a href="allcontact.html">
+            <i class="bi bi-circle"></i><span>All Contacts</span>
+          </a>
+        </li> -->
+
+        <!-- <li>
+          <a href="Tag.html">
+            <i class="bi bi-circle"></i><span>Tag</span>
+          </a>
+        </li> -->
+        <!-- <li>
+          <a href="segment.html">
+            <i class="bi bi-circle"></i><span>Segments</span>
+          </a>
+        </li> -->
+        <!-- <li>
+          <a href="Surveys.html">
+            <i class="bi bi-circle"></i><span>Surveys</span>
+          </a>
+        </li> -->
+        <!-- <li>
+          <a href="preference.html">
+            <i class="bi bi-circle"></i><span>preferences</span>
+          </a>
+        </li> -->
+        <!-- <li>
+          <a href="Inbox.html">
+            <i class="bi bi-circle"></i><span>Inbox</span>
+          </a>
+        </li> -->
+      </ul>
+    </li>
+    <!-- End Components Nav -->
+
+    <!-- <li class="nav-item">
+      <a
+        class="nav-link collapsed"
+        data-bs-target="#components-nav_up"
+        data-bs-toggle="collapse"
+        href="#"
+      >
+        <i class="bi bi-megaphone"></i><span>Campaigns</span
+        ><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul
+        id="components-nav_up"
+        class="nav-content collapse"
+        data-bs-parent="#sidebar-nav"
+      >
+        <!-- <li>
+          <a href="Allcompaign.html">
+            <i class="bi bi-circle"></i><span>All Campaigns</span>
+          </a>
+        </li>
+        <li>
+          <a href="email-template.html">
+            <i class="bi bi-circle"></i><span>Email Tamplates</span>
+          </a>
+        </li>
+        <li>
+          <a href="report.html">
+            <i class="bi bi-circle"></i><span>Report</span>
+          </a>
+        </li>
+      </ul>
+    </li> -->
+    <!-- End Components Nav -->
+    <!-- <li class="nav-item">
+      <a
+        class="nav-link collapsed"
+        data-bs-target="#components-nav_in"
+        data-bs-toggle="collapse"
+        href="#"
+      >
+        <i class="bi bi-boombox"></i><span>Automations</span
+        ><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul
+        id="components-nav_in"
+        class="nav-content collapse"
+        data-bs-parent="#sidebar-nav"
+      >
+        <li>
+          <a href="customer-Journey.html">
+            <i class="bi bi-circle"></i><span>Customer Journey</span
+            ><span class="badge badge-warning">New</span>
+          </a>
+        </li>
+        <li>
+          <a href="transactional.html">        
+            <i class="bi bi-circle"></i><span>Transactional Email</span>
+          </a>
+        </li>
+        <li>
+          <a href=".html">
+            <i class="bi bi-circle"></i><span>Retargeting ads</span>
+          </a>
+        </li>
+        <li>
+          <a href=".html">
+            <i class="bi bi-circle"></i><span>PostCards</span>
+          </a>
+        </li>
+      </ul>
+    </li> -->
+    <!-- End Components Nav -->
+
+
+    <!-- <li class="nav-heading">Pages</li> -->
+
+    <!-- <li class="nav-item">
+      <a class="nav-link collapsed" href="users-profile.html">
+        <i class="bi bi-person"></i>      
+        <span>Profile</span>
+      </a>
+    </li> -->
+    <!-- End Profile Page Nav -->
+    <!-- 
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="pages-contact.html">
+        <i class="bi bi-envelope"></i>
+        <span>Contact</span>
+      </a>
+    </li> -->
+    <li class="nav-item">
+      <a class="nav-link collapsed" routerLink="campaigns">
+        <i class="bi bi-megaphone"></i><span>Create Campaigns</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link collapsed" routerLink="email-template">
+        <i class="bi bi-envelope"></i><span>Email Template </span>
+      </a>
+    </li>
+
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" routerLink="allContact">
+        <i class="bi bi-telephone"></i>
+        <span>All contact</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link collapsed" routerLink="segment">
+        <i class="bi bi-people"></i>
+        <span>Segment</span>
+      </a>
+    </li>
+
+    <!-- <li class="nav-item">
+          <a class="nav-link collapsed" href="report.html">
+            <i class="bi bi-shield"></i><span>Report</span>
+          </a>
+        </li>  -->
+
+
+
+
+
+
+
+    <!-- End Contact Page Nav -->
+
+
+
+    <!-- <li class="nav-item">
+      <a class="nav-link collapsed" href="signup.html">
+        <i class="bi bi-card-list"></i>
+        <span>Register</span>
+      </a>
+    </li> -->
+    <!-- End Register Page Nav -->
+    <!-- 
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="login.html">
+        <i class="bi bi-box-arrow-in-right"></i>
+        <span>Login</span>
+      </a>
+    </li> -->
+    <!-- End Login Page Nav -->
+
+    <!-- <li class="nav-item">
+      <a class="nav-link collapsed" href="pages-blank.html">
+        <i class="bi bi-file-earmark"></i>
+        <span>Blank</span>
+      </a>
+    </li> --><!-- End Blank Page Nav -->
+
+  </ul>
+
+</aside>

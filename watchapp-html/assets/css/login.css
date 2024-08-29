@@ -1,0 +1,158 @@
+:root,
+[data-bs-theme="light"] {
+  --color-white: #ffffff;
+  --color-red: #ff0000;
+  --color-border: #ffffff33;
+  --color-blue: #7383dd;
+  --color-blue_transparent: #ddb3736e;
+}
+
+body {
+  font-family: Markazi Text;
+}
+
+/* ligin left css */
+/* .bg_banner {
+  background-image: url(../images/bg_banner.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+} */
+
+.login {
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  color: var(--color-white);
+}
+
+.login h1 {
+  font-size: 80px;
+  font-weight: 700;
+  line-height: 75px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.login h2 {
+  font-size: 60px;
+  font-weight: 400;
+  line-height: 50px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: var(--color-white);
+  -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: var(--color-white);
+}
+
+.login p {
+  font-size: 25px;
+  font-weight: 400;
+  line-height: 40px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+/* login right css */
+
+.form_card .card {
+  border: 1px solid var(--color-border);
+}
+.form_card .card,
+.form_card .card-body {
+  background-color: transparent;
+}
+
+.form_card .card-header {
+  border: 0;
+  text-align: center;
+  padding: 20px 0 0;
+}
+
+.form_card label {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0.01em;
+  text-align: left;
+  color: var(--color-white);
+}
+
+#emailHelp {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 15px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: var(--color-white);
+}
+#passwordHelp {
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: var(--color-red);
+}
+.form_card .form-control,
+.demo_request_form .form-control {
+  background-color: transparent;
+  box-shadow: none;
+  outline: none;
+  color: var(--color-white);
+}
+
+.forget_password {
+  padding: 20px 0;
+}
+
+.forget_password p {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0.01em;
+  text-align: center;
+  color: var(--color-white);
+  margin: 0;
+}
+
+.forget_password a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+::placeholder {
+  color: var(--color-white);
+}
+
+.requestBtn {
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 25px;
+  letter-spacing: 0em;
+  text-align: left;
+  width: 50%;
+  text-align: center;
+}
+
+.loginBtn {
+  font-family: "Poppins";
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 27px;
+  letter-spacing: 0.01em;
+  text-align: center;
+}
+
+/* modal css */
+#requestBtn {
+  backdrop-filter: blur(4px);
+}
+#requestBtn .modal-content {
+  background-color: var(--color-blue_transparent);
+  color: var(--color-white);
+}
+#requestBtn .modal-header {
+  background-color: var(--color-blue);
+  color: var(--color-white);
+}

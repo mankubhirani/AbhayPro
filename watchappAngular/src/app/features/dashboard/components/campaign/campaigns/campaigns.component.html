@@ -1,0 +1,212 @@
+
+
+    <!-- jumbotron content  start -->
+    <main id="main" class="main">
+    <div class=" heading pb-5">
+      <div class="row">
+        <div class="col-md-9">
+          <h1 class="text_style">Audience</h1>
+          <h3 class="text1">Cylsys</h3>
+          <h4 class="text2">Your audience has<a class="color:blue"> 1</a> contacts.<a class="color:blue">1</a> of these are subscribers.</h4>
+        </div>
+     
+       
+        <div class="col-md-3 mt-5">
+          <a class="btn btn-info" style="background-color:#716b67; border: none !important; "
+          role="button" routerLink="create-campaigns">Create Campaigns</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- jumbotron content end -->
+
+    <!--==== start navpils ====-->
+
+    <div class="card" style="padding: inherit; ">
+      <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+          <a class="nav-item nav-link active fw-bold" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
+            aria-controls="nav-home" aria-selected="true">List view</a>
+          <!-- <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
+            aria-controls="nav-profile" aria-selected="false">Calender View</a> -->
+        </div>
+      </nav>
+      <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+          <div class="container">
+            <div class="row mt-4">
+              <div class="col-md-3 msgborder">
+                <h5 class="">View by Status</h5>
+                <ul class="list-group list-group-flush font-bold nav nav-tabs" id="myTab" role="tablist">
+  
+                  <li class="nav-item list-group-item">
+                    <a class="nav-link" id="total-tab" data-toggle="tab" (click)="url()" role="tab" aria-controls="total"
+                      aria-selected="true"><i class="bi bi-clipboard-plus"></i> <span class="dt pl-3 text-info">All</span></a>
+                  </li>
+                
+                  <li class="nav-item list-group-item">
+                    <a class="nav-link " id="schedule-tab" data-toggle="tab" routerLink="ongoing" role="tab" aria-controls="schedule"
+                      aria-selected="true"> <i class="bi bi-chat-right-text"></i><span class="dt pl-3 text-info">Ongoing</span></a>
+                  </li>
+                
+                  <li class="nav-item list-group-item">
+                    <a class="nav-link" id="Delivered-tab" data-toggle="tab" routerLink="draft" role="tab" aria-controls="Delivered"
+                      aria-selected="true"> <i class="bi bi-chat-square-dots-fill"></i> <span class="dt pl-3 text-info">Draft</span></a>
+                  </li>
+                
+                  <li class="nav-item list-group-item">
+                    <a class="nav-link" id="total-tab" data-toggle="tab" routerLink="complete" role="tab" aria-controls="total"
+                      aria-selected="true"><i class="bi bi-bookmarks"></i> <span class="dt pl-3 text-info">Completed</span></a>
+                  </li>
+                  <li class="nav-item list-group-item">
+                    <a class="nav-link" routerLink="schedule"><i class="bi bi-clock-history"></i><span class="dt pl-3 text-info">Schedule</span></a>
+                  </li>
+                
+                
+                </ul>
+               
+                <!-- creat button alert  -->
+               
+              </div>
+  
+             
+              <div class="col-md-9 ">
+                <div class="row">
+                  <div class="col-md-5">
+                    <select class="form-select form-select-md mb-3 mt-1" aria-label=".form-select-lg example">
+                      <option selected>Find a Compaigns by name or type</option>
+                      <option value="1"><a href="">Emails</a></option>
+                     
+                      <option value="1"><a href="">Plain-text-compaign</a></option>
+                   
+                    </select>
+                    <h6 class="text-muted pt-3">February, 2022 (1)</h6>
+                  </div><br>
+                  <div class="col-md-6">
+                    <form>
+                      <div class="form-group row mt-1">
+                        <label for="inputPassword" class="col-sm-4 col-form-label">Short by</label>
+                        <div class="col-sm-7">
+                          <select id="inputState" class="form-control">
+                            <option selected>Last updated</option>
+                            <option>Creation Date</option>
+                          </select>
+  
+                        </div>
+                       
+                      </div>
+                    </form>
+  
+                  </div>
+                  <div class="col-md-1 p-0 ">
+                    <a class="btn btn-info float-right" style="background-color:#716b67; border: none !important; "
+                      href="#" role="button">search</a>
+                  </div>
+                </div>
+                <hr>
+  
+                <div class="tab-content" id="myTabContent">
+        
+                  <router-outlet></router-outlet>
+
+
+
+                  <!-- first sub tab  start-->
+            
+  
+             <!-- first sub tab  end-->
+  
+  
+  
+             <!-- second sub tab  start-->
+  
+            
+                  <!-- second sub tab  end-->
+  
+                    <!-- third sub tab  start-->
+  
+  
+                    
+  
+                    <!-- third sub tab  end-->
+  
+                    
+                    <!-- fourth sub tab start -->
+                    
+                     <!-- fourth sub tab end -->
+  
+  
+          </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+          <!-- ==calender view=== -->
+          <h1>CSS Calendar</h1>
+  
+          <div class="month">
+            <ul>
+              <li class="prev">&#10094;</li>
+              <li class="next">&#10095;</li>
+              <li>
+                August<br>
+                <span style="font-size:18px">2021</span>
+              </li>
+            </ul>
+          </div>
+  
+          <ul class="weekdays">
+            <li>Mo</li>
+            <li>Tu</li>
+            <li>We</li>
+            <li>Th</li>
+            <li>Fr</li>
+            <li>Sa</li>
+            <li>Su</li>
+          </ul>
+  
+          <ul class="days">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+            <li>7</li>
+            <li>8</li>
+            <li>9</li>
+            <li><span class="active">10</span></li>
+            <li>11</li>
+            <li>12</li>
+            <li>13</li>
+            <li>14</li>
+            <li>15</li>
+            <li>16</li>
+            <li>17</li>
+            <li>18</li>
+            <li>19</li>
+            <li>20</li>
+            <li>21</li>
+            <li>22</li>
+            <li>23</li>
+            <li>24</li>
+            <li>25</li>
+            <li>26</li>
+            <li>27</li>
+            <li>28</li>
+            <li>29</li>
+            <li>30</li>
+            <li>31</li>
+          </ul>
+          <!-- ==end calender view=== -->
+        </div>
+      </div>
+      <!-- ====end navpils== -->
+      </div>
+  
+    </main>
+
+  
+

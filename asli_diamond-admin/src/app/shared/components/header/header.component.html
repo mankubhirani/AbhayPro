@@ -1,0 +1,613 @@
+<!-- <div class="row align-items-center py-2 border-bottom">
+  <div class="col-lg-2 col-md-6 col-6">
+    <div class="toggle-sidebar-btn d-flex align-items-center">
+      <a
+        (click)="toggleMenu()"
+        class="navbar-toggler bg-color px-1 mx-0"
+        type="button"
+      >
+        <i class="fa fa-bars-staggered"></i>
+      </a>
+
+      <a
+        [routerLink]="['member/list']"
+        routerLinkActive="router-link-active"
+        class="navbar-brand m-0 d-block ms-3"
+      >
+        <img src="/assets/images/logo.svg" alt="" class="w-100" />
+      </a>
+    </div>
+  </div>
+  <div class="col-md-8 col-8 smallMobileHide">
+    <div class="row">
+      <div
+        class="mb-2 mb-md-2"
+        [ngClass]="
+          clientId == 1 || clientId == 3 ? 'col-md-3 col-6' : 'col-md-4 col-6'
+        "
+      >
+        <div class="balance-first">
+          <div class="balance">
+            <p>
+              {{ adminDetails?.availableCredit | indianCurrency }}
+              <br />
+              <span>AVAILABLE BALANCE</span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div
+        [ngClass]="
+          clientId == 1 || clientId == 3 ? 'col-md-3 col-6' : 'col-md-4 col-6'
+        "
+      >
+        <div class="balance-up">
+          <div class="balance">
+            <p>
+              {{ adminDetails?.balanceUp | indianCurrency }}
+              <br />
+              <span>BALANCE UP</span>&nbsp;
+              <i class="fa-regular fa-circle-up"></i>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div
+        [ngClass]="
+          clientId == 1 || clientId == 3 ? 'col-md-3 col-6' : 'col-md-4 col-6'
+        "
+      >
+        <div class="balance-down">
+          <div class="balance">
+            <p>
+              {{ adminDetails?.balanceDown | indianCurrency }}
+              <br />
+              <span>BALANCE DOWN</span>&nbsp;
+              <i class="fa-regular fa-circle-down"></i>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div
+        *ngIf="clientId == 1 || clientId == 3"
+        [ngClass]="
+          clientId == 1 || clientId == 3 ? 'col-md-3 col-6' : 'col-md-3 col-6'
+        "
+      >
+        <div class="casino-summary">
+          <div class="balance">
+            <div class="row text-center m-0">
+              <div class="col-4">
+                <p>
+                  <span>
+                    {{ adminDetails?.casinoBalanceUp | indianCurrency }}</span
+                  >
+                </p>
+                <small>UP</small>
+              </div>
+              <div class="col-4">
+                <p>
+                  <span> | </span>
+                </p>
+                <small>BALANCE</small>
+              </div>
+              <div class="col-4">
+                <p>
+                  <span>
+                    {{ adminDetails?.casinoBalanceDown | indianCurrency }}
+                  </span>
+                </p>
+                <small>DOWN</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-2 col-md-6 col-6 text-center">
+    <div class="user">
+      <span>Welcome, {{ adminDetails?.username }}.</span>
+    </div>
+  </div>
+
+  <div class="col-md-12 smallMobileShow mt-3">
+    <div class="row">
+      <div class="col-md-3 col-6 mb-2 mb-md-2">
+        <div class="balance-first">
+          <div class="balance">
+            <p>
+              {{ adminDetails?.availableCredit | number }}
+              <br />
+              <span>AVAILABLE BALANCE</span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="balance-up">
+          <div class="balance">
+            <p>
+              {{ adminDetails?.balanceUp | number }}
+              <br />
+              <span>BALANCE UP</span>&nbsp;
+              <i class="fa-regular fa-circle-up"></i>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="balance-down">
+          <div class="balance">
+            <p>
+              {{ adminDetails?.balanceDown | number }}
+              <br />
+              <span>BALANCE DOWN</span>&nbsp;
+              <i class="fa-regular fa-circle-down"></i>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-6" *ngIf="clientId == 1 || clientId == 3">
+        <div class="casino-summary">
+          <div class="balance">
+            <div class="row text-center">
+              <p>
+                <span class="f-13">
+                  BALANCE UP
+                  {{ adminDetails?.casinoBalanceUp | indianCurrency }}</span
+                >
+              </p>
+              <p>
+                <span class="f-13"
+                  >BALANCE DOWN
+                  {{ adminDetails?.casinoBalanceDown | indianCurrency }}
+                </span>
+              </p>
+              <p>
+                <span class="f-16">CASINO SUMMARY</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+
+<header class="header">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-red">
+    <div class="container-fluid justify-content-left">
+      <img
+        class="hamburger d-lg-none d-block"
+        src="assets/images/hamburger.svg"
+        alt=""
+        data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasScrolling"
+        aria-controls="offcanvasScrolling"
+      />
+      <a class="navbar-brand" href="market_analysis.html"
+        ><img
+          src="assets/images/diamond247-logo.png"
+          alt=""
+          style="width: 130px"
+      /></a>
+
+      <img
+        class="hamburger d-lg-block d-none"
+        src="assets/images/hamburger.svg"
+        alt=""
+        data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasScrolling"
+        aria-controls="offcanvasScrolling"
+      />
+      <!--  -->
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse" 
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 small">
+          <li class="nav-item">
+            <!-- <a class="nav-link" aria-current="page" routerLink="admin/active-users" [routerLinkActive]="currentPath == '/admin/active-users' ? 'active' : ''"
+            [ngClass]="currentPath == '/admin/active-users' ? 'active' : ''"
+              >List of Clients</a> -->
+
+              <a class="nav-link" aria-current="page" href="admin/active-users"
+              >List of Clients</a>
+          </li>
+          <li class="nav-item" routerLink="/reports/market-analysis">
+            <a class="nav-link">Market Analysis</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+             
+              id="navbarDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Live market
+            </a>
+            <ul
+              class="dropdown-menu bg-primary fa-1x"
+              aria-labelledby="navbarDropdown"
+            >
+              <li><a class="dropdown-item">Binary</a></li>
+              <li>
+                <a class="dropdown-item">Race 20-20</a>
+              </li>
+              <li>
+                <a class="dropdown-item">Queen</a>
+              </li>
+              <li>
+                <a class="dropdown-item">Baccarat</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Reports
+            </a>
+            <ul
+              class="dropdown-menu bg-primary fa-1x"
+              aria-labelledby="navbarDropdown"
+            >
+              <li>
+                <a class="dropdown-item" routerLink="/reports/playerwise-account-statement"
+                  >Account Statement's</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" routerLink="/reports/current-bets" 
+                  >Current Bets</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" routerLink="/reports/general-report"
+                  >General Report</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" routerLink="/reports/game-report">Game Report</a>
+              </li>
+              <li>
+                <a class="dropdown-item" routerLink="/reports/casino-report"
+                  >Casino Report</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" routerLink="/reports/profit-loss"
+                  >Profit And Loss</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" routerLink="/reports/player-pl"
+                  >Player Profit And Loss</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" routerLink="/reports/casinoresult"
+                  >Casino Result Report</a
+                >
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <form class="d-flex align-items-center">
+          <div class="dropdown small">
+            <button
+              class="btn btn-secondary dropdown-toggle bg-transparent border-0 fa-1x"
+              type="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              {{userDetails?.username}}
+            </button>
+            <ul class="dropdown-menu bg-primary fa-1x">
+              <li>
+                <a class="dropdown-item" routerLink="/security-auth"
+                  >Secure Auth Verification</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" routerLink="/admin/change-password"
+                  >Change Password</a
+                >
+              </li>
+              <li><a class="dropdown-item pointer"  (click)="logOut()">Logout</a></li>
+            </ul>
+          </div>
+          <input
+            class="form-control me-2"
+            type="search"
+            placeholder="All Client"
+            aria-label="Search"
+          />
+          <!-- <button class="btn btn-outline-success" type="submit">
+            Search
+          </button> -->
+        </form>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<!-- sidebar  -->
+
+<div
+  class="offcanvas offcanvas-start"
+  data-bs-scroll="true"
+  data-bs-backdrop="false"
+  tabindex="-1"
+  id="offcanvasScrolling"
+  aria-labelledby="offcanvasScrollingLabel"
+>
+  <div class="offcanvas-header">
+    <h3 class="offcanvas-title" id="offcanvasScrollingLabel">Sports</h3>
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="offcanvas"
+      aria-label="Close"
+    ></button>
+  </div>
+  <div class="offcanvas-body">
+    <div class="collapse show" id="allSports">
+      <nav class="mtree-main">
+        <div class="accordion" id="accordionExample">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+              <button
+                class="accordion-button text-dark collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#football_collapse"
+                aria-expanded="false"
+                aria-controls="football_collapse"
+              >
+                <span><i class="far fa-plus-square"></i></span> Football
+              </button>
+            </h2>
+            <div
+              id="football_collapse"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingTwo"
+              data-bs-parent="#accordionExample"
+            >
+              <div class="accordion-body py-0 ps-4">
+                <div class="accordion" id="FootballAccordion">
+                  <div class="accordion-item border-0">
+                    <h2 class="accordion-header" id="headingTwo">
+                      <button
+                        class="accordion-button text-dark collapsed p-0"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#football_matche1"
+                        aria-expanded="false"
+                        aria-controls="football_matche1"
+                      >
+                        <span><i class="far fa-plus-square"></i></span> ANGOLA
+                        Girabola
+                      </button>
+                    </h2>
+                    <div
+                      id="football_matche1"
+                      class="accordion-collapse collapse"
+                      aria-labelledby="headingTwo"
+                      data-bs-parent="#FootballAccordion"
+                    >
+                      <div class="accordion-body p-0 ps-2">
+                        <div class="accordion" id="FootballAccordionDate">
+                          <div class="accordion-item border-0">
+                            <h2 class="accordion-header" id="headingTwo">
+                              <button
+                                class="accordion-button text-dark collapsed p-0"
+                                type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#football_date1"
+                                aria-expanded="false"
+                                aria-controls="football_date1"
+                              >
+                                <span><i class="far fa-plus-square"></i></span>
+                                2023/12/13
+                              </button>
+                            </h2>
+                            <div
+                              id="football_date1"
+                              class="accordion-collapse collapse"
+                              aria-labelledby="headingTwo"
+                              data-bs-parent="#FootballAccordionDate"
+                            >
+                              <div class="accordion-body p-2">
+                                <a href="game_details.html">
+                                  Kabuscorp (ANG) - Santa Rita
+                                </a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+              <button
+                class="accordion-button text-dark collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#tennis_collapse"
+                aria-expanded="false"
+                aria-controls="tennis_collapse"
+              >
+                <span><i class="far fa-plus-square"></i></span> Tennis
+              </button>
+            </h2>
+            <div
+              id="tennis_collapse"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingThree"
+              data-bs-parent="#accordionExample"
+            >
+              <div class="accordion-body py-0 ps-4">
+                <div class="accordion" id="tennisAccordion">
+                  <div class="accordion-item border-0">
+                    <h2 class="accordion-header" id="headingTwo">
+                      <button
+                        class="accordion-button text-dark collapsed p-0"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#tennis_matche1"
+                        aria-expanded="false"
+                        aria-controls="tennis_matche1"
+                      >
+                        <span><i class="far fa-plus-square"></i></span> ANGOLA
+                        Girabola
+                      </button>
+                    </h2>
+                    <div
+                      id="tennis_matche1"
+                      class="accordion-collapse collapse"
+                      aria-labelledby="headingTwo"
+                      data-bs-parent="#tennisAccordion"
+                    >
+                      <div class="accordion-body p-0 ps-2">
+                        <div class="accordion" id="tennisAccordionDate">
+                          <div class="accordion-item border-0">
+                            <h2 class="accordion-header" id="headingTwo">
+                              <button
+                                class="accordion-button text-dark collapsed p-0"
+                                type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#tennis_date1"
+                                aria-expanded="false"
+                                aria-controls="tennis_date1"
+                              >
+                                <span><i class="far fa-plus-square"></i></span>
+                                2023/12/13
+                              </button>
+                            </h2>
+                            <div
+                              id="tennis_date1"
+                              class="accordion-collapse collapse"
+                              aria-labelledby="headingTwo"
+                              data-bs-parent="#FootballAccordionDate"
+                            >
+                              <div class="accordion-body p-2">
+                                <a href="game_details.html">
+                                  Kabuscorp (ANG) - Santa Rita
+                                </a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+              <button
+                class="accordion-button text-dark collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#cricket_collapse"
+                aria-expanded="true"
+                aria-controls="cricket_collapse"
+              >
+                <span><i class="far fa-plus-square"></i></span> Cricket
+              </button>
+            </h2>
+            <div
+              id="cricket_collapse"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingOne"
+              data-bs-parent="#accordionExample"
+            >
+              <div class="accordion-body py-0 ps-4">
+                <div class="accordion" id="cricketAccordion">
+                  <div class="accordion-item border-0">
+                    <h2 class="accordion-header" id="headingTwo">
+                      <button
+                        class="accordion-button text-dark collapsed p-0"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#cricket_matche1"
+                        aria-expanded="false"
+                        aria-controls="cricket_matche1"
+                      >
+                        <span><i class="far fa-plus-square"></i></span> T20
+                      </button>
+                    </h2>
+                    <div
+                      id="cricket_matche1"
+                      class="accordion-collapse collapse"
+                      aria-labelledby="headingTwo"
+                      data-bs-parent="#cricketAccordion"
+                    >
+                      <div class="accordion-body p-0 ps-2">
+                        <div class="accordion" id="cricketAccordionDate">
+                          <div class="accordion-item border-0">
+                            <h2 class="accordion-header" id="headingTwo">
+                              <button
+                                class="accordion-button text-dark collapsed p-0"
+                                type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#cricket_date1"
+                                aria-expanded="false"
+                                aria-controls="cricket_date1"
+                              >
+                                <span><i class="far fa-plus-square"></i></span>
+                                2023/12/13
+                              </button>
+                            </h2>
+                            <div
+                              id="cricket_date1"
+                              class="accordion-collapse collapse"
+                              aria-labelledby="headingTwo"
+                              data-bs-parent="#FootballAccordionDate"
+                            >
+                              <div class="accordion-body p-2">
+                                <a href="game_details.html"
+                                  >India VS South Africa</a
+                                >
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+</div>

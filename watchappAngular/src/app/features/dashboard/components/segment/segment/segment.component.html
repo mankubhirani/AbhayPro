@@ -1,0 +1,193 @@
+<!-- <p>segment works!</p> -->
+
+<main id="main" class="main">
+    <!-- jumbotron content  start -->
+    <div class="pb-5">
+      <h3 class="text_style">Segment</h3>
+      <h2 class="text1">Cylsys</h2>
+      <h5 class="text2">
+        Your audience has<a class="color:daekblue">1</a> contacts.<a class="color:daekblue">1</a> of these
+        are subscribers.
+      </h5>
+    </div>
+    <div class="card" style="padding: inherit;">
+    <!-- jumbotron content end -->
+    <div class="div">
+      <nav class="navbar navbar-expand-lg navbar-light  p-2 ">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav navbaritem">
+            <!-- <li class="nav-item ">
+              <a class="nav-link  text-light" href="overview.html">Overview</a>
+            </li> -->
+            <!-- <li class="nav-item ">
+              <a class="nav-link text-light " href="dashboard.html">Home</a>
+            </li> -->
+
+            <li class="nav-item dropdown ">
+              <a class="nav-link dropdown-toggle text-light"  id="navbarDropdown" role="button"
+                data-toggle="dropdown" aria-expanded="false">
+                Manage contacts
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" >View contacts</a>
+                <!-- <a class="dropdown-item" href="#">View Achivement</a> -->
+                <a class="dropdown-item" >Unsubscribe contacts</a>
+                <!-- <a class="dropdown-item" href="segment.html">Segment</a>
+                <a class="dropdown-item" href="Audience-groups (1).html">group</a>
+                <a class="dropdown-item" href="#">View Achivement</a>
+                <a class="dropdown-item" href="#">View contacts</a>
+                <a class="dropdown-item" href="#">View Achivement</a> -->
+                <!-- <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div> -->
+              </div>
+            </li>
+            <li class="nav-item dropdown ">
+              <a class="nav-link dropdown-toggle text-light"  id="navbarDropdown" role="button"
+                data-toggle="dropdown" aria-expanded="false">
+                Add contacts
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" >Add a subscribers</a>
+                <a class="dropdown-item" >Import contacts</a>
+              </div>
+            </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link active text-primary" href="#">Signup Form </a>
+            </li> -->
+            <!-- <li class="nav-item ">
+              <a class="nav-link text-dark" href="#">Preferences center</a>
+            </li> -->
+            <!-- <li class="nav-item dropdown ">
+              <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button"
+                data-toggle="dropdown" aria-expanded="false">
+                Setting
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Auidence name and default</a>
+                <a class="dropdown-item" href="#">GDPR field ans Setting</a>
+                <a class="dropdown-item" href="#">Public Setting</a>
+                <a class="dropdown-item" href="#">Email Beemar</a>
+
+                <a class="dropdown-item" href="#">Webhooks</a>
+                <a class="dropdown-item" href="#">Google Analytics</a>
+              </div>
+            </li> -->
+            <!-- <li class="nav-item ">
+              <a class="nav-link text-dark" href="#">Inbox</a>
+            </li> -->
+          </ul>
+        </div>
+      </nav>
+      <br>
+      <form class="">
+        <input class="form-control  border-left-0 border-right-0 fw-bold" type="search"
+          placeholder="Search" aria-label="Search">
+       
+      </form>
+    </div>
+
+    <div class=" col-md-12 mb-3">
+      <div class="row">
+        <div class="col-md-6">
+          <h3 class="display-4">Segments</h3>
+        </div>
+        <div class="col-md-6">
+          <button class="btn button-small bg-secondary text-white me-1 mt-3 p-2 fw-bold float-end" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample"
+            aria-expanded="false" aria-controls="collapseWidthExample" routerLink="createSegment"> Create Segments</button>
+        </div>
+      </div>
+    </div>
+      
+      
+      <!-- <div class="row mb-4 ">
+        <div class="col-md-8"></div>
+        <div class="col-md-4 float-end">
+            
+        </div>
+        </div>
+      </div> -->
+      <!-- <a href=""> <button class="border-0 p-2 bg-secondary text-white " style="float: right; width: auto;">Creat Segments</button> </a>
+    <a href=""> <button class="border-0 p-2 pr-2 " style="float: right; width: auto;">Bulk Tag Contacts</button> </a> -->
+    <!-- </div> -->
+    <!-- jumbotron display here -->
+
+
+    <!-- <div class="p-5 mb-4 rounded-3 border">
+      <div class="container-fluid py-5 text-center">
+        <h1 class="display-5 fw-bold">
+          <img src="assets/img/art-empty-default-alt.png" alt="" width="250px" />
+        </h1>
+        <h2>You have no saved segments</h2>
+        <p class="col-md-12">
+          Create segments to target subscribers by location, engagement, activity, and more.<br>
+          <a class="learn_1" target="_blank" href="">Learn more</a>
+        </p>
+      </div>
+    </div> -->
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <h4 class="companygreeting m-0">Saved Segment</h4>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-md-12 mb-5">
+
+
+    <table class="border-dark">
+
+      <tr *ngFor="let Item of this.segment">
+        <th scope="row"><input type="checkbox" aria-label="Checkbox for following text input"></th>
+      
+        <td>
+        <a >  <h5 class="text-info" >{{Item.segmentName}}</h5></a> 
+          <p>Created on {{Item.createdDate|date:'medium'}} by {{Item.craetedBy}}
+            </p>
+        </td>
+        <td>
+          <!-- <a class="btn creat-studio-btn " href="#" role="button">Edit</a> -->
+
+         <button class="btn creat-studio-btn " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            <span> Action <i class="bi bi-chevron-down"></i></span>
+            </button>
+
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" >Edit</a></li>
+            <li><a class="dropdown-item" (click)="deleteSegment(Item)">Delete</a></li>
+          </ul>
+
+        </td>
+      </tr>
+    </table>
+
+    <!-- <table >
+      
+      <tr>
+        <th scope="row"><input type="checkbox" aria-label="Checkbox for following text input"></th>
+      
+        <td>
+        <a >  <h5 class="text-info">Segment 2 City</h5></a>
+          <p>Created on Feb 27, 2022 7:13pm by Deepak patel
+            </p>
+        </td>
+        <td>
+
+         <button class="btn creat-studio-btn " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            <span> Action <i class="bi bi-chevron-down"></i></span>
+            </button>
+
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" href="#">Edit</a></li>
+            <li><a class="dropdown-item" href="#">Delete</a></li>
+          </ul>
+
+        </td>
+      </tr>
+    </table> -->
+    </div>
+   </div>
+  </main>

@@ -1,0 +1,149 @@
+.outer {
+    height: 100vh;
+    background: white;
+}
+p {
+    font-family: Lato;
+  }
+.error {
+    border: solid 1px red;
+}
+
+.panel-heading {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+#forget {
+    min-width: 100px;
+    margin-left: auto;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.form-line-label {
+    padding-left: 10px;
+    margin: 0;
+    cursor: pointer;
+}
+
+.btn {
+    margin-top: 20px;
+    border-radius: 5px;
+}
+
+.panel {
+    min-height: 380px;
+    box-shadow: 20px 20px 80px rgb(218, 218, 218);
+    border-radius: 12px;
+    margin-top: 100px;
+}
+
+.input-field, .input-field1 {
+    border-radius: 5px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    cursor: pointer;
+}
+
+.input-field.error, .input-field1.error {
+    border: 1px solid red;
+    color: red;
+}
+
+input[type='text'],
+input[type='password'],
+input[type='email'],
+input[type='tel'] {
+    border: none;
+    outline: none;
+    box-shadow: none;
+    width: 100%;
+    padding: 5px;
+    font-size: 16px;
+}
+
+input[type='text']::placeholder,
+input[type='password']::placeholder,
+input[type='email']::placeholder,
+input[type='phone']::placeholder {
+    color: black; 
+}
+
+.fa-eye-slash.btn {
+    border: none;
+    outline: none;
+    box-shadow: none;
+    width: 100%;
+}
+
+img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    position: relative;
+}
+
+.invalid-input {
+    border-bottom: 3px solid red;
+}
+
+.example-h2 {
+    margin: 10px;
+}
+
+.example-section {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    height: 60px;
+}
+
+.example-margin {
+    margin: 0 10px;
+}
+
+.isDisabled {
+    cursor: not-allowed !important;
+}
+
+.form__input:focus {
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 5px rgba(128, 189, 255, .5);
+}
+
+
+.confirm-password-group {
+    padding-top: 15px;
+    padding-bottom: 10px;
+}
+
+.input-field.form-control {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden; 
+}
+
+.input-field.form-control input {
+    flex: 1;
+    padding: 5px;
+    font-size: 16px;
+    border: none;
+    outline: none;
+}
+
+.input-field.form-control .fa {
+    padding: 5px;
+    cursor: pointer;
+}

@@ -1,0 +1,175 @@
+<app-header></app-header>
+
+<div class="row m-0" *ngIf="!isMobileView">
+  <div class="col-md-2 col-sm-12">
+    <div class="row">
+      <div class="col-md-12">
+        <app-casino-left-menu></app-casino-left-menu>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-8 col-sm-12">
+    <div class="wrapper">
+      <div class="row mt-4" *ngIf="!isLoading">
+        <div class="col-12 text-center">
+          <input
+            placeholder="Enter casino name or category here"
+            [(ngModel)]="searchText"
+            name="casinoText"
+            (input)="onSearchCasinoGames()"
+            type="text"
+            class="form-control"
+            style="margin-bottom: 1rem"
+          />
+        </div>
+
+        <div class="col-md-3 mb-3" *ngFor="let casinoList of displayCasinoList">
+          <a>
+            <div
+              class="card text-center pointer"
+              (click)="postCasinoUrlIframe(casinoList)"
+            >
+              <img
+                src="{{ casinoList.casinoGameImageUrl }}"
+                class="card-img-top"
+                alt="..."
+              />
+              <div class="card-body">
+                <h6 class="card-title">{{ casinoList.casinoGameName }}</h6>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="center" *ngIf="isLoading">
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+      </div>
+
+      <div class="mt-5" *ngIf="!isLoading && displayCasinoList.length == 0">
+        <h4 class="text-center text-white">No Games Found!</h4>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-2 col-sm-12">
+    <div class="row">
+      <div class="col-md-12">
+        <app-casino-right-menu></app-casino-right-menu>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div *ngIf="isMobileView">
+    <div class="row mt-3 mb-2">
+      <div class="col-6">
+        <app-casino-left-menu></app-casino-left-menu>
+      </div>
+      <div class="col-6">
+        <app-casino-right-menu></app-casino-right-menu>
+      </div>
+    </div>
+
+    <div class="text-center" *ngIf="!isLoading">
+      <input
+        placeholder="Enter casino name or category here"
+        [(ngModel)]="searchText"
+        name="casinoText"
+        (input)="onSearchCasinoGames()"
+        type="text"
+        class="form-control"
+        style="margin-bottom: 1rem"
+      />
+    </div>
+
+    <div class="row wrapper text-center mb-3" *ngIf="!isLoading">
+      <div class="col-6 mb-3" *ngFor="let casinoList of displayCasinoList">
+        <a>
+          <div
+            class="card text-center pointer"
+            (click)="postCasinoUrlIframe(casinoList)"
+          >
+            <img
+              src="{{ casinoList.casinoGameImageUrl }}"
+              class="card-img-top"
+            />
+            <div class="card-body">
+              <h6 class="card-title">{{ casinoList.casinoGameName }}</h6>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="center" *ngIf="isLoading">
+      <div class="wave"></div>
+      <div class="wave"></div>
+      <div class="wave"></div>
+      <div class="wave"></div>
+      <div class="wave"></div>
+      <div class="wave"></div>
+      <div class="wave"></div>
+      <div class="wave"></div>
+      <div class="wave"></div>
+      <div class="wave"></div>
+    </div>
+
+    <div class="mt-5" *ngIf="!isLoading && displayCasinoList.length == 0">
+      <h4 class="text-center text-white">No Games Found!</h4>
+    </div>
+  </div>
+</div>
+
+
+
+<div
+  id="openModal"
+  *ngIf="showNotice && !isLoading"
+  #openModal
+  data-toggle="modal"
+  data-target="#login-modal"
+  tabindex="-1"
+  aria-labelledby="bannerModalLabel"
+  class="modal fade show"
+  style="display: block; background: #00000063 ; z-index: 99991;"
+  aria-modal="true"
+  role="dialog"
+>
+  <div
+    _ngcontent-kxa-c63=""
+    class="modal-dialog modal-sm modal-dialog-centered"
+  >
+    <div _ngcontent-kxa-c63="" class="modal-content">
+      <div _ngcontent-kxa-c63="" class="modal-body p-0">
+        <div class="container">
+            <div class="row">
+                <h3 class="text-center">Attention</h3>
+              </div>
+              <div class="row">
+                <img src="assets/images/casinoNotice.png" alt="">
+              </div>
+              <div class="row text-center p-2">
+                <div class="col-6">
+                  <button class="btn btn-lg btn-success m-auto text-white" (click)="manageNotice(true)">ACCEPT</button>
+                </div>
+                <div class="col-6">
+                  <button class="btn btn-lg btn-danger m-auto text-white" (click)="manageNotice(false)">REJECT</button>
+                </div>
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

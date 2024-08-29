@@ -1,0 +1,192 @@
+<div id="content" class="p-3">
+  <div class="row">
+    <section class="col-md-12">
+      <div class="education">
+        <div class="card mt-3 mb-5">
+          <div class="card-body">
+            <div class="tab-content" id="pills-tabContent">
+              <div id="bank-management" aria-labelledby="bank-management-tab">
+                <div class="container-fluid">
+                  <div class="row mt-2">
+                    <div class="col-md-12">
+                      <h2 class="colorp">
+                        <img src="assets/images/balanceProgressReport.svg" alt="" />
+                        Add Alarms And Triggers
+                      </h2>
+                    </div>
+                    <div class="col-md-12">
+                      <main id="main" class="main">
+                        <div class="row p-3 align-items">
+                          <form [formGroup]="mapForm" (ngSubmit)="addAlarmAndTrigger()">
+                           <div class="row">
+                            <div class="col-md-6  mt-3 " >
+                              
+                                <label for="">Alarm Name</label>
+                                <input formControlName="alarmName" class="form-control mt-2" type="text"
+                                  placeholder="Enter App Name" />
+                              </div>
+                              <div  class="col-md-6 mt-3">
+                                <label for="">Server</label>
+
+        <!-- ********************* Select Server ************************* -->
+
+                                <ng-multiselect-dropdown
+                             
+                                [placeholder]="'Select Server'"
+                                [data]="serverlist"
+                                [settings]="settings"
+                                [disabled]="false"
+                                 
+                                (onSelect)="onItemSelect($event)"
+                              
+                                (onSelectAll)="onSelectAll($event)"
+                              
+                                formControlName="servers"
+                              >
+                              </ng-multiselect-dropdown>
+                             
+                              </div>
+                           
+
+                            <div class="col-md-6 mt-3 "  >
+                              <div class="form-group " >
+                                <label for="">Server Name</label>
+                                <select placeholder="select"  formControlName="serverName" class="form-control"
+                                  id="server-select" (change)="server_name($event.target)">
+                                  <option value="" disabled selected hidden>Select</option>
+                                  <option *ngFor="let server of servernamelist" [value]="server.serverId">{{server.serverName}}</option>
+                                 
+                                </select>
+                              </div>
+                             
+                             
+                        
+                            </div>
+                            <div class="col-md-6 mt-3" id="task-scheduler-dropdown"
+                            *ngIf="is_task_scheduler">
+                            <div class="form-group">
+                              <label for="">Task Scheduler</label>
+                              <select class="form-control">
+                                <option>Select Task Scheduler</option>
+                                <option *ngFor="let taskschedular of taskSchedularlist" [value]="taskschedular.Id">{{taskschedular.TaskName}}</option>
+                                <!-- <option>Task Scheduler on Server-2</option>
+                                <option>Task Scheduler on Server-3</option>
+                                <option>Task Scheduler on Server-4</option> -->
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-md-6  mt-3" id="application-dropdown" *ngIf="is_application">
+                            <div class="row">
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                  <label for="">Application Type</label>
+                                  <select class="form-control">
+                                    <option>Select Application Type</option>
+                                    <option *ngFor="let applicationtype of applicationtypelist" [value]="applicationtype.id">{{applicationtype.application_name}}</option>
+                                    <!-- <option>Web App</option>
+                                    <option>Console App</option>
+                                    <option>Other</option> -->
+                                  </select>
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                  <label for="">Application Name</label>
+                                  <select class="form-control">
+                                    <option>Select Application</option>
+                                    <option *ngFor="let applicationName of applicationNamelist" [value]="applicationName.AppId">{{applicationName.AppName}}</option>
+                                    <!-- <option>Mailblitz</option>
+                                    <option>CRM</option>
+                                    <option>Sportzone</option> -->
+                                  </select>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                           
+                            <div class="form-group  col-md-6 mt-3" >
+                              <label for="eventSelect">Status</label>
+                              <select formControlName="status" class="form-control" id="eventSelect"
+                                (change)="status_name($event.target)">
+                                <option value="">Select Status</option>
+                                <option *ngFor="let status of serverstatuslist" [value]="status.statusId">{{status.statusName  }}</option>
+                                  <!-- <option value="stop">Stop</option>
+                                  <option value="error">Error</option>
+                                  <option value="hang">Hang</option> -->
+                              </select>
+                            </div>
+                            <div id="errorFields" class="col-md-6 mt-3" *ngIf="is_error_code">
+                              <div class="form-group ">
+                                <label for="errorCodeInput">Error Code</label>
+                                <input formControlName="errorCode" type="text" class="form-control"
+                                  id="errorCodeInput">
+                              </div>
+                            </div>
+                           
+                            <div class="form-group col-md-6 mt-3">
+                              <div class="form-group mt-4">
+                                <input formControlName="email" type="checkbox" id="toggleCheckbox"
+                                  (change)="emailChecked($event.target)">Email
+                              </div>
+                            </div>
+                            
+                            <div id="stopFields" class="col-md-12 mt-3" *ngIf="is_email">
+                              <div class="row">
+                                <div class="form-group col-md-4">
+                                  <label for="toInput">To</label>
+                                  <input formControlName="to" type="text" class="form-control" id="toInput">
+                                </div>
+                                <div class="form-group col-md-4">
+                                  <label for="ccInput">CC</label>
+                                  <input formControlName="cc" type="text" class="form-control" id="ccInput">
+                                </div>
+                                <div class="form-group col-md-4">
+                                  <label for="bccInput">BCC</label>
+                                  <input formControlName="bcc" type="text" class="form-control" id="bccInput">
+                                </div>
+                                <div class="form-group col-md-12 mt-3">
+                                  <label for="">Description</label>
+                                  <angular-editor formControlName="description" id="editor1" [config]="editorConfig"
+                                    name="editor1" rows="5" cols="8" class="form-control" style="display: inline;">
+                                  </angular-editor>
+                                </div>
+                                <div class="col-md-4 form-group mt-3">
+                                  <label for="attachmentType">Attachment Type</label>
+                                  <div class="custom-dropdown mt-2">
+                                    <input type="checkbox" id="toggle-dropdown" class="dropdown-checkbox">
+                                    <label for="toggle-dropdown" class="dropdown-label">Select Attachment</label>
+                                    <div class="dropdown-menu">
+                                      <label class="dropdown-item">
+                                        <input type="checkbox" name="attachmentType" value="1"> Error log
+                                      </label>
+                                      <label class="dropdown-item">
+                                        <input type="checkbox" name="attachmentType" value="2"> Health Check-up
+                                      </label>
+                                      <label class="dropdown-item">
+                                        <input type="checkbox" name="attachmentType" value="3"> File Summary
+                                      </label>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <hr>
+                            <div class="col-md-12 mt-3 text-end">
+                              <a routerLink="/settings/alarm-triggers" class="btn btn-secondary">Cancel</a>
+                              <button type="submit" class="btn btn-info1">Add</button>
+                            </div>
+                          </div>
+                          </form>
+                        </div>
+                      </main>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

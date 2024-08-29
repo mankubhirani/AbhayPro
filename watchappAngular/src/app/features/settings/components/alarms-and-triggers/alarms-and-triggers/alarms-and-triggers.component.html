@@ -1,0 +1,167 @@
+<div class="row">
+  <section class="col-md-12">
+    <div class="education">
+      <div class="card mt-3 mb-5">
+        <div class="card-body">
+          <div class="tab-content" id="pills-tabContent">
+            <div id="bank-management" aria-labelledby="bank-management-tab">
+              <div class="container-fluid">
+                <div class="row mt-2">
+                  <div class="col-md-12">
+                    <h2 class="colorp">
+                      <img src="assets/images/balanceProgressReport.svg" alt="" />
+                      Alarms and Triggers
+                    </h2>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="dropdown">
+                              <button (click)="showCheckboxes()" class="dropbtn border mt-4 rounded-2"
+                                style="padding: 0.40rem; width: 80%;">
+                                Column View
+                                <i class="bi bi-arrow-down"></i>
+                              </button>
+                              <div id="showCheckboxes" class="dropdown-content" [ngClass]="status ? 'show' : ''">
+                                <ul>
+                                  <li style="list-style: none;" *ngFor="let column of columns; let i = index">
+                                    <input type="checkbox" [checked]="column.visible" (change)="toggleColumns(i)" />
+                                    {{ column.name }}
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-3">
+                            <div class="form-group">
+                              <select
+                                              class="form-control" style="margin-top: 21px;"
+                                               (change)="updateItemsPerPage($event)"
+                                            >
+                                              <option>Show</option>
+                                              <option>10</option>
+                                              <option>25</option>
+                                              <option>50</option>
+                                              <option>100</option>
+                                            </select>
+                            </div>
+                          </div>
+                          <div class="col-md-3 mt-4">
+                            <select id="action-menu" class="form-control">
+                              <option>Action</option>
+                              <option>Edit</option>
+                              <option>Delete</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="row">
+                          <div class="col-md-8 mt-4">
+                            <form class="">
+                              <input class="form-control fw-bold" type="search" placeholder="Search" aria-label="Search" />
+                            </form>
+                          </div>
+                          <div class="col-md-4">
+                            <a type="button" class="btn btn-info1 mt-4" (click)="navigateToSecond()">+ New Alarms</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="row">
+                      <div class="col-md-10 mt-4">
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                          <button type="button" class="btn btn-info1">Alarms</button>&nbsp;
+                          <button type="button" class="btn btn-info1">Triggers</button>&nbsp;
+                          <button type="button" class="btn btn-info1">Both</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <table class="table table-hover mt-3 table-striped">
+                    <thead>
+                      <tr class="btn-s">
+                        <th *ngIf="columns[0].visible"><input type="checkbox" /></th>
+                        <th *ngIf="columns[1].visible">Row No</th>
+                        <th *ngIf="columns[2].visible">Description</th>
+                        <th *ngIf="columns[3].visible">Key</th>
+                        <th *ngIf="columns[4].visible">Type</th>
+                        <th *ngIf="columns[5].visible">App Type</th>
+                        <th *ngIf="columns[6].visible">Event Definition</th>
+                        <th *ngIf="columns[7].visible">Time Stamp</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <ng-container *ngIf="AlarmTriggerArr.length != 0">
+                        <tr *ngFor="let value of AlarmTriggerArr | paginate: { itemsPerPage: itemsPerPage, currentPage: p }; let i = index">
+                          <td *ngIf="columns[0].visible"><input type="checkbox" /></td>
+                          <td *ngIf="columns[1].visible">1</td>
+                          <td *ngIf="columns[2].visible">
+                            <p class="d-inline-flex gap-1">
+                              <a class="btn text-dark" data-bs-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExample1">
+                                {{value.description}}
+                              </a>
+                            </p>
+                            <div class="collapse" id="collapseExample1">
+                              <div class="d-flex">
+                                <div class="col-md-12">
+                                  <h6>ID</h6>
+                                  <p>sdf4535421245sdsd</p>
+                                  <h6>Priority</h6>
+                                  <p>Normal</p>
+                                  <h6>Timestamp</h6>
+                                  <p>2024-04-17 11:14:20</p>
+                                  <h6>Event Definition</h6>
+                                  <p>
+                                    <a href="">Disk full correlation</a> (Event Correlation)
+                                  </p>
+                                </div>
+                                <div class="float-right ml-5">
+                                  <h6>Event Key</h6>
+                                  <p>192.168.1.166</p>
+                                  <h6>Additional Field</h6>
+                                  <p>
+                                    <li>Hostname: hostname</li>
+                                  </p>
+                                  <p>
+                                    <li>Source: source</li>
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </td>
+                          <td *ngIf="columns[3].visible" id="for_table_color">{{value.serverKey}}</td>
+                          <td *ngIf="columns[4].visible" id="for_table_color">
+                            <a href="" class="btn btn-primary">Alarm</a>
+                          </td>
+                          <td *ngIf="columns[5].visible" id="for_table_color">
+                            <a href="" class="btn btn-info1 w-75">Application</a>
+                          </td>
+                          <td *ngIf="columns[6].visible" id="for_table_color">Dist at 90% full</td>
+                          <td *ngIf="columns[7].visible">2024-04-17 11:14:20</td>
+                        </tr>
+                      </ng-container>
+                      <ng-container *ngIf="AlarmTriggerArr.length == 0">
+                        <tr>
+                          <td colspan="8">No data found!</td>
+                        </tr>
+                      </ng-container>
+                    </tbody>
+                  </table>
+                  
+                   <pagination-controls
+                  (pageChange)="p = $event"
+                ></pagination-controls>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,269 @@
+<a
+  class="sidebar-title"
+  data-bs-toggle="collapse"
+  href="#other"
+  role="button"
+  aria-expanded="false"
+  aria-controls="other"
+>
+  <h5 class="d-inline-block m-b-0">Others</h5>
+</a>
+
+<div class="collapse show" id="other">
+  <nav class="casino in" style="height: auto">
+    <ul>
+      
+      <li class="nav-item" *ngFor="let casinoMenuItem of leftCasinoMenu">
+        <a class="nav-link"
+          ><span class=""> {{casinoMenuItem.categoryName}}</span></a
+        >
+      </li>
+    </ul>
+  </nav>
+</div>
+
+<!-- all sports -->
+
+<a
+  class="sidebar-title"
+  data-bs-toggle="collapse"
+  href="#allSports"
+  role="button"
+  aria-expanded="false"
+  aria-controls="allSports"
+>
+  <h5 class="d-inline-block m-b-0">All Sports</h5>
+</a>
+
+<div class="collapse show" id="allSports">
+  <nav class="mtree-main in">
+    <div class="accordion" id="accordionExample">
+      <div class="accordion-item" *ngFor="let sport of leftMenu">
+        <h2 class="accordion-header" id="headingTwo">
+          <button
+            class="accordion-button text-dark collapsed"
+            type="button"
+            data-bs-toggle="collapse"
+            [attr.data-bs-target]="'#collapse_' + sport.sportId"
+            aria-expanded="false"
+            [attr.aria-controls]="'collapse_' + sport.sportId"
+            (click)="toggleSport(sport)"
+          >
+            <span><i class="far"  [ngClass]="{'fa-plus-square': !isSportExpanded(sport), 'fa-minus-square': isSportExpanded(sport)}"></i></span> {{ sport.name }}
+          </button>
+        </h2>
+        <div
+          [attr.id]="'collapse_' + sport.sportId"
+          class="accordion-collapse collapse"
+          aria-labelledby="headingTwo"
+          data-bs-parent="#accordionExample"
+        >
+          <div class="accordion-body py-0 ps-4">
+            <div class="accordion" id="FootballAccordion">
+              <div
+                class="accordion-item border-0"
+                *ngFor="let tournament of sport.tournamentList"
+              >
+                <h2 class="accordion-header" id="headingTwo">
+                  <button
+                    class="accordion-button text-dark collapsed p-0"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    [attr.data-bs-target]="
+                      '#tournament_' + tournament.tournamentId
+                    "
+                    aria-expanded="false"
+                    [attr.aria-controls]="
+                      'tournament_' + tournament.tournamentId
+                    "
+                    (click)="toggleExpansion(tournament)"
+                  >
+                    <span><i class="far" [ngClass]="{'fa-plus-square': !isTournamentExpanded(tournament), 'fa-minus-square': isTournamentExpanded(tournament)}"></i></span>
+                    {{ tournament.tournamentName }}
+                  </button>
+                </h2>
+                <div
+                  [attr.id]="'tournament_' + tournament.tournamentId"
+                  class="accordion-collapse collapse"
+                  aria-labelledby="headingTwo"
+                  data-bs-parent="#FootballAccordion"
+                >
+                  <div class="accordion-body p-0 ps-2">
+                    <div class="accordion" id="FootballAccordionDate">
+                      <div
+                        class="accordion-item border-0"
+                        *ngFor="let match of tournament.matchList"
+                      >
+                        <div
+                          id="football_date1"
+                          class="accordion-collapse"
+                          aria-labelledby="headingTwo"
+                          data-bs-parent="#FootballAccordionDate"
+                        >
+                          <div class="accordion-body p-2">
+                            <a
+                              [routerLink]="
+                                '/sportsbook/' +
+                                sport.name +
+                                '/' +
+                                tournament.tournamentId +
+                                '/' +
+                                match.matchId
+                              "
+                            >
+                              {{ match.matchName }}
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<!-- <div class="row" *ngIf="!isMobileView">
+  <div class="col-md-12 asidenav mobileTableHide ">
+    <ul class=" ">
+      <li class="nav-item leftuser animate__animated animate__flipInX  d-flex align-items-center bg-color"
+        *ngIf="isLoggedIn">
+        <span class="userb-icon "><i class="fa fa-user"></i> </span>
+        <span class="leftuserhead mt-0">
+          {{ userDetails["username"] | titlecase }}
+        </span>
+      </li>
+      <hr class="text-color ms-2 me-2" *ngIf="isLoggedIn" />
+
+      <ng-container *ngIf="!sportsName; else commonNav">
+        <li class="nav-item animate__animated animate__backInLeft" *ngFor="let singleObj of viewMoreNavList">
+          <a
+          [ngClass]="{ 'disabled-link': singleObj.sportName === 'Casino' && !isUserActive }"
+          [routerLink]="singleObj.sportName === 'Casino' && !isUserActive
+              ? null
+              : (singleObj.sportName === 'Casino'
+                ? ['/casino']
+                : ['/sportsbook/' + singleObj.sportName])"
+           [routerLinkActive]="'active'"
+            class="nav-link">
+            <img [src]="singleObj.imageUrl" width="20px" class="me-2" />
+            <span> {{ singleObj["sportName"] | uppercase}} </span>
+          </a>
+        </li>
+
+
+      <li class="nav-item" *ngIf="isCasinoEnabled">
+        <a class="nav-link" aria-current="page" (click)="redirectToAviatorCasino()">
+          <img src="https://sportszonegroup9e79.blob.core.windows.net/menuimages/aviator.png" width="20px" class="me-2" />
+          <span>AVIATOR</span>
+        </a>
+      </li>
+      </ng-container>
+
+      <ng-template #commonNav>
+        <li class="nav-item animate__animated animate__backInLeft">
+          <a routerLink="/in-play" class="nav-link"><i class="fa fa-home me-4 ms-1"></i><span><strong>Sports</strong>
+            </span></a>
+        </li>
+        <li class="nav-item animate__animated animate__backInLeft">
+          <a routerLink="/sportsbook/{{ sportsName }}" class="nav-link active"><img
+              src="assets/images/{{ sportsName | lowercase }}.png" width="20px" class="me-2" />
+            <span class="ms-2"> {{ sportsName | titlecase }} </span>
+          </a>
+        </li>
+        <li class="nav-item animate__animated animate__backInLeft">
+          <a class="nav-link pointer" (click)="goBack()"><i class="fa fa-angle-left me-2 ms-2"></i>
+            <span class="ms-3">Previous</span></a>
+        </li>
+        <li class="nav-item animate__animated animate__backInLeft" *ngFor="let singleMenu of menuList">
+          <a *ngIf="!singleMenu?.refTournamentId" routerLink="/sportsbook/{{ sportsName }}/{{ singleMenu['id'] }}"
+            class="nav-link">
+            <span> {{ singleMenu["name"] }} </span>
+          </a>
+          <a *ngIf="singleMenu?.refTournamentId" routerLink="/sportsbook/{{ sportsName }}/{{
+              singleMenu['refTournamentId']
+            }}/{{ singleMenu['id'] }}" class="nav-link">
+            <span> {{ singleMenu["name"] }} </span>
+          </a>
+        </li>
+      </ng-template>
+    </ul>
+  </div>
+</div>
+
+
+<div class="row m-0">
+  <div class="col-md-12 asidenav mobileTableShow" *ngIf="isMobileView">
+    <ul class="">
+      <li class="nav-item leftuser animate__animated animate__flipInX " *ngIf="isLoggedIn">
+        <span class="userb-icon float-start"><i class="fa fa-user"></i> </span>
+        <span class="leftuserhead mt-1">
+          {{ userDetails["username"] | titlecase }}
+        </span>
+      </li>
+      <hr class="text-color ms-2 me-2" *ngIf="isLoggedIn" />
+
+      <ng-container *ngIf="!sportsName; else commonNav">
+        <li class="nav-item " *ngFor="let singleObj of viewMoreNavList">
+          <a routerLink="/sportsbook/{{ singleObj['sportName'] | titlecase }}" class="nav-link">
+            <img src="assets/images/{{ singleObj['sportName'] | lowercase }}.png" width="20px" class="me-2" />
+            <span> {{ singleObj["sportName"] }} </span>
+            <span class="leftb-icon">{{ singleObj["marketCount"] }}</span>
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="isCasinoEnabled">
+          <a class="nav-link" aria-current="page" (click)="redirectToAviatorCasino()">
+            <img src="https://sportszonegroup9e79.blob.core.windows.net/menuimages/aviator.png" width="20px" class="me-2" />
+            <span>Aviator</span>
+          </a>
+        </li>
+        <li class="nav-item pointer " *ngIf="viewMoreNavList.length > 0">
+          <a class="nav-link"><img src="assets/images/live_card.png" width="18px" class="me-2" />
+            Live Card</a>
+        </li>
+        <li class="nav-item pointer " *ngIf="viewMoreNavList.length > 0">
+          <a class="nav-link"><img src="assets/images/slot_games.png" width="18px" class="me-2" />
+            Slot Games</a>
+        </li>
+        <li class="nav-item " *ngFor="let singleNav of viewMoreNavList">
+          <a class="nav-link"><img src="{{ singleNav?.menuLogo }}" width="18px" class="me-2" />
+            <span> {{ singleNav?.menuName }} </span>
+          </a>
+        </li>
+      </ng-container>
+
+      <ng-template #commonNav>
+        <li class="nav-item ">
+          <a routerLink="/in-play" class="nav-link"><i class="fa fa-home me-4 ms-1"></i><span><strong>Sports</strong>
+            </span></a>
+        </li>
+        <li class="nav-item ">
+          <a routerLink="/sportsbook/{{ sportsName }}" class="nav-link active"><img
+              src="assets/images/{{ sportsName | lowercase }}.png" width="20px" class="me-2" />
+            <span class="ms-2"> {{ sportsName | titlecase }} </span>
+          </a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link pointer" (click)="goBack()"><i class="fa fa-angle-left me-2 ms-2"></i>
+            <span class="ms-3">Previous</span></a>
+        </li>
+        <li class="nav-item " *ngFor="let singleMenu of menuList">
+          <a *ngIf="!singleMenu?.refTournamentId" routerLink="/sportsbook/{{ sportsName }}/{{ singleMenu['id'] }}"
+            class="nav-link">
+            <span> {{ singleMenu["name"] }} </span>
+          </a>
+          <a *ngIf="singleMenu?.refTournamentId" routerLink="/sportsbook/{{ sportsName }}/{{
+              singleMenu['refTournamentId']
+            }}/{{ singleMenu['id'] }}" class="nav-link">
+            <span> {{ singleMenu["name"] }} </span>
+          </a>
+        </li>
+      </ng-template>
+    </ul>
+  </div>
+</div> -->

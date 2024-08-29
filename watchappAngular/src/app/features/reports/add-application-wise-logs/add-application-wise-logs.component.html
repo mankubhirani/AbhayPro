@@ -1,0 +1,211 @@
+
+<div class="wrapper d-flex align-items-stretch">
+    <div id="content" class="p-3">
+      <div class="row">
+        <section class="col-md-12">
+          <div class="education">
+            <div class="card mt-3 mb-5">
+              <div class="card-body">
+                <div class="tab-content" id="pills-tabContent">
+                  <div id="bank-management" aria-labelledby="bank-management-tab">
+                    <div class="container-fluid">
+                      <div class="row mt-2">
+                        <div class="col-md-12">
+                          <h2 class="colorp">
+                            <img
+                              src="assets/images/balanceProgressReport.svg"
+                              alt=""
+                            />
+                            Add Application Wise Logs
+                          </h2>
+                        </div>
+                        <div class="col-md-12">
+                          <main id="main" class="main">
+                            <form
+                              [formGroup]="appForm"
+                              (ngSubmit)="addWiseLogs()"
+                            >
+                              <div class="row p-3">
+                                <div class="form-group col-md-12">
+                                  <h5 class="mt-4">
+                                    <b>App-Id - 8983-8374374-2873</b>
+                                  </h5>
+                                </div>
+                                <div class="form-group col-md-6 mt-3">
+                                  <label for="appName">App Name</label>
+                                  <input
+                                    class="form-control mt-2"
+                                    id="appName"
+                                    formControlName="appName"
+                                    type="text"
+                                    placeholder="Enter App Name"
+                                  />
+                                </div>
+                                <!-- <div class="form-group col-md-6 mt-3">
+                                  <label for="appIcon">App Icon</label>
+                                   <input
+                                    type="file"
+                                    class="form-control mt-2"
+                                    id="appIcon"
+                                    (change)="onFileChange($event)"
+                                  /> 
+                                </div> -->
+                                <div class="form-group col-md-6 mt-3">
+                                  <label for="appIcon">App Icon</label>
+                                  <input
+                                    type="file"
+                                    class="form-control mt-2"
+                                    id="appIcon"
+                                    (change)="onFileChange($event)"
+                                  />
+                                </div>
+  
+                                <div class="form-group col-md-6 mt-3">
+                                  <label for="validFrom">Valid From</label>
+                                  <input
+                                    class="form-control mt-2"
+                                    id="validFrom"
+                                    formControlName="validFrom"
+                                    type="date"
+                                  />
+                                </div>
+                                <div class="form-group col-md-6 mt-3">
+                                  <label for="validTo">Valid To</label>
+                                  <input
+                                    class="form-control mt-2"
+                                    id="validTo"
+                                    formControlName="validTo"
+                                    type="date"
+                                  />
+                                </div>
+                                <div class="form-group col-md-6 mt-3">
+                                  <label for="server">Server</label>
+                                  <ng-multiselect-dropdown
+                                    #multiSelect
+                                    [placeholder]="'Select Server'"
+                                    [data]="serverlis"
+                                    [settings]="setting"
+                                    (onFilterChange)="onFilterChange($event)"
+                                    (onDropDownClose)="onDropDownClose($event)"
+                                    (onSelect)="onItemSelect($event)"
+                                    (onDeSelect)="onDeSelect($event)"
+                                    (onSelectAll)="onSelectAll($event)"
+                                    (onDeSelectAll)="onDeSelectAll($event)"
+                                    formControlName="servers"
+                                  >
+                                  </ng-multiselect-dropdown>
+                                </div>
+  
+                                <div class="form-group col-md-6 mt-3">
+                                  <label for="operation">Operation</label>
+                                  <ng-multiselect-dropdown
+                                    #multiSelect
+                                    [placeholder]="'Select '"
+                                    [data]="operationAPIarray"
+                                    [settings]="Operation"
+                                    (onFilterChange)="onFilterChange($event)"
+                                    (onDropDownClose)="onDropDownClose($event)"
+                                    (onSelect)="onItemSelect($event)"
+                                    (onDeSelect)="onDeSelect($event)"
+                                    (onSelectAll)="onSelectAll($event)"
+                                    (onDeSelectAll)="onDeSelectAll($event)"
+                                    formControlName="Operation"
+                                  >
+                                  </ng-multiselect-dropdown>
+                                </div>
+  
+                                <div class="form-group col-md-6 mt-3">
+                                  <label for="applicationType"
+                                    >Application Type</label
+                                  >
+                                  <ng-multiselect-dropdown
+                                    #multiSelect
+                                    [placeholder]="'Select '"
+                                    [data]="SetApplicationType"
+                                    [settings]="Applications"
+                        
+                                    (onFilterChange)="onFilterChange($event)"
+                                    (onDropDownClose)="onDropDownClose($event)"
+                                    (onSelect)="onItemSelect($event)"
+                                    (onDeSelect)="onDeSelect($event)"
+                                    (onSelectAll)="onSelectAll($event)"
+                                    (onDeSelectAll)="onDeSelectAll($event)"
+                                    formControlName="applications"
+                                  >
+                                  </ng-multiselect-dropdown>
+                                </div>
+                                <div class="col-md-3 mt-3" id="dropdown1">
+                                  <label for="appUser">App User</label>
+                                  <ng-multiselect-dropdown
+                                  #multiSelect
+                                  [placeholder]="'Select '"
+                                  [data]="loadingUserArr"
+                                  [settings]="addUserDrop"
+                      
+                                  (onFilterChange)="onFilterChange($event)"
+                                  (onDropDownClose)="onDropDownClose($event)"
+                                  (onSelect)="onItemSelect($event)"
+                                  (onDeSelect)="onDeSelect($event)"
+                                  (onSelectAll)="onSelectAll($event)"
+                                  (onDeSelectAll)="onDeSelectAll($event)"
+                                  formControlName="applicationUser"
+                                >
+                                </ng-multiselect-dropdown>
+                                </div>
+                                <div class="col-md-3 mt-5">
+                                  <p>
+                                    <a
+                                      class="mt-3"
+                                      routerLink="/settings/add-user"
+                                      id="addUserButton"
+                                      >Add User</a
+                                    >
+                                  </p>
+                                </div>
+                                <div class="form-group col-md-4 mr-4 mt-4">
+                                  Status &nbsp;
+                                  <label class="switch">
+                                    <input
+                                      type="checkbox"
+                                      formControlName="status"
+                                    />
+                                    <span class="slider round"></span>
+                                  </label>
+                                </div>
+                                <div class="form-group col-md-12 mt-3">
+                                  <label for="description">Description</label>
+                                  <angular-editor
+                                    id="description"
+                                    formControlName="description"
+                                    [placeholder]="'Enter text here...'"
+                                    [config]="config"
+                                  ></angular-editor>
+                                </div>
+                              </div>
+                              <div class="col-md-12 mt-3 text-end">
+                                <button
+                                  type="button"
+                                  class="btn btn-secondary"
+                                  (click)="onCancel()"
+                                >
+                                  Cancel
+                                </button>
+                                <button type="submit" class="btn btn-info1">
+                                  Add
+                                </button>
+                              </div>
+                            </form>
+                          </main>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+  

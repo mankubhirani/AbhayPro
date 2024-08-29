@@ -1,0 +1,241 @@
+/* General styling for the pagination container */
+.pagination-container {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+/* Styling for pagination buttons */
+.pagination-button {
+  padding: 10px 20px;
+  margin: 0 5px;
+  border: 1px solid #376681;
+  border-radius: 5px;
+  background-color: #376681;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.pagination-button:disabled {
+  background-color: #cccccc;
+  border-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.pagination-button:hover:not(:disabled) {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+/* Styling for the current page indicator */
+.current-page {
+  padding: 10px 20px;
+  margin: 0 5px;
+  border-radius: 5px;
+  background-color: #e9ecef;
+  color: #495057;
+  font-size: 16px;
+}
+
+/* Additional styling for text and alignment */
+.pagination-info {
+  margin: 0 10px;
+  font-size: 16px;
+}
+
+.drop {
+  height: 35px;
+  width: 90px;
+  background-color: #0085b2;
+  color: white;
+  border-radius: 5px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #ffffff;
+  min-width: 300px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content label {
+  display: block;
+  padding: 10px 16px;
+  text-decoration: none;
+  color: #000000;
+}
+
+.dropdown-content label:hover {
+  background-color: #f9f9f9;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Style the dropdown menu items (checkboxes) */
+.dropdown-content input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+#show {
+  width: 70px;
+}
+
+.radioBTN {
+  display: flex;
+  justify-content: center; /* Center the radio button horizontally */
+  align-items: center; /* Center the radio button vertically */
+  position: relative; /* For tooltip positioning */
+}
+
+.radioBTN .checkmark {
+  width: 20px; /* Adjust the width as needed */
+  height: 20px; /* Adjust the height as needed */
+  border-radius: 50%;
+  margin-top: 30px;
+  margin-left: -25px;
+}
+
+.connected .checkmark {
+  background-color: green;
+}
+
+.disconnected .checkmark {
+  background-color: red;
+}
+
+.radioBTN .tooltip {
+  visibility: hidden;
+  width: 60px;
+  background-color: whitesmoke;
+  color: black;
+  text-align: center;
+  border-radius: 5px;
+  padding: 2px ;
+  position: absolute;
+  z-index: 1;
+  bottom: 150%; /* Position the tooltip above the text */
+  left: 50%;
+  margin-left: -50px; /* Center the tooltip */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.radioBTN .tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%; /* At the bottom of the tooltip */
+  left: 50%;
+  margin-left: 0px;
+  border-width: 0px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}
+
+.radioBTN:hover .tooltip {
+  visibility: visible;
+  opacity: 10;
+}
+
+.mbb {
+  margin-bottom: 5rem;
+}
+
+/* .serverIP{
+  width: 50%;
+} */
+
+.serverIP {
+  position: relative;
+  display: inline-block;
+}
+
+.btn-info1 option{
+  background-color: #fff;
+  color: #000;
+}
+
+
+/* .serverIP .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.serverIP:hover .dropdown-content {
+  display: block;
+}
+
+.serverIP .dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.serverIP .dropdown-content a:hover {
+  background-color: #f1f1f1;
+} */
+
+/* .list{
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 40px;
+  width: 30%;
+  
+} */
+
+.a{
+  cursor: pointer;
+ 
+}
+.disabled{
+  background-color: red;
+  height: 15px;
+  width: 35px;
+  border-width: 0px;
+
+}
+.ready{
+  border-width: 0px;
+  background-color: green;
+  height: 15px;
+  width: 55px;
+  margin-bottom: 4px;
+  
+}
+ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+ul li {
+  display: flex;
+  align-items: center;
+}
+
+button.disabled {
+  margin-right: 5px;
+}
+
+span.ready {
+  margin-left: 10px;
+}
+/* 
+.dropselect{
+  margin-left: 550px;
+  width: 140px;
+} */

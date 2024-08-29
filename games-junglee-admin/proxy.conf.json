@@ -1,0 +1,16 @@
+{
+  "/apiE/*": {
+    "target": "https://web-apis.azurewebsites.net",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "pathRewrite": { "^/apiE": "" }
+  },
+
+  "/api/*": {
+    "target": "https://web-apis.azurewebsites.net",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}

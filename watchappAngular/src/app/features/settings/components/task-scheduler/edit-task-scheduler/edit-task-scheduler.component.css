@@ -1,0 +1,27 @@
+#option {
+  border-radius: 5px;
+  border: 1px solid #000;
+  padding: 8.5px;
+  margin-top: 25px;
+}
+.show {
+  display: block !important;
+}
+.drop{
+  height: 35px;
+  width: 90px;
+  background-color: #0085b2;
+  color: white;
+  border-radius: 5px;
+}
+
+.red-dropdown {
+  background-color:#596e79;
+  color: white;
+}
+
+.show-dropdown {
+  background-color:#596e79;
+  color: white;
+  margin-top: 23px;
+}

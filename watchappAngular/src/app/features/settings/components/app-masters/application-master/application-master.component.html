@@ -1,0 +1,250 @@
+<div class="container-fluid">
+  <div class="row"></div>
+</div>
+ 
+<div class="d-flex align-items-stretch">
+  <!-- Page Content -->
+  <div id="" class="p-3">
+    <div class="row">
+      <section class="col-md-12">
+        <div class="education">
+          <div class="card mt-3 mbb">
+            <div class="card-body">
+              <div class="tab-content" id="pills-tabContent">
+                <div id="bank-management" aria-labelledby="bank-management-tab">
+                  <div class="container-fluid">
+                    <div class="row mt-2">
+                      <div class="col-md-12">
+                        <h2 class="colorp">
+                          <img src="assets/images/balanceProgressReport.svg" alt="" />
+                          Application Master
+                        </h2>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="row">
+                              <div class="col-md-6">
+                                <div class="row">
+                                  <div class="col-md-8 mt-4">
+                                    <form>
+                                      <input
+                                        class="form-control fw-bold"
+                                        type="search"
+                                        placeholder="Search"
+                                        aria-label="Search"
+                                      />
+                                    </form>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <div class="row">
+                                  <div class="col-md-4">
+                                    <div class="dropdown">
+                                      <button
+                                        (click)="toggleColumnView()"
+                                        class="dropbtn border mt-4 py-1 rounded-2"
+                                      >
+                                        Column View
+                                        <i class="bi bi-arrow-down"></i>
+                                      </button>
+                                      <div
+                                        id="showCheckboxes"
+                                        class="dropdown-content"
+                                        [ngClass]="{
+                                          show: isColumnViewVisible
+                                        }"
+                                      >
+                                        <a>
+                                          <input
+                                            type="checkbox"
+                                            (change)="toggleColumn(0)"
+                                            [checked]="columnsVisibility[0]"
+                                          />
+                                          Select All
+                                        </a>
+                                        <a>
+                                          <input
+                                            type="checkbox"
+                                            (change)="toggleColumn(1)"
+                                            [checked]="columnsVisibility[1]"
+                                          />
+                                          App ID
+                                        </a>
+                                        <a>
+                                          <input
+                                            type="checkbox"
+                                            (change)="toggleColumn(2)"
+                                            [checked]="columnsVisibility[2]"
+                                          />
+                                          App Name
+                                        </a>
+                                        <a>
+                                          <input
+                                            type="checkbox"
+                                            (change)="toggleColumn(3)"
+                                            [checked]="columnsVisibility[3]"
+                                          />
+                                          App Icon
+                                        </a>
+                                        <a>
+                                          <input
+                                            type="checkbox"
+                                            (change)="toggleColumn(4)"
+                                            [checked]="columnsVisibility[4]"
+                                          />
+                                          Valid From
+                                        </a>
+                                        <a>
+                                          <input
+                                            type="checkbox"
+                                            (change)="toggleColumn(5)"
+                                            [checked]="columnsVisibility[5]"
+                                          />
+                                          Valid To
+                                        </a>
+                                        <a>
+                                          <input
+                                            type="checkbox"
+                                            (change)="toggleColumn(6)"
+                                            [checked]="columnsVisibility[6]"
+                                          />
+                                          Status
+                                        </a>
+                                        <a>
+                                          <input
+                                            type="checkbox"
+                                            (change)="toggleColumn(7)"
+                                            [checked]="columnsVisibility[7]"
+                                          />
+                                          Server
+                                        </a>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-2">
+                                    <div class="form-group">
+                                      <select
+                                              class="form-control" style="margin-top: 21px;"
+                                               (change)="updateItemsPerPage($event)"
+                                            >
+                                              <option>Show</option>
+                                              <option>10</option>
+                                              <option>25</option>
+                                              <option>50</option>
+                                              <option>100</option>
+                                            </select>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-2 mt-4">
+                                    <button
+                                      class="btn btn-secondary"
+                                      type="button"
+                                      id="dropdownMenuButton1"
+                                      data-bs-toggle="dropdown"
+                                      aria-expanded="false"
+                                    >
+                                      <span>
+                                        Action
+                                        <i class="bi bi-chevron-down"></i>
+                                      </span>
+                                    </button>
+                                    <ul
+                                      class="dropdown-menu"
+                                      aria-labelledby="dropdownMenuButton1"
+                                    >
+                                      <li>
+                                        <a
+                                          class="dropdown-item"
+                                          href="edit_application_master.html"
+                                          >Edit</a
+                                        >
+                                      </li>
+                                      <li>
+                                        <a class="dropdown-item" href="#"
+                                          >Delete</a
+                                        >
+                                      </li>
+                                    </ul>
+                                  </div>
+                                  <div class="col-md-4">
+                                    <a
+                                      type="button"
+                                      class="btn btn-info1 mt-4"
+                                      routerLink="/settings/add-application-masters"
+                                      >+ New App</a
+                                    >
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-12 mt-4">
+                        <div class="table-responsive">
+                          <table class="table table-hover mt-3 table-striped">
+                            <thead>
+                              <tr class="btn-s">
+                                <th id="table_Head">
+                                  <input type="checkbox" (change)="toggleAllColumns($event)" [checked]="columnsVisibility[0]" />
+                                </th>
+                                <th id="table_Head" *ngIf="columnsVisibility[1]">App ID</th>
+                                <th id="table_Head" *ngIf="columnsVisibility[2]">App Name</th>
+                                <th id="table_Head" *ngIf="columnsVisibility[3]">App Icon</th>
+                                <th id="table_Head" *ngIf="columnsVisibility[4]">Valid From</th>
+                                <th id="table_Head" *ngIf="columnsVisibility[5]">Valid To</th>
+                                <th id="table_Head" *ngIf="columnsVisibility[6]">Status</th>
+                                <th id="table_Head" *ngIf="columnsVisibility[7]">Server</th>
+                                <th id="table_Head">Action</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <ng-container *ngIf="taskGetApplicationArr.length != 0">
+                                <tr *ngFor="let item of taskGetApplicationArr | paginate: { itemsPerPage: itemsPerPage, currentPage: p }; let i = index">
+                                  <td><input type="checkbox" /></td>
+                                  <td *ngIf="columnsVisibility[1]">{{ item.AppId }}</td>
+                                  <td *ngIf="columnsVisibility[2]">{{ item.AppName }}</td>
+                                  <td *ngIf="columnsVisibility[3]">{{ item.AppIcon }}</td>
+                                  <td *ngIf="columnsVisibility[4]">{{ item.ValidFrom }}</td>
+                                  <td *ngIf="columnsVisibility[5]">{{ item.ValidTo }}</td>
+                                  <td *ngIf="columnsVisibility[6]">{{ item.Status }}</td>
+                                  <td *ngIf="columnsVisibility[7]">Connected</td>
+                                  <td>
+                                    <button class="btn creat-studio-btn btn-info1" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                      <span>Action <i class="bi bi-chevron-down"></i></span>
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                      <li><a class="dropdown-item" href="edit_application_master.html">Edit</a></li>
+                                      <li><a class="dropdown-item" href="#">Delete</a></li>
+                                    </ul>
+                                  </td>
+                                </tr>
+                              </ng-container>
+                              <ng-container *ngIf="taskGetApplicationArr.length == 0">
+                                <tr>
+                                  <td colspan="9">No data found!</td>
+                                </tr>
+                              </ng-container>
+                            </tbody>
+                          </table>
+                          
+                        </div>
+                        <div class="list">
+                          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+         
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+ 

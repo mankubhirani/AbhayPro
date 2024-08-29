@@ -1,0 +1,182 @@
+<div class="row m-0">
+  <div class="col-md-12 pb-2 pt-2 secondheader">
+    <a><i class="fa fa-angle-left text-dark pointer" (click)="goBack()"></i
+      >&nbsp;&nbsp; Account Statement</a
+    >
+  </div>
+  <hr class="text-color" />
+
+  <div class="col-md-12 ps-md-5 pe-md-5" [formGroup]="filterForm">
+    <div class="row mb-4 ps-0">
+
+      <div class="col-md-2 col-6 mb-2">
+        <div class="wrapper"></div>
+
+        <date-range-picker
+          [instanceId]="'secondDateRange'"
+          [options]="options"
+          [controlName]="'secondDateRange'"
+          #dateRangePicker
+          (rangeSelected)="rangeSelected($event)"
+          class="tsDatePicker"
+        >
+          <div class="form-group">
+            <div class="input-group">
+              <input
+                id="secondDateRange"
+                class="w-100  btn btn-md  text-dark border-dark"
+                type="text"
+                name="dateRange"
+                [value]="dateRangePicker.range"
+                placeholder="From - To"
+              />
+            </div>
+          </div>
+        </date-range-picker>
+      </div>
+      <div class="col-md-2 col-6 mb-2">
+        <select class="btn btn-md border-dark w-100 form-select">
+          <option>All</option>
+          <option>Deposit/withdraw Report</option>
+          <option>Game Report</option>
+        </select>
+      </div>
+
+      <div class="col-md-2 col-6 mb-2">
+        <button
+          class="btn btn-primary btn-md border-dark w-100 "
+          (click)="getAccountStatement()"
+        >
+          <!-- Submit -->
+          Apply
+        </button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class=" tabetails mb-5 p-2 p-md-3">
+          <div class="row align-items-center">
+            <div class="col-md-6 col">
+              Show
+              <select
+                (change)="updateLimit($event)"
+                class="form-select-sm border-dark bg-white text-dark p-2 rounded-3 me-2"
+              >
+                <option>25</option>
+                <option>50</option>
+                <option>75</option>
+                <option>100</option>
+              </select>
+              Entries
+            </div>
+  
+            <div class="col-md-2 col justify-content-end">
+              <button
+                *ngIf="accountStatement.length > 0"
+                type="button"
+                class="btn btn-md w-50 rounded-pill bg-color text-white mt-md-0 mt-2 float-right"
+                (click)="exportExcel()"
+              >
+                Export
+              </button>
+            </div>
+            <div class="col-md-12 mt-3">
+              <div *ngIf="accountStatement.length == 0" class="p-5" style="text-align: center;">
+                <h4 *ngIf="accountStatement.length == 0 && !isLoading">
+                  No data found
+                </h4>
+                <h4 *ngIf="isLoading">Loading...</h4>
+              </div>
+              <div class="table-responsive tableFixHead table-bordered table-striped">
+                <table
+                  *ngIf="accountStatement.length !== 0"
+                  class="table bg-white text-dark bg-dark border-1 text-center"
+                >
+                  <thead class=" bg-white text-dark bg-dark border-1">
+                    <tr  class="bg-white text-dark bg-dark"         
+                    >
+                      <th class="pe-0 tstartcol ">Sr No</th>
+                      <th class=" ps-3">Date</th>
+                      <th class="pe-0 ">Credit</th>
+                      <th class="pe-0 ">Debit</th>
+                      <th class="pe-0 ">Balance</th>
+                      <th class=" tlastcol">Remark</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr
+                      class="acc-statement-cls border-bottom"
+                      *ngFor="
+                        let acctstatement of accountStatement;
+                        let i = index
+                      "
+                      (click)="openProfitLoss(acctstatement.marketId)"
+                    >
+                      <td class="">{{ (i + 1)+(currentPage-1)*limit }}</td>
+                      <td class="p-3">
+                        {{ acctstatement.date | date : "MMM d, y, h:mm:ss a" }}
+                      </td>
+                      <td class="">
+                        <span
+                          [ngClass]="
+                            acctstatement.credit > 0
+                              ? 'text-success'
+                              : 'text-danger'
+                          "
+                          *ngIf="acctstatement.credit == 0 ? '' : '-'"
+                          >{{ acctstatement.credit | number }}</span
+                        >
+                        <span *ngIf="acctstatement.credit == 0"
+                          ><strong>-</strong></span
+                        >
+                      </td>
+                      <td class="">
+                        <span
+                          [ngClass]="
+                            acctstatement.debit > 0
+                              ? 'text-success'
+                              : 'text-danger'
+                          "
+                          *ngIf="acctstatement.debit == 0 ? '' : '-'"
+                          >{{ acctstatement.debit | number }}</span
+                        >
+                        <span *ngIf="acctstatement.debit == 0"
+                          ><strong>-</strong></span
+                        >
+                      </td>
+                      <td class="">
+                        {{ acctstatement.balance | number }}
+                      </td>
+                      <td>{{ acctstatement.remark }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div *ngIf="accountStatement.length > 0 && !this.isLoading">
+                <button
+                  class="btn bg-dgrey rounded-pill text-white"
+                  [disabled]="currentPage === 1"
+                  (click)="prev()"
+                >
+                  Prev
+                </button>
+                <span class="btn btn-pink rounded-pill text-white ps-4 pe-4"
+                  >{{ currentPage }} / {{ totalPages }}
+                </span>
+                <button
+                  class="btn bg-dgrey rounded-pill text-white"
+                  [disabled]="currentPage === totalPages"
+                  (click)="next()"
+                >
+                  Next
+                </button>
+              </div>
+              <br />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Artical end-->
+  </div>
+</div>

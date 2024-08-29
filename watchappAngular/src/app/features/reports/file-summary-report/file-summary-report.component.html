@@ -1,0 +1,142 @@
+<div id="content" class="p-3">
+  <div class="row">
+    <section class="col-md-12">
+      <div class="education">
+        <div class="card mt-3 mb-5">
+          <div class="card-body">
+            <div class="tab-content" id="pills-tabContent">
+              <div id="bank-magement" aria-labelledby="bank-magement-tab">
+                <div class="container-fluid">
+                  <div class="row mt-2">
+                    <div class="col-md-12">
+                      <h2 class="colorp">
+                        <img
+                          src="assets/images/balanceProgressReport.svg"
+                          alt=""
+                        />
+                        File Summary Report
+                      </h2>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="row">
+                            <div class="col-md-4">
+                              <div class="dropdown">
+                                <button
+                                  onclick="myFunction()"
+                                  class="dropbtn border mt-4 py-2 rounded-2"
+                                >
+                                  Column View
+                                  <i class="bi bi-arrow-down"></i>
+                                </button>
+                                <div id="myDropdown" class="dropdown-content">
+                                  <a href="#"
+                                    ><input type="checkbox" (change)="toggleAllColumns($event)" /> Select All</a
+                                  >
+                                  <a href="#"
+                                    ><input type="checkbox" [checked]="displayColumns.appName" (change)="toggleColumn('appName', $event)" /> AppName</a
+                                  >
+                                  <a href="#"
+                                    ><input type="checkbox" [checked]="displayColumns.fileName" (change)="toggleColumn('fileName', $event)" /> FileName</a
+                                  >
+                                  <a href="#"
+                                    ><input type="checkbox" [checked]="displayColumns.filePath" (change)="toggleColumn('filePath', $event)" /> FilePath</a
+                                  >
+                                  <a href="#"
+                                    ><input type="checkbox" [checked]="displayColumns.fileSize" (change)="toggleColumn('fileSize', $event)" /> FileSize</a
+                                  >
+                                  <a href="#"
+                                    ><input type="checkbox" [checked]="displayColumns.fileExtension" (change)="toggleColumn('fileExtension', $event)" /> FileExtension</a
+                                  >
+                                  <a href="#"
+                                    ><input type="checkbox" [checked]="displayColumns.createdDate" (change)="toggleColumn('createdDate', $event)" /> CreatedDate</a
+                                  >
+                                  <a href="#"
+                                    ><input type="checkbox" [checked]="displayColumns.remark" (change)="toggleColumn('remark', $event)" /> Remark</a
+                                  >
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <div class="form-group">
+                                <select class="form-control" style="margin-top: 21px;" (change)="updateItemsPerPage($event)">
+                                  <option>Show</option>
+                                  <option>10</option>
+                                  <option>25</option>
+                                  <option>50</option>
+                                  <option>100</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-md-4 mt-4">
+                              <button class="btn btn-secondary" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <span>Action <i class="bi bi-chevron-down"></i></span>
+                              </button>
+                              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="">Edit</a></li>
+                                <li><a class="dropdown-item" href="#">Delete</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="row">
+                            <div class="col-md-8 mt-4">
+                              <form>
+                                <input class="form-control fw-bold" type="search" placeholder="Search" aria-label="Search" />
+                              </form>
+                            </div>
+                            <div class="col-md-4">
+                              <a type="button" class="btn btn-info1 mt-4" style="color: white">search</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-12 mt-4" *ngIf="displayAnyColumn()">
+                      <div class="table-responsive">
+                        <table class="table table-hover mt-3 table-striped">
+                          <thead>
+                            <tr class="btn-s">
+                              <th id="table_Head"><input type="checkbox" /></th>
+                              <th id="table_Head" *ngIf="displayColumns.appName">AppName</th>
+                              <th id="table_Head" *ngIf="displayColumns.fileName">FileName</th>
+                              <th id="table_Head" *ngIf="displayColumns.filePath">FilePath</th>
+                              <th id="table_Head" *ngIf="displayColumns.fileSize">FileSize</th>
+                              <th id="table_Head" *ngIf="displayColumns.fileExtension">FileExtension</th>
+                              <th id="table_Head" *ngIf="displayColumns.createdDate">CreatedDate</th>
+                              <th id="table_Head" *ngIf="displayColumns.remark">Remark</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let item of fileSummaryData | paginate: { itemsPerPage: itemsPerPage, currentPage: p }; let i = index">
+                              <td><input type="checkbox" /></td>
+                              <td *ngIf="displayColumns.appName">{{item.appName}}</td>
+                              <td *ngIf="displayColumns.fileName" id="for_table_color">{{item.filename}}</td>
+                              <td *ngIf="displayColumns.filePath" id="for_table_color">{{item.filepath}}</td>
+                              <td *ngIf="displayColumns.fileSize" id="for_table_color">{{item.filesize}}</td>
+                              <td *ngIf="displayColumns.fileExtension">{{item.fileextension}}</td>
+                              <td *ngIf="displayColumns.createdDate">{{item.createddate}}</td>
+                              <td *ngIf="displayColumns.remark">{{item.remark}}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="list">
+                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                      </div>
+                    </div>
+                    <div class="col-md-12 mt-4" *ngIf="!displayAnyColumn()">
+                      <p>No columns selected to display.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

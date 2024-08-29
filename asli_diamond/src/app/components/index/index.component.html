@@ -1,0 +1,2033 @@
+<!-- PC view start here -->
+<div class="main" *ngIf="!isMobileView">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 featured-box mt-1">
+        <!-- nav tab start here -->
+
+        <div class="pb-4">
+          <ul class="nav nav-tabs" id="home-events" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link"
+                id="inplay-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#inplay"
+                type="button"
+                role="tab"
+                aria-controls="inplay"
+                aria-selected="false"
+              >
+                Inplay
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link"
+                id="soccer-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#soccer"
+                type="button"
+                role="tab"
+                aria-controls="soccer"
+                aria-selected="false"
+              >
+                Football
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link"
+                id="tennis-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#tennis"
+                type="button"
+                role="tab"
+                aria-controls="tennis"
+                aria-selected="false"
+              >
+                Tennis
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link active"
+                id="cricket-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#cricket"
+                type="button"
+                role="tab"
+                aria-controls="cricket"
+                aria-selected="true"
+              >
+                Cricket
+              </button>
+            </li>
+          </ul>
+
+          <div class="home-container">
+            <div class="bet-table">
+              <div class="tab-content" id="myTabContent">
+                <!-- tab 1 -->
+                <div
+                  class="tab-pane fade"
+                  id="inplay"
+                  role="tabpanel"
+                  aria-labelledby="inplay-tab"
+                ></div>
+                <!-- tab 2 -->
+                <div
+                  class="tab-pane fade"
+                  id="soccer"
+                  role="tabpanel"
+                  aria-labelledby="soccer-tab"
+                >
+                  <ng-container
+                    *ngFor="let singleMatchBySports of matchListFootball"
+                  >
+                    <div class="mobileTableHide">
+                      <table
+                        class="table table-hover coupon-table"
+                        *ngIf="singleMatchBySports?.isShowCard"
+                      >
+                        <thead>
+                          <tr>
+                            <th width="30%" class="tfirstcol">Game</th>
+                            <th width="15%" class="coldark disnone"></th>
+                            <!-- <th width="15%" class="coldark disnone"></th> -->
+                            <th
+                              width="10%"
+                              colspan="2"
+                              class="text-center coldark"
+                            >
+                              1
+                            </th>
+                            <th
+                              width="10%"
+                              colspan="2"
+                              class="text-center coldark"
+                            >
+                              X
+                            </th>
+                            <th
+                              width="10%"
+                              colspan="2"
+                              class="text-center tlastcol coldark"
+                            >
+                              2
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <ng-container
+                            *ngFor="
+                              let singleMarket of singleMatchBySports?.markets;
+                              let last = last;
+                              let first = first
+                            "
+                          >
+                            <tr
+                              *ngIf="
+                                singleMarket['market']['appMarketStatus'] !=
+                                  '4' &&
+                                singleMarket['market']['appMarketStatus'] != '2'
+                              "
+                              [ngClass]="{ 'border-0': last }"
+                              routerLink="/sportsbook/{{
+                                singleMatchBySports?.sportName | titlecase
+                              }}/{{ singleMarket['tournamentId'] }}/{{
+                                singleMarket['matchId']
+                              }}"
+                            >
+                              <td
+                                class="text-start ps-2 heading border-top pointer"
+                                [ngClass]="{ 'border-top': !first }"
+                              >
+                                <a class="w-100">
+                                  <div class="d-flex">
+                                    <div class="">
+                                      {{
+                                        singleMarket["market"]["runners"][0][
+                                          "RunnerName"
+                                        ]
+                                      }}
+                                    </div>
+                                    <div class="mx-1 text-center">
+                                      <span class="vs">VS</span>
+                                    </div>
+                                    <div class="">
+                                      {{
+                                        singleMarket["market"]["runners"][1][
+                                          "RunnerName"
+                                        ]
+                                      }}
+                                    </div>
+                                  </div>
+                                </a>
+                              </td>
+                              <td
+                                class="border-top disnone"
+                                [ngClass]="{ 'border-top': !first }"
+                              >
+                                <div
+                                  class="d-flex align-items-center justify-content-around"
+                                >
+                                  <!--Tooltip start-->
+                                  <div class="tooltipnk">
+                                    <i class="fa fa-play text-success"></i>
+                                    <span class="tooltiptext">In Play</span>
+                                  </div>
+                                  <!--Tooltip end-->
+
+                                  <!--Tooltip start-->
+                                  <div class="tooltipnk">
+                                    <i
+                                      class="fas fa-broadcast-tower text-success"
+                                    ></i>
+                                    <span class="tooltiptext">Live</span>
+                                  </div>
+                                  <!--Tooltip end-->
+                                </div>
+                              </td>
+                              <!-- <td
+                                class="border-top disnone"
+                                [ngClass]="{ 'border-top': !first }"
+                              >
+                                
+                              </td> -->
+                              <td
+                                class="colblue pointer"
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][0]['back0']
+                                "
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][0]['vback0']
+                                "
+                              >
+                                <a class="boxeffect"
+                                  ><strong>{{
+                                    singleMarket["market"]["runners"][0][
+                                      "back0"
+                                    ]
+                                  }}</strong>
+                                  <br /><span>{{
+                                    singleMarket["market"]["runners"][0][
+                                      "vback0"
+                                    ] | marketRateFormater
+                                  }}</span></a
+                                >
+                              </td>
+                              <td
+                                class="colpink pointer"
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][0]['lay0']
+                                "
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][0]['vlay0']
+                                "
+                              >
+                                <a class="boxeffect"
+                                  ><strong>{{
+                                    singleMarket["market"]["runners"][0]["lay0"]
+                                  }}</strong>
+                                  <br /><span>{{
+                                    singleMarket["market"]["runners"][0][
+                                      "vlay0"
+                                    ] | marketRateFormater
+                                  }}</span></a
+                                >
+                              </td>
+
+                              <td
+                                class="colgray text-center"
+                                *ngIf="!singleMarket?.market?.runners[2]"
+                              >
+                                -
+                              </td>
+                              <td
+                                class="colgray text-center"
+                                *ngIf="!singleMarket?.market?.runners[2]"
+                              >
+                                -
+                              </td>
+
+                              <td
+                                class="colblue pointer"
+                                *ngIf="singleMarket?.market?.runners[2]"
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][2]['back0']
+                                "
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][2]['vback0']
+                                "
+                              >
+                                <a class="boxeffect">
+                                  <strong>{{
+                                    singleMarket["market"]["runners"][2][
+                                      "back0"
+                                    ]
+                                  }}</strong>
+                                  <br /><span>{{
+                                    singleMarket["market"]["runners"][2][
+                                      "vback0"
+                                    ] | marketRateFormater
+                                  }}</span></a
+                                >
+                              </td>
+                              <td
+                                class="colpink pointer"
+                                *ngIf="singleMarket?.market?.runners[2]"
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][2]['lay0']
+                                "
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][2]['vlay0']
+                                "
+                              >
+                                <a class="boxeffect">
+                                  <strong>{{
+                                    singleMarket["market"]["runners"][2]["lay0"]
+                                  }}</strong>
+                                  <br /><span>{{
+                                    singleMarket["market"]["runners"][2][
+                                      "vlay0"
+                                    ] | marketRateFormater
+                                  }}</span></a
+                                >
+                              </td>
+
+                              <td
+                                class="colblue pointer"
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][1]['back0']
+                                "
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][1]['vback0']
+                                "
+                              >
+                                <a class="boxeffect">
+                                  <strong>{{
+                                    singleMarket["market"]["runners"][1][
+                                      "back0"
+                                    ]
+                                  }}</strong>
+                                  <br /><span>{{
+                                    singleMarket["market"]["runners"][1][
+                                      "vback0"
+                                    ] | marketRateFormater
+                                  }}</span></a
+                                >
+                              </td>
+                              <td
+                                class="colpink pointer"
+                                [ngClass]="{ last: last }"
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][1]['lay0']
+                                "
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][1]['vlay0']
+                                "
+                              >
+                                <a class="boxeffect">
+                                  <strong>{{
+                                    singleMarket["market"]["runners"][1]["lay0"]
+                                  }}</strong>
+                                  <br /><span>{{
+                                    singleMarket["market"]["runners"][1][
+                                      "vlay0"
+                                    ] | marketRateFormater
+                                  }}</span></a
+                                >
+                              </td>
+                            </tr>
+                          </ng-container>
+                        </tbody>
+                      </table>
+                    </div>
+                  </ng-container>
+                </div>
+                <!-- tab 3 -->
+                <div
+                  class="tab-pane fade"
+                  id="tennis"
+                  role="tabpanel"
+                  aria-labelledby="tennis-tab"
+                >
+                  <ng-container
+                    *ngFor="let singleMatchBySports of matchListTennis"
+                  >
+                    <div class="mobileTableHide">
+                      <table
+                        class="table table-hover coupon-table"
+                        *ngIf="singleMatchBySports?.isShowCard"
+                      >
+                        <thead>
+                          <tr>
+                            <th width="30%" class="tfirstcol">Game</th>
+                            <th width="15%" class="coldark disnone"></th>
+                            <!-- <th width="15%" class="coldark disnone"></th> -->
+                            <th
+                              width="10%"
+                              colspan="2"
+                              class="text-center coldark"
+                            >
+                              1
+                            </th>
+                            <th
+                              width="10%"
+                              colspan="2"
+                              class="text-center coldark"
+                            >
+                              X
+                            </th>
+                            <th
+                              width="10%"
+                              colspan="2"
+                              class="text-center tlastcol coldark"
+                            >
+                              2
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <ng-container
+                            *ngFor="
+                              let singleMarket of singleMatchBySports?.markets;
+                              let last = last;
+                              let first = first
+                            "
+                          >
+                            <tr
+                              *ngIf="
+                                singleMarket['market']['appMarketStatus'] !=
+                                  '4' &&
+                                singleMarket['market']['appMarketStatus'] != '2'
+                              "
+                              [ngClass]="{ 'border-0': last }"
+                              routerLink="/sportsbook/{{
+                                singleMatchBySports?.sportName | titlecase
+                              }}/{{ singleMarket['tournamentId'] }}/{{
+                                singleMarket['matchId']
+                              }}"
+                            >
+                              <td
+                                class="text-start ps-2 heading border-top pointer"
+                                [ngClass]="{ 'border-top': !first }"
+                              >
+                                <a class="w-100">
+                                  <div class="d-flex">
+                                    <div class="">
+                                      {{
+                                        singleMarket["market"]["runners"][0][
+                                          "RunnerName"
+                                        ]
+                                      }}
+                                    </div>
+                                    <div class="mx-1 text-center">
+                                      <span class="vs">VS</span>
+                                    </div>
+                                    <div class="">
+                                      {{
+                                        singleMarket["market"]["runners"][1][
+                                          "RunnerName"
+                                        ]
+                                      }}
+                                    </div>
+                                  </div>
+                                </a>
+                              </td>
+                              <td
+                                class="border-top disnone"
+                                [ngClass]="{ 'border-top': !first }"
+                              >
+                                <div
+                                  class="d-flex align-items-center justify-content-around"
+                                >
+                                  <!--Tooltip start-->
+                                  <div class="tooltipnk">
+                                    <i class="fa fa-play text-success"></i>
+                                    <span class="tooltiptext">In Play</span>
+                                  </div>
+                                  <!--Tooltip end-->
+
+                                  <!--Tooltip start-->
+                                  <div class="tooltipnk">
+                                    <i
+                                      class="fas fa-broadcast-tower text-success"
+                                    ></i>
+                                    <span class="tooltiptext">Live</span>
+                                  </div>
+                                  <!--Tooltip end-->
+                                </div>
+                              </td>
+                              <!-- <td
+                                class="border-top disnone"
+                                [ngClass]="{ 'border-top': !first }"
+                              >
+                                
+                              </td> -->
+                              <td
+                                class="colblue pointer"
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][0]['back0']
+                                "
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][0]['vback0']
+                                "
+                              >
+                                <a class="boxeffect"
+                                  ><strong>{{
+                                    singleMarket["market"]["runners"][0][
+                                      "back0"
+                                    ]
+                                  }}</strong>
+                                  <br /><span>{{
+                                    singleMarket["market"]["runners"][0][
+                                      "vback0"
+                                    ] | marketRateFormater
+                                  }}</span></a
+                                >
+                              </td>
+                              <td
+                                class="colpink pointer"
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][0]['lay0']
+                                "
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][0]['vlay0']
+                                "
+                              >
+                                <a class="boxeffect"
+                                  ><strong>{{
+                                    singleMarket["market"]["runners"][0]["lay0"]
+                                  }}</strong>
+                                  <br /><span>{{
+                                    singleMarket["market"]["runners"][0][
+                                      "vlay0"
+                                    ] | marketRateFormater
+                                  }}</span></a
+                                >
+                              </td>
+
+                              <td
+                                class="colgray text-center"
+                                *ngIf="!singleMarket?.market?.runners[2]"
+                              >
+                                -
+                              </td>
+                              <td
+                                class="colgray text-center"
+                                *ngIf="!singleMarket?.market?.runners[2]"
+                              >
+                                -
+                              </td>
+
+                              <td
+                                class="colblue pointer"
+                                *ngIf="singleMarket?.market?.runners[2]"
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][2]['back0']
+                                "
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][2]['vback0']
+                                "
+                              >
+                                <a class="boxeffect">
+                                  <strong>{{
+                                    singleMarket["market"]["runners"][2][
+                                      "back0"
+                                    ]
+                                  }}</strong>
+                                  <br /><span>{{
+                                    singleMarket["market"]["runners"][2][
+                                      "vback0"
+                                    ] | marketRateFormater
+                                  }}</span></a
+                                >
+                              </td>
+                              <td
+                                class="colpink pointer"
+                                *ngIf="singleMarket?.market?.runners[2]"
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][2]['lay0']
+                                "
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][2]['vlay0']
+                                "
+                              >
+                                <a class="boxeffect">
+                                  <strong>{{
+                                    singleMarket["market"]["runners"][2]["lay0"]
+                                  }}</strong>
+                                  <br /><span>{{
+                                    singleMarket["market"]["runners"][2][
+                                      "vlay0"
+                                    ] | marketRateFormater
+                                  }}</span></a
+                                >
+                              </td>
+
+                              <td
+                                class="colblue pointer"
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][1]['back0']
+                                "
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][1]['vback0']
+                                "
+                              >
+                                <a class="boxeffect">
+                                  <strong>{{
+                                    singleMarket["market"]["runners"][1][
+                                      "back0"
+                                    ]
+                                  }}</strong>
+                                  <br /><span>{{
+                                    singleMarket["market"]["runners"][1][
+                                      "vback0"
+                                    ] | marketRateFormater
+                                  }}</span></a
+                                >
+                              </td>
+                              <td
+                                class="colpink pointer"
+                                [ngClass]="{ last: last }"
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][1]['lay0']
+                                "
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][1]['vlay0']
+                                "
+                              >
+                                <a class="boxeffect">
+                                  <strong>{{
+                                    singleMarket["market"]["runners"][1]["lay0"]
+                                  }}</strong>
+                                  <br /><span>{{
+                                    singleMarket["market"]["runners"][1][
+                                      "vlay0"
+                                    ] | marketRateFormater
+                                  }}</span></a
+                                >
+                              </td>
+                            </tr>
+                          </ng-container>
+                        </tbody>
+                      </table>
+                    </div>
+                  </ng-container>
+                </div>
+                <!-- tab 4 -->
+                <div
+                  class="tab-pane fade show active"
+                  id="cricket"
+                  role="tabpanel"
+                  aria-labelledby="cricket-tab"
+                >
+                  <ng-container
+                    *ngFor="let singleMatchBySports of matchListCricket"
+                  >
+                    <div class="mobileTableHide">
+                      <table
+                        class="table table-hover coupon-table"
+                        *ngIf="singleMatchBySports?.isShowCard"
+                      >
+                        <thead>
+                          <tr>
+                            <th width="30%" class="tfirstcol">Game</th>
+                            <th width="15%" class="coldark disnone"></th>
+                            <!-- <th width="15%" class="coldark disnone"></th> -->
+                            <th
+                              width="10%"
+                              colspan="2"
+                              class="text-center coldark"
+                            >
+                              1
+                            </th>
+                            <th
+                              width="10%"
+                              colspan="2"
+                              class="text-center coldark"
+                            >
+                              X
+                            </th>
+                            <th
+                              width="10%"
+                              colspan="2"
+                              class="text-center tlastcol coldark"
+                            >
+                              2
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <ng-container
+                            *ngFor="
+                              let singleMarket of singleMatchBySports?.markets;
+                              let last = last;
+                              let first = first
+                            "
+                          >
+                            <tr
+                              *ngIf="
+                                singleMarket['market']['appMarketStatus'] !=
+                                  '4' &&
+                                singleMarket['market']['appMarketStatus'] != '2'
+                              "
+                              [ngClass]="{ 'border-0': last }"
+                              routerLink="/sportsbook/{{
+                                singleMatchBySports?.sportName | titlecase
+                              }}/{{ singleMarket['tournamentId'] }}/{{
+                                singleMarket['matchId']
+                              }}"
+                            >
+                              <td
+                                class="text-start ps-2 heading border-top pointer"
+                                [ngClass]="{ 'border-top': !first }"
+                              >
+                                <a class="w-100">
+                                  <div class="d-flex">
+                                    <div class="">
+                                      {{
+                                        singleMarket["market"]["runners"][0][
+                                          "RunnerName"
+                                        ]
+                                      }}
+                                    </div>
+                                    <div class="mx-1 text-center">
+                                      <span class="vs">VS</span>
+                                    </div>
+                                    <div class="">
+                                      {{
+                                        singleMarket["market"]["runners"][1][
+                                          "RunnerName"
+                                        ]
+                                      }}
+                                    </div>
+                                    <div>
+                                      <span class="mx-1">{{
+                                        singleMarket["matchTime"] | matchTime
+                                      }}</span>
+                                    </div>
+                                  </div>
+                                </a>
+                              </td>
+                              <td
+                                class="border-top disnone"
+                                [ngClass]="{ 'border-top': !first }"
+                              >
+                                <div
+                                  class="d-flex align-items-center justify-content-around"
+                                >
+                                  <!--Tooltip start-->
+                                  <div class="tooltipnk">
+                                    <i class="fa fa-play text-success"></i>
+                                    <span class="tooltiptext">In Play</span>
+                                  </div>
+                                  <!--Tooltip end-->
+
+                                  <!--Tooltip start-->
+                                  <div class="tooltipnk">
+                                    <i
+                                      class="fas fa-broadcast-tower text-success"
+                                    ></i>
+                                    <span class="tooltiptext">Live</span>
+                                  </div>
+                                  <!--Tooltip end-->
+                                </div>
+                              </td>
+                              <!-- <td
+                                class="border-top disnone"
+                                [ngClass]="{ 'border-top': !first }"
+                              >
+                                
+                              </td> -->
+                              <td
+                                class="colblue pointer"
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][0]['back0']
+                                "
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][0]['vback0']
+                                "
+                              >
+                                <a class="boxeffect"
+                                  ><strong>{{
+                                    singleMarket["market"]["runners"][0][
+                                      "back0"
+                                    ]
+                                  }}</strong>
+                                  <br /><span>{{
+                                    singleMarket["market"]["runners"][0][
+                                      "vback0"
+                                    ] | marketRateFormater
+                                  }}</span></a
+                                >
+                              </td>
+                              <td
+                                class="colpink pointer"
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][0]['lay0']
+                                "
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][0]['vlay0']
+                                "
+                              >
+                                <a class="boxeffect"
+                                  ><strong>{{
+                                    singleMarket["market"]["runners"][0]["lay0"]
+                                  }}</strong>
+                                  <br /><span>{{
+                                    singleMarket["market"]["runners"][0][
+                                      "vlay0"
+                                    ] | marketRateFormater
+                                  }}</span></a
+                                >
+                              </td>
+
+                              <td
+                                class="colgray text-center"
+                                *ngIf="!singleMarket?.market?.runners[2]"
+                              >
+                                -
+                              </td>
+                              <td
+                                class="colgray text-center"
+                                *ngIf="!singleMarket?.market?.runners[2]"
+                              >
+                                -
+                              </td>
+
+                              <td
+                                class="colblue pointer"
+                                *ngIf="singleMarket?.market?.runners[2]"
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][2]['back0']
+                                "
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][2]['vback0']
+                                "
+                              >
+                                <a class="boxeffect">
+                                  <strong>{{
+                                    singleMarket["market"]["runners"][2][
+                                      "back0"
+                                    ]
+                                  }}</strong>
+                                  <br /><span>{{
+                                    singleMarket["market"]["runners"][2][
+                                      "vback0"
+                                    ] | marketRateFormater
+                                  }}</span></a
+                                >
+                              </td>
+                              <td
+                                class="colpink pointer"
+                                *ngIf="singleMarket?.market?.runners[2]"
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][2]['lay0']
+                                "
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][2]['vlay0']
+                                "
+                              >
+                                <a class="boxeffect">
+                                  <strong>{{
+                                    singleMarket["market"]["runners"][2]["lay0"]
+                                  }}</strong>
+                                  <br /><span>{{
+                                    singleMarket["market"]["runners"][2][
+                                      "vlay0"
+                                    ] | marketRateFormater
+                                  }}</span></a
+                                >
+                              </td>
+
+                              <td
+                                class="colblue pointer"
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][1]['back0']
+                                "
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][1]['vback0']
+                                "
+                              >
+                                <a class="boxeffect">
+                                  <strong>{{
+                                    singleMarket["market"]["runners"][1][
+                                      "back0"
+                                    ]
+                                  }}</strong>
+                                  <br /><span>{{
+                                    singleMarket["market"]["runners"][1][
+                                      "vback0"
+                                    ] | marketRateFormater
+                                  }}</span></a
+                                >
+                              </td>
+                              <td
+                                class="colpink pointer"
+                                [ngClass]="{ last: last }"
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][1]['lay0']
+                                "
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][1]['vlay0']
+                                "
+                              >
+                                <a class="boxeffect">
+                                  <strong>{{
+                                    singleMarket["market"]["runners"][1]["lay0"]
+                                  }}</strong>
+                                  <br /><span>{{
+                                    singleMarket["market"]["runners"][1][
+                                      "vlay0"
+                                    ] | marketRateFormater
+                                  }}</span></a
+                                >
+                              </td>
+                            </tr>
+                          </ng-container>
+                        </tbody>
+                      </table>
+                    </div>
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hidecasinotab">
+        <div class="home-products-container">
+          <div class="prouduts">
+            <div class="game-card" *ngFor="let casinoList of displayCasinoList">
+              <a>
+                <div
+                  class="card text-center cursor-pointer h-100"
+                  (click)="postCasinoUrlIframe(casinoList)"
+                >
+                  <img
+                    src="{{ casinoList.casinoGameImageUrl }}"
+                    class="card-img-top h-100"
+                    alt="..."
+                  />
+                  <!-- <div class="card-body">
+                    <h6 class="card-title">{{ casinoList.casinoGameName }}</h6>
+                  </div> -->
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- mobile view start here -->
+
+<div class="main" *ngIf="isMobileView">
+  <div class="col-md-12 p-0">
+    <div class="featured-box">
+      <!-- nav tab start here -->
+
+      <div class="pb-4">
+        <ul class="nav nav-tabs" id="home-events" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link"
+              id="soccer-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#soccer"
+              type="button"
+              role="tab"
+              aria-controls="soccer"
+              aria-selected="false"
+            >
+              Football
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link"
+              id="tennis-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#tennis"
+              type="button"
+              role="tab"
+              aria-controls="tennis"
+              aria-selected="false"
+            >
+              Tennis
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link active"
+              id="cricket-tab"
+              data-bs-toggle="tab"
+              data-bs-target="#cricket"
+              type="button"
+              role="tab"
+              aria-controls="cricket"
+              aria-selected="true"
+            >
+              Cricket
+            </button>
+          </li>
+        </ul>
+
+        <div class="home-container">
+          <div class="bet-table">
+            <div class="tab-content" id="myTabContent">
+              <!-- tab 1 -->
+              <div
+                class="tab-pane fade"
+                id="soccer"
+                role="tabpanel"
+                aria-labelledby="soccer-tab"
+              >
+                <ng-container
+                  *ngFor="let singleMatchBySports of matchListFootball"
+                >
+                  <div
+                    class="border-bottom"
+                    *ngIf="singleMatchBySports?.isShowCard"
+                  >
+                    <ng-container
+                      *ngFor="
+                        let singleMarket of singleMatchBySports?.markets;
+                        let last = last;
+                        let first = first
+                      "
+                    >
+                      <div
+                        class="game-list"
+                        *ngIf="
+                          singleMarket['market']['appMarketStatus'] != '4' &&
+                          singleMarket['market']['appMarketStatus'] != '2'
+                        "
+                        [ngClass]="{ 'border-0': last }"
+                        routerLink="/sportsbook/{{
+                          singleMatchBySports?.sportName | titlecase
+                        }}/{{ singleMarket['tournamentId'] }}/{{
+                          singleMarket['matchId']
+                        }}"
+                      >
+                        <div class="row">
+                          <div class="col-8">
+                            <p class="game-name m-0">
+                              <a>
+                                <strong>
+                                  {{
+                                    singleMarket["market"]["runners"][0][
+                                      "RunnerName"
+                                    ]
+                                  }}
+                                  <span class="vs">V</span>
+                                  {{
+                                    singleMarket["market"]["runners"][1][
+                                      "RunnerName"
+                                    ]
+                                  }}
+                                </strong>
+                              </a>
+                            </p>
+                            <p class="game-pa">
+                              {{ singleMarket["matchTime"] | matchTime }}
+                            </p>
+                          </div>
+                          <div class="col-4">
+                            <div class="game-icons">
+                              <span class="game-icon"
+                                ><span class="active-icon"></span></span
+                              ><span class="game-icon"
+                                ><img
+                                  src="data:image/webp;base64,UklGRrwCAABXRUJQVlA4WAoAAAAwAAAAHwAAHwAASUNDUMgBAAAAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADZBTFBInwAAAA1wW2vbmrwskKTDdQHXOoGaOdzmcJuD2mqXnwXcO/gXwCFS0UXEBED5TMrLiEZHZapuQ0LGGwnlgcVWNKPNnOTRikL0XSPMa9CD+Ld+UIO/70kT7N9EUwVw6vLhxk40A9DNJc02o2jAunIORbzMF5wd88sXdNQEaHlEv3CUkCZfyLvkeJkDJccLSf/kYF8A2LmXK/mJXD+8Z/FzmvwgYwBWUDggJgAAANACAJ0BKiAAIAA+bTSWR6QjIiEoCACADYlpAAA9o6AA/vucwAAA" /></span
+                              ><span class="game-icon"
+                                ><img
+                                  src="data:image/webp;base64,UklGRuQCAABXRUJQVlA4WAoAAAAwAAAAMQAAMQAASUNDUMgBAAAAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADZBTFBIvwAAAAFvQJBtc4UqzF/zDhGRcwVAqm1refOFGQxknGkMkAGSkhm0DRgoGCADlUAGmOmoSdf9bnka0f8JCP/OMXpB2YvIKecRKeVGuwjqg7YvPWtzaaI3pW/Ym0wmk4RlBZwE6xGw77kB5p57oO95AhqeF2Br8mEm4h0xp9VRU9pICvpKOY7YU7YjzpV5xB0wD9ZHoO15BsqeV6BoqQPkLa21jGW8lrDsASfBegTse26AuecBaHuegIrnBSh63oG85w8KAFZQOCAuAAAAkAMAnQEqMgAyAD5tNphJJCMioSIIAIANiWkAABA3U1AFeIW5AAD++5zAAAAAAA==" /></span
+                              ><span class="game-icon vir-icon"
+                                ><img
+                                  src="data:image/webp;base64,UklGRggDAABXRUJQVlA4WAoAAAAwAAAAFQAADAAASUNDUMgBAAAAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADZBTFBI7QAAAAmQG0AAAUYX27ZtlzZ2sO3Ktp0ZbKe1bTtvo/MIETEB/HcR/d+qgr6+/C9i+vrge/7bWyeprfPqX0rOJ+Bjfn5+ftlXYQlrGeyBkExWITXiqKSkR/jbti0YSCNRJ8gy4u76mh4eYcLr71z4qqBDvOlX1jBSon5+vvBzEW6fB4Ws9Ur2Z75s4cKGgIDAgKSbjNXKPHYtEknuR29xYBcwZNpWaGyDhNDeNzJr4IRmXl6V6cu2PSsnHxSecq1ZQNYCz+LiHKGOD54/t16dUn3mzxrvHfV/m0+08TP++q0k6a/A5W/v4M0lPF1+4+0lAABWUDggJAAAALACAJ0BKhYADQA+bSyRRaQioZgEAEAGxLSAAD2QAAD++5zAAA==" /></span
+                              ><!---->
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-12">
+                            <div class="game-col game-home"><b>1</b></div>
+                            <div class="game-col game-home"><b>X</b></div>
+                            <div class="game-col game-home"><b>2</b></div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-12">
+                            <div class="game-col game-home">
+                              <button
+                                class="colblue"
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][0]['back0']
+                                "
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][0]['vback0']
+                                "
+                              >
+                                <a
+                                  ><strong>{{
+                                    singleMarket["market"]["runners"][0][
+                                      "back0"
+                                    ]
+                                  }}</strong>
+                                  <!-- <br />
+                                   <span>{{
+                                    singleMarket["market"]["runners"][0]["vback0"]
+                                    | marketRateFormater
+                                    }}</span> -->
+                                </a>
+                              </button>
+                              <button
+                                class="colpink"
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][0]['lay0']
+                                "
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][0]['vlay0']
+                                "
+                              >
+                                <a class="boxeffect"
+                                  ><strong>{{
+                                    singleMarket["market"]["runners"][0]["lay0"]
+                                  }}</strong>
+                                  <!-- <br />
+                                <span>{{
+                                  singleMarket["market"]["runners"][0]["vlay0"]
+                                  | marketRateFormater
+                                  }}</span> -->
+                                </a>
+                              </button>
+                            </div>
+                            <div class="game-col game-home">
+                              <button
+                                class="colblue"
+                                *ngIf="!singleMarket?.market?.runners[2]"
+                              >
+                                -
+                              </button>
+                              <button
+                                class="colpink"
+                                *ngIf="!singleMarket?.market?.runners[2]"
+                              >
+                                -
+                              </button>
+                            </div>
+                            <div
+                              class="game-col game-home"
+                              *ngIf="singleMarket?.market?.runners[2]"
+                            >
+                              <button
+                                class="colblue"
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][2]['back0']
+                                "
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][2]['vback0']
+                                "
+                              >
+                                <a class="boxeffect">
+                                  <strong>{{
+                                    singleMarket["market"]["runners"][2][
+                                      "back0"
+                                    ]
+                                  }}</strong>
+                                  <!-- <br /><span>{{
+                                    singleMarket["market"]["runners"][2][
+                                      "vback0"
+                                    ] | marketRateFormater
+                                  }}</span> -->
+                                </a>
+                              </button>
+                              <button
+                                class="colpink"
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][2]['lay0']
+                                "
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][2]['vlay0']
+                                "
+                              >
+                                <a class="boxeffect">
+                                  <strong>{{
+                                    singleMarket["market"]["runners"][2]["lay0"]
+                                  }}</strong>
+                                  <!-- <br /><span>{{
+                                    singleMarket["market"]["runners"][2][
+                                      "vlay0"
+                                    ] | marketRateFormater
+                                  }}</span> -->
+                                </a>
+                              </button>
+                            </div>
+                            <div class="game-col game-home">
+                              <button
+                                class="colblue"
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][1]['back0']
+                                "
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][1]['vback0']
+                                "
+                              >
+                                <a class="boxeffect">
+                                  <strong>{{
+                                    singleMarket["market"]["runners"][1][
+                                      "back0"
+                                    ]
+                                  }}</strong>
+                                  <!-- <br /><span>{{
+                                    singleMarket["market"]["runners"][1]["vback0"]
+                                    | marketRateFormater
+                                    }}</span> -->
+                                </a>
+                              </button>
+                              <button
+                                class="colpink"
+                                [ngClass]="{ last: last }"
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][1]['lay0']
+                                "
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][1]['vlay0']
+                                "
+                              >
+                                <a class="boxeffect">
+                                  <strong>{{
+                                    singleMarket["market"]["runners"][1]["lay0"]
+                                  }}</strong>
+                                  <!-- <br /><span>{{
+                                    singleMarket["market"]["runners"][1]["vlay0"]
+                                    | marketRateFormater
+                                    }}</span> -->
+                                </a>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </ng-container>
+                  </div>
+                  <!-- <div class="mobileTableShow table-responsive">
+                    <table
+                      class="table table-hover"
+                      *ngIf="singleMatchBySports?.isShowCard"
+                    >
+                      <thead>
+                        <tr>
+                          <th width="30%" class="tfirstcol">Game</th>
+
+                          <th
+                            width="10%"
+                            colspan="1"
+                            class="text-center coldark"
+                          >
+                            1
+                          </th>
+                          <th
+                            width="10%"
+                            colspan="1"
+                            class="text-center coldark"
+                          >
+                            X
+                          </th>
+                          <th
+                            width="10%"
+                            colspan="1"
+                            class="text-center tlastcol coldark"
+                          >
+                            2
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <ng-container
+                          *ngFor="
+                            let singleMarket of singleMatchBySports?.markets;
+                            let last = last;
+                            let first = first
+                          "
+                        >
+                          <tr
+                            *ngIf="
+                              singleMarket['market']['appMarketStatus'] !=
+                                '4' &&
+                              singleMarket['market']['appMarketStatus'] != '2'
+                            "
+                            [ngClass]="{ 'border-0': last }"
+                            routerLink="/sportsbook/{{
+                              singleMatchBySports?.sportName | titlecase
+                            }}/{{ singleMarket['tournamentId'] }}/{{
+                              singleMarket['matchId']
+                            }}"
+                          >
+                            <td
+                              class="text-start ps-2 heading border-top pointer py-2"
+                              [ngClass]="{ 'border-top': !first }"
+                            >
+                              <a>
+                                <strong>
+                                  {{
+                                    singleMarket["market"]["runners"][0][
+                                      "RunnerName"
+                                    ]
+                                  }}
+                                  <br />
+                                  {{
+                                    singleMarket["market"]["runners"][1][
+                                      "RunnerName"
+                                    ]
+                                  }}
+                                </strong>
+                              </a>
+                            </td>
+
+                            <td
+                              class="colblue pointer"
+                              [boxHighlight]="
+                                singleMarket['market']['runners'][0]['back0']
+                              "
+                              [boxHighlight]="
+                                singleMarket['market']['runners'][0]['vback0']
+                              "
+                            >
+                              <a
+                                ><strong>{{
+                                  singleMarket["market"]["runners"][0]["back0"]
+                                }}</strong>
+                                <br /><span>{{
+                                  singleMarket["market"]["runners"][0]["vback0"]
+                                    | marketRateFormater
+                                }}</span></a
+                              >
+                            </td>
+
+                            <td
+                              class="colgray text-center"
+                              *ngIf="singleMarket?.market?.runners[2]"
+                            >
+                              -
+                            </td>
+                            <td
+                              class="colgray text-center"
+                              *ngIf="!singleMarket?.market?.runners[2]"
+                            >
+                              -
+                            </td>
+                            <td
+                              class="colblue pointer"
+                              [boxHighlight]="
+                                singleMarket['market']['runners'][1]['back0']
+                              "
+                              [boxHighlight]="
+                                singleMarket['market']['runners'][1]['vback0']
+                              "
+                            >
+                              <a>
+                                <strong>{{
+                                  singleMarket["market"]["runners"][1]["back0"]
+                                }}</strong>
+                                <br /><span>{{
+                                  singleMarket["market"]["runners"][1]["vback0"]
+                                    | marketRateFormater
+                                }}</span></a
+                              >
+                            </td>
+                          </tr>
+                        </ng-container>
+                      </tbody>
+                    </table>
+                  </div> -->
+                </ng-container>
+              </div>
+              <!-- tab 2 -->
+              <div
+                class="tab-pane fade"
+                id="tennis"
+                role="tabpanel"
+                aria-labelledby="tennis-tab"
+              >
+                <ng-container
+                  *ngFor="let singleMatchBySports of matchListTennis"
+                >
+                  <div
+                    class="border-bottom"
+                    *ngIf="singleMatchBySports?.isShowCard"
+                  >
+                    <ng-container
+                      *ngFor="
+                        let singleMarket of singleMatchBySports?.markets;
+                        let last = last;
+                        let first = first
+                      "
+                    >
+                      <div
+                        class="game-list"
+                        *ngIf="
+                          singleMarket['market']['appMarketStatus'] != '4' &&
+                          singleMarket['market']['appMarketStatus'] != '2'
+                        "
+                        [ngClass]="{ 'border-0': last }"
+                        routerLink="/sportsbook/{{
+                          singleMatchBySports?.sportName | titlecase
+                        }}/{{ singleMarket['tournamentId'] }}/{{
+                          singleMarket['matchId']
+                        }}"
+                      >
+                        <div class="row">
+                          <div class="col-8">
+                            <p class="game-name m-0">
+                              <a>
+                                <strong>
+                                  {{
+                                    singleMarket["market"]["runners"][0][
+                                      "RunnerName"
+                                    ]
+                                  }}
+                                  <span class="vs">V</span>
+                                  {{
+                                    singleMarket["market"]["runners"][1][
+                                      "RunnerName"
+                                    ]
+                                  }}
+                                </strong>
+                              </a>
+                            </p>
+                            <p class="game-pa">
+                              {{ singleMarket["matchTime"] | matchTime }}
+                            </p>
+                          </div>
+                          <div class="col-4">
+                            <div class="game-icons">
+                              <span class="game-icon"
+                                ><span class="active-icon"></span></span
+                              ><span class="game-icon"
+                                ><img
+                                  src="data:image/webp;base64,UklGRrwCAABXRUJQVlA4WAoAAAAwAAAAHwAAHwAASUNDUMgBAAAAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADZBTFBInwAAAA1wW2vbmrwskKTDdQHXOoGaOdzmcJuD2mqXnwXcO/gXwCFS0UXEBED5TMrLiEZHZapuQ0LGGwnlgcVWNKPNnOTRikL0XSPMa9CD+Ld+UIO/70kT7N9EUwVw6vLhxk40A9DNJc02o2jAunIORbzMF5wd88sXdNQEaHlEv3CUkCZfyLvkeJkDJccLSf/kYF8A2LmXK/mJXD+8Z/FzmvwgYwBWUDggJgAAANACAJ0BKiAAIAA+bTSWR6QjIiEoCACADYlpAAA9o6AA/vucwAAA" /></span
+                              ><span class="game-icon"
+                                ><img
+                                  src="data:image/webp;base64,UklGRuQCAABXRUJQVlA4WAoAAAAwAAAAMQAAMQAASUNDUMgBAAAAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADZBTFBIvwAAAAFvQJBtc4UqzF/zDhGRcwVAqm1refOFGQxknGkMkAGSkhm0DRgoGCADlUAGmOmoSdf9bnka0f8JCP/OMXpB2YvIKecRKeVGuwjqg7YvPWtzaaI3pW/Ym0wmk4RlBZwE6xGw77kB5p57oO95AhqeF2Br8mEm4h0xp9VRU9pICvpKOY7YU7YjzpV5xB0wD9ZHoO15BsqeV6BoqQPkLa21jGW8lrDsASfBegTse26AuecBaHuegIrnBSh63oG85w8KAFZQOCAuAAAAkAMAnQEqMgAyAD5tNphJJCMioSIIAIANiWkAABA3U1AFeIW5AAD++5zAAAAAAA==" /></span
+                              ><span class="game-icon vir-icon"
+                                ><img
+                                  src="data:image/webp;base64,UklGRggDAABXRUJQVlA4WAoAAAAwAAAAFQAADAAASUNDUMgBAAAAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADZBTFBI7QAAAAmQG0AAAUYX27ZtlzZ2sO3Ktp0ZbKe1bTtvo/MIETEB/HcR/d+qgr6+/C9i+vrge/7bWyeprfPqX0rOJ+Bjfn5+ftlXYQlrGeyBkExWITXiqKSkR/jbti0YSCNRJ8gy4u76mh4eYcLr71z4qqBDvOlX1jBSon5+vvBzEW6fB4Ws9Ur2Z75s4cKGgIDAgKSbjNXKPHYtEknuR29xYBcwZNpWaGyDhNDeNzJr4IRmXl6V6cu2PSsnHxSecq1ZQNYCz+LiHKGOD54/t16dUn3mzxrvHfV/m0+08TP++q0k6a/A5W/v4M0lPF1+4+0lAABWUDggJAAAALACAJ0BKhYADQA+bSyRRaQioZgEAEAGxLSAAD2QAAD++5zAAA==" /></span
+                              ><!---->
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-12">
+                            <div class="game-col game-home"><b>1</b></div>
+                            <div class="game-col game-home"><b>X</b></div>
+                            <div class="game-col game-home"><b>2</b></div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-12">
+                            <div class="game-col game-home">
+                              <button
+                                class="colblue"
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][0]['back0']
+                                "
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][0]['vback0']
+                                "
+                              >
+                                <a
+                                  ><strong>{{
+                                    singleMarket["market"]["runners"][0][
+                                      "back0"
+                                    ]
+                                  }}</strong>
+                                  <!-- <br />
+                                   <span>{{
+                                    singleMarket["market"]["runners"][0]["vback0"]
+                                    | marketRateFormater
+                                    }}</span> -->
+                                </a>
+                              </button>
+                              <button
+                                class="colpink"
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][0]['lay0']
+                                "
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][0]['vlay0']
+                                "
+                              >
+                                <a class="boxeffect"
+                                  ><strong>{{
+                                    singleMarket["market"]["runners"][0]["lay0"]
+                                  }}</strong>
+                                  <!-- <br />
+                                <span>{{
+                                  singleMarket["market"]["runners"][0]["vlay0"]
+                                  | marketRateFormater
+                                  }}</span> -->
+                                </a>
+                              </button>
+                            </div>
+                            <div class="game-col game-home">
+                              <button
+                                class="colblue"
+                                *ngIf="!singleMarket?.market?.runners[2]"
+                              >
+                                -
+                              </button>
+                              <button
+                                class="colpink"
+                                *ngIf="!singleMarket?.market?.runners[2]"
+                              >
+                                -
+                              </button>
+                            </div>
+                            <div
+                              class="game-col game-home"
+                              *ngIf="singleMarket?.market?.runners[2]"
+                            >
+                              <button
+                                class="colblue"
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][2]['back0']
+                                "
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][2]['vback0']
+                                "
+                              >
+                                <a class="boxeffect">
+                                  <strong>{{
+                                    singleMarket["market"]["runners"][2][
+                                      "back0"
+                                    ]
+                                  }}</strong>
+                                  <!-- <br /><span>{{
+                                    singleMarket["market"]["runners"][2][
+                                      "vback0"
+                                    ] | marketRateFormater
+                                  }}</span> -->
+                                </a>
+                              </button>
+                              <button
+                                class="colpink"
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][2]['lay0']
+                                "
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][2]['vlay0']
+                                "
+                              >
+                                <a class="boxeffect">
+                                  <strong>{{
+                                    singleMarket["market"]["runners"][2]["lay0"]
+                                  }}</strong>
+                                  <!-- <br /><span>{{
+                                    singleMarket["market"]["runners"][2][
+                                      "vlay0"
+                                    ] | marketRateFormater
+                                  }}</span> -->
+                                </a>
+                              </button>
+                            </div>
+                            <div class="game-col game-home">
+                              <button
+                                class="colblue"
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][1]['back0']
+                                "
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][1]['vback0']
+                                "
+                              >
+                                <a class="boxeffect">
+                                  <strong>{{
+                                    singleMarket["market"]["runners"][1][
+                                      "back0"
+                                    ]
+                                  }}</strong>
+                                  <!-- <br /><span>{{
+                                    singleMarket["market"]["runners"][1]["vback0"]
+                                    | marketRateFormater
+                                    }}</span> -->
+                                </a>
+                              </button>
+                              <button
+                                class="colpink"
+                                [ngClass]="{ last: last }"
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][1]['lay0']
+                                "
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][1]['vlay0']
+                                "
+                              >
+                                <a class="boxeffect">
+                                  <strong>{{
+                                    singleMarket["market"]["runners"][1]["lay0"]
+                                  }}</strong>
+                                  <!-- <br /><span>{{
+                                    singleMarket["market"]["runners"][1]["vlay0"]
+                                    | marketRateFormater
+                                    }}</span> -->
+                                </a>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </ng-container>
+                  </div>
+                  <!-- <div class="mobileTableShow table-responsive">
+                    <table class="table table-hover" *ngIf="singleMatchBySports?.isShowCard">
+                      <thead>
+                        <tr>
+                          <th width="30%" class="tfirstcol">
+                            Game
+                          </th>
+
+                          <th width="10%" colspan="1" class="text-center coldark">
+                            1
+                          </th>
+                          <th width="10%" colspan="1" class="text-center coldark">
+                            X
+                          </th>
+                          <th width="10%" colspan="1" class="text-center tlastcol coldark">
+                            2
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <ng-container *ngFor="
+                                let singleMarket of singleMatchBySports?.markets;
+                                let last = last;
+                                let first = first
+                              ">
+                          <tr *ngIf="
+                                  singleMarket['market']['appMarketStatus'] != '4' &&
+                                  singleMarket['market']['appMarketStatus'] != '2'
+                                " [ngClass]="{ 'border-0': last }" routerLink="/sportsbook/{{
+                                  singleMatchBySports?.sportName | titlecase
+                                }}/{{ singleMarket['tournamentId'] }}/{{
+                                  singleMarket['matchId']
+                                }}">
+                            <td class="text-start ps-2 heading border-top pointer py-2"
+                              [ngClass]="{ 'border-top': !first }">
+                              <a>
+                                <strong>
+                                  {{
+                                  singleMarket["market"]["runners"][0]["RunnerName"]
+                                  }}
+                                  <br />
+                                  {{
+                                  singleMarket["market"]["runners"][1]["RunnerName"]
+                                  }}
+                                </strong>
+                              </a>
+                            </td>
+
+                            <td class="colblue pointer" [boxHighlight]="
+                                    singleMarket['market']['runners'][0]['back0']
+                                  " [boxHighlight]="
+                                    singleMarket['market']['runners'][0]['vback0']
+                                  ">
+                              <a><strong>{{
+                                  singleMarket["market"]["runners"][0]["back0"]
+                                  }}</strong>
+                                <br /><span>{{
+                                  singleMarket["market"]["runners"][0]["vback0"]
+                                  | marketRateFormater
+                                  }}</span></a>
+                            </td>
+
+                            <td class="colgray text-center" *ngIf="singleMarket?.market?.runners[2]">
+                              -
+                            </td>
+                            <td class="colgray text-center" *ngIf="!singleMarket?.market?.runners[2]">
+                              -
+                            </td>
+                            <td class="colblue pointer" [boxHighlight]="
+                                    singleMarket['market']['runners'][1]['back0']
+                                  " [boxHighlight]="
+                                    singleMarket['market']['runners'][1]['vback0']
+                                  ">
+                              <a>
+                                <strong>{{
+                                  singleMarket["market"]["runners"][1]["back0"]
+                                  }}</strong>
+                                <br /><span>{{
+                                  singleMarket["market"]["runners"][1]["vback0"]
+                                  | marketRateFormater
+                                  }}</span></a>
+                            </td>
+                          </tr>
+                        </ng-container>
+                      </tbody>
+                    </table>
+                  </div> -->
+                </ng-container>
+              </div>
+              <!-- tab 3 -->
+              <div
+                class="tab-pane fade show active"
+                id="cricket"
+                role="tabpanel"
+                aria-labelledby="cricket-tab"
+              >
+                <ng-container
+                  *ngFor="let singleMatchBySports of matchListCricket"
+                >
+                  <div
+                    class="border-bottom"
+                    *ngIf="singleMatchBySports?.isShowCard"
+                  >
+                    <ng-container
+                      *ngFor="
+                        let singleMarket of singleMatchBySports?.markets;
+                        let last = last;
+                        let first = first
+                      "
+                    >
+                      <div
+                        class="game-list"
+                        *ngIf="
+                          singleMarket['market']['appMarketStatus'] != '4' &&
+                          singleMarket['market']['appMarketStatus'] != '2'
+                        "
+                        [ngClass]="{ 'border-0': last }"
+                        routerLink="/sportsbook/{{
+                          singleMatchBySports?.sportName | titlecase
+                        }}/{{ singleMarket['tournamentId'] }}/{{
+                          singleMarket['matchId']
+                        }}"
+                      >
+                        <div class="row">
+                          <div class="col-8">
+                            <p class="game-name m-0">
+                              <a>
+                                <strong>
+                                  {{
+                                    singleMarket["market"]["runners"][0][
+                                      "RunnerName"
+                                    ]
+                                  }}
+                                  <span class="vs">V</span>
+                                  {{
+                                    singleMarket["market"]["runners"][1][
+                                      "RunnerName"
+                                    ]
+                                  }}
+                                </strong>
+                              </a>
+                            </p>
+                            <p class="game-pa">
+                              {{ singleMarket["matchTime"] | matchTime }}
+                            </p>
+                          </div>
+                          <div class="col-4">
+                            <div class="game-icons">
+                              <span class="game-icon"
+                                ><span class="active-icon"></span></span
+                              ><span class="game-icon"
+                                ><img
+                                  src="data:image/webp;base64,UklGRrwCAABXRUJQVlA4WAoAAAAwAAAAHwAAHwAASUNDUMgBAAAAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADZBTFBInwAAAA1wW2vbmrwskKTDdQHXOoGaOdzmcJuD2mqXnwXcO/gXwCFS0UXEBED5TMrLiEZHZapuQ0LGGwnlgcVWNKPNnOTRikL0XSPMa9CD+Ld+UIO/70kT7N9EUwVw6vLhxk40A9DNJc02o2jAunIORbzMF5wd88sXdNQEaHlEv3CUkCZfyLvkeJkDJccLSf/kYF8A2LmXK/mJXD+8Z/FzmvwgYwBWUDggJgAAANACAJ0BKiAAIAA+bTSWR6QjIiEoCACADYlpAAA9o6AA/vucwAAA" /></span
+                              ><span class="game-icon"
+                                ><img
+                                  src="data:image/webp;base64,UklGRuQCAABXRUJQVlA4WAoAAAAwAAAAMQAAMQAASUNDUMgBAAAAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADZBTFBIvwAAAAFvQJBtc4UqzF/zDhGRcwVAqm1refOFGQxknGkMkAGSkhm0DRgoGCADlUAGmOmoSdf9bnka0f8JCP/OMXpB2YvIKecRKeVGuwjqg7YvPWtzaaI3pW/Ym0wmk4RlBZwE6xGw77kB5p57oO95AhqeF2Br8mEm4h0xp9VRU9pICvpKOY7YU7YjzpV5xB0wD9ZHoO15BsqeV6BoqQPkLa21jGW8lrDsASfBegTse26AuecBaHuegIrnBSh63oG85w8KAFZQOCAuAAAAkAMAnQEqMgAyAD5tNphJJCMioSIIAIANiWkAABA3U1AFeIW5AAD++5zAAAAAAA==" /></span
+                              ><span class="game-icon vir-icon"
+                                ><img
+                                  src="data:image/webp;base64,UklGRggDAABXRUJQVlA4WAoAAAAwAAAAFQAADAAASUNDUMgBAAAAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADZBTFBI7QAAAAmQG0AAAUYX27ZtlzZ2sO3Ktp0ZbKe1bTtvo/MIETEB/HcR/d+qgr6+/C9i+vrge/7bWyeprfPqX0rOJ+Bjfn5+ftlXYQlrGeyBkExWITXiqKSkR/jbti0YSCNRJ8gy4u76mh4eYcLr71z4qqBDvOlX1jBSon5+vvBzEW6fB4Ws9Ur2Z75s4cKGgIDAgKSbjNXKPHYtEknuR29xYBcwZNpWaGyDhNDeNzJr4IRmXl6V6cu2PSsnHxSecq1ZQNYCz+LiHKGOD54/t16dUn3mzxrvHfV/m0+08TP++q0k6a/A5W/v4M0lPF1+4+0lAABWUDggJAAAALACAJ0BKhYADQA+bSyRRaQioZgEAEAGxLSAAD2QAAD++5zAAA==" /></span
+                              ><!---->
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-12">
+                            <div class="game-col game-home"><b>1</b></div>
+                            <div class="game-col game-home"><b>X</b></div>
+                            <div class="game-col game-home"><b>2</b></div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-12">
+                            <div class="game-col game-home">
+                              <button
+                                class="colblue"
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][0]['back0']
+                                "
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][0]['vback0']
+                                "
+                              >
+                                <a
+                                  ><strong>{{
+                                    singleMarket["market"]["runners"][0][
+                                      "back0"
+                                    ]
+                                  }}</strong>
+                                  <!-- <br />
+                                   <span>{{
+                                    singleMarket["market"]["runners"][0]["vback0"]
+                                    | marketRateFormater
+                                    }}</span> -->
+                                </a>
+                              </button>
+                              <button
+                                class="colpink"
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][0]['lay0']
+                                "
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][0]['vlay0']
+                                "
+                              >
+                                <a class="boxeffect"
+                                  ><strong>{{
+                                    singleMarket["market"]["runners"][0]["lay0"]
+                                  }}</strong>
+                                  <!-- <br />
+                                <span>{{
+                                  singleMarket["market"]["runners"][0]["vlay0"]
+                                  | marketRateFormater
+                                  }}</span> -->
+                                </a>
+                              </button>
+                            </div>
+                            <div class="game-col game-home">
+                              <button
+                                class="colblue"
+                                *ngIf="!singleMarket?.market?.runners[2]"
+                              >
+                                -
+                              </button>
+                              <button
+                                class="colpink"
+                                *ngIf="!singleMarket?.market?.runners[2]"
+                              >
+                                -
+                              </button>
+                            </div>
+                            <div
+                              class="game-col game-home"
+                              *ngIf="singleMarket?.market?.runners[2]"
+                            >
+                              <button
+                                class="colblue"
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][2]['back0']
+                                "
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][2]['vback0']
+                                "
+                              >
+                                <a class="boxeffect">
+                                  <strong>{{
+                                    singleMarket["market"]["runners"][2][
+                                      "back0"
+                                    ]
+                                  }}</strong>
+                                  <!-- <br /><span>{{
+                                    singleMarket["market"]["runners"][2][
+                                      "vback0"
+                                    ] | marketRateFormater
+                                  }}</span> -->
+                                </a>
+                              </button>
+                              <button
+                                class="colpink"
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][2]['lay0']
+                                "
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][2]['vlay0']
+                                "
+                              >
+                                <a class="boxeffect">
+                                  <strong>{{
+                                    singleMarket["market"]["runners"][2]["lay0"]
+                                  }}</strong>
+                                  <!-- <br /><span>{{
+                                    singleMarket["market"]["runners"][2][
+                                      "vlay0"
+                                    ] | marketRateFormater
+                                  }}</span> -->
+                                </a>
+                              </button>
+                            </div>
+                            <div class="game-col game-home">
+                              <button
+                                class="colblue"
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][1]['back0']
+                                "
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][1]['vback0']
+                                "
+                              >
+                                <a class="boxeffect">
+                                  <strong>{{
+                                    singleMarket["market"]["runners"][1][
+                                      "back0"
+                                    ]
+                                  }}</strong>
+                                  <!-- <br /><span>{{
+                                    singleMarket["market"]["runners"][1]["vback0"]
+                                    | marketRateFormater
+                                    }}</span> -->
+                                </a>
+                              </button>
+                              <button
+                                class="colpink"
+                                [ngClass]="{ last: last }"
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][1]['lay0']
+                                "
+                                [boxHighlight]="
+                                  singleMarket['market']['runners'][1]['vlay0']
+                                "
+                              >
+                                <a class="boxeffect">
+                                  <strong>{{
+                                    singleMarket["market"]["runners"][1]["lay0"]
+                                  }}</strong>
+                                  <!-- <br /><span>{{
+                                    singleMarket["market"]["runners"][1]["vlay0"]
+                                    | marketRateFormater
+                                    }}</span> -->
+                                </a>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </ng-container>
+                  </div>
+                  <!-- <div class="mobileTableShow table-responsive">
+                    <table class="table table-hover" *ngIf="singleMatchBySports?.isShowCard">
+                      <thead>
+                        <tr>
+                          <th width="30%" class="tfirstcol">
+                            Game
+                          </th>
+
+                          <th width="10%" colspan="1" class="text-center coldark">
+                            1
+                          </th>
+                          <th width="10%" colspan="1" class="text-center coldark">
+                            X
+                          </th>
+                          <th width="10%" colspan="1" class="text-center tlastcol coldark">
+                            2
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <ng-container *ngFor="
+                                let singleMarket of singleMatchBySports?.markets;
+                                let last = last;
+                                let first = first
+                              ">
+                          <tr *ngIf="
+                                  singleMarket['market']['appMarketStatus'] != '4' &&
+                                  singleMarket['market']['appMarketStatus'] != '2'
+                                " [ngClass]="{ 'border-0': last }" routerLink="/sportsbook/{{
+                                  singleMatchBySports?.sportName | titlecase
+                                }}/{{ singleMarket['tournamentId'] }}/{{
+                                  singleMarket['matchId']
+                                }}">
+                            <td class="text-start ps-2 heading border-top pointer py-2"
+                              [ngClass]="{ 'border-top': !first }">
+                              <a>
+                                <strong>
+                                  {{
+                                  singleMarket["market"]["runners"][0]["RunnerName"]
+                                  }}
+                                  <br />
+                                  {{
+                                  singleMarket["market"]["runners"][1]["RunnerName"]
+                                  }}
+                                </strong>
+                              </a>
+                            </td>
+
+                            <td class="colblue pointer" [boxHighlight]="
+                                    singleMarket['market']['runners'][0]['back0']
+                                  " [boxHighlight]="
+                                    singleMarket['market']['runners'][0]['vback0']
+                                  ">
+                              <a><strong>{{
+                                  singleMarket["market"]["runners"][0]["back0"]
+                                  }}</strong>
+                                <br /><span>{{
+                                  singleMarket["market"]["runners"][0]["vback0"]
+                                  | marketRateFormater
+                                  }}</span></a>
+                            </td>
+
+                            <td class="colgray text-center" *ngIf="singleMarket?.market?.runners[2]">
+                              -
+                            </td>
+                            <td class="colgray text-center" *ngIf="!singleMarket?.market?.runners[2]">
+                              -
+                            </td>
+                            <td class="colblue pointer" [boxHighlight]="
+                                    singleMarket['market']['runners'][1]['back0']
+                                  " [boxHighlight]="
+                                    singleMarket['market']['runners'][1]['vback0']
+                                  ">
+                              <a>
+                                <strong>{{
+                                  singleMarket["market"]["runners"][1]["back0"]
+                                  }}</strong>
+                                <br /><span>{{
+                                  singleMarket["market"]["runners"][1]["vback0"]
+                                  | marketRateFormater
+                                  }}</span></a>
+                            </td>
+                          </tr>
+                        </ng-container>
+                      </tbody>
+                    </table>
+                  </div> -->
+                </ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hidecasinotab">
+      <div class="home-products-container">
+        <div class="prouduts">
+          <div class="game-card" *ngFor="let casinoList of displayCasinoList">
+            <a>
+              <div
+                class="card text-center cursor-pointer h-100"
+                (click)="postCasinoUrlIframe(casinoList)"
+              >
+                <img
+                  src="{{ casinoList.casinoGameImageUrl }}"
+                  class="card-img-top h-100"
+                  alt="..."
+                />
+                <!-- <div class="card-body">
+                  <h6 class="card-title">{{ casinoList.casinoGameName }}</h6>
+                </div> -->
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

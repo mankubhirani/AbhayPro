@@ -1,0 +1,206 @@
+<div id="content" class="p-3">
+  <div class="row">
+    <section class="col-md-12">
+      <div class="education">
+        <div class="card mb-5">
+          <div class="card-body">
+            <div class="tab-content" id="pills-tabContent">
+              <div id="bank-management" aria-labelledby="bank-management-tab">
+                <div class="container-fluid">
+                  <div class="row mt-2">
+                    <div class="col-md-12">
+                      <h2 class="colorp">
+                        <img src="assets/images/balanceProgressReport.svg" alt="" />
+                        User Management
+                      </h2>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="row">
+                        <div class="col-md-4">
+                          <div class="row">
+                            <div class="col-md-10 mt-4">
+                              <form>
+                                <input
+                                  class="form-control fw-bold"
+                                  type="search"
+                                  placeholder="Search"
+                                  aria-label="Search"
+                                  [(ngModel)]="searchTerm"
+                                  (ngModelChange)="onSearchChange($event)"
+                                  name="search"
+                                />
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-8">
+                          <div class="row">
+                            <div class="col-md-4">
+                              <div class="dropdown">
+                                <button
+                                  class="dropbtn border mt-4 py-1 rounded-2"
+                                  (click)="toggleDropdown()"
+                                >
+                                  Column View
+                                  <i class="bi bi-arrow-down"></i>
+                                </button>
+                                <div
+                                  id="myDropdown"
+                                  class="dropdown-content pl-2"
+                                  [class.show]="dropdownVisible"
+                                >
+                                  <label class="dropdown-item">
+                                    <input
+                                      type="checkbox"
+                                      (change)="selectAllColumns($event); hideColumnViewDropdown()"
+                                    />
+                                    Select All
+                                  </label>
+                                  <label
+                                    *ngFor="let column of columns"
+                                    class="dropdown-item"
+                                  >
+                                    <input
+                                      type="checkbox"
+                                      (change)="toggleColumn(column.field)"
+                                      [checked]="column.visible"
+                                    />
+                                    {{ column.label }}
+                                  </label>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-2">
+                              <div class="form-group">
+                                <select
+                                  class="form-control mt-4"
+                                  [(ngModel)]="itemsPerPage"
+                                  (ngModelChange)="onItemsPerPageChange($event)"
+                                  name="itemsPerPage"
+                                >
+                                  <option value="0">Show</option>
+                                  <option value="5">5</option>
+                                  <option value="10">10</option>
+                                  <option value="25">25</option>
+                                  <option value="50">50</option>
+                                  <option value="100">100</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-md-2 mt-4">
+                              <div class="dropdown1">
+                                <button
+                                  class="btn btn-secondary"
+                                  type="button"
+                                  (click)="toggleDropdown1()"
+                                >
+                                  <span
+                                    >Action <i class="bi bi-chevron-down"></i
+                                  ></span>
+                                </button>
+                                <ul
+                                  class="dropdown-menu"
+                                  [class.show]="isDropdownOpen1"
+                                  aria-labelledby="dropdownMenuButton1"
+                                >
+                                  <li>
+                                    <a
+                                      class="dropdown-item"
+                                      (click)="edit()"
+                                      >Edit</a
+                                    >
+                                  </li>
+                                  <li>
+                                    <a
+                                      class="dropdown-item"
+                                      (click)="delete()"
+                                      >Delete</a
+                                    >
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                            <div class="col-md-4 mt-4">
+                              <a
+                                type="button"
+                                class="btn btn-info1"
+                                routerLink="/settings/add-user"
+                                >+ New User</a
+                              >
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-12 mt-4">
+                      <div class="table-responsive">
+                        <table class="table table-hover mt-3 table-striped">
+                          <thead>
+                            <tr class="btn-s">
+                              <th>
+                                <input
+                                  type="checkbox"
+                                  (change)="hideColumnViewDropdown()"
+                                />
+                              </th>
+                              <ng-container *ngFor="let column of columns">
+                                <th
+                                  *ngIf="column.field !== 'action'"
+                                  [ngClass]="{ 'd-none': !column.visible }"
+                                >
+                                  {{ column.label }}
+                                </th>
+                              </ng-container>
+                              <th *ngIf="columnsVisible['action']">Action</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <ng-container *ngIf="filteredUsers.length != 0">
+                              <tr *ngFor="let user of filteredUsers | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }">
+                                <td>
+                                  <input
+                                    type="checkbox"
+                                    [(ngModel)]="user.selected"
+                                  />
+                                </td>
+                                <td *ngIf="columnsVisible['userName']">{{ user.um_user_name }}</td>
+                                <td *ngIf="columnsVisible['mobileNo']">{{ user.um_mobile_no }}</td>
+                                <td *ngIf="columnsVisible['roleType']">{{ user.um_role_type }}</td>
+                                <td *ngIf="columnsVisible['access']">{{ user.um_access }}</td>
+                                <td *ngIf="columnsVisible['email']">{{ user.um_email_id }}</td>
+                                <td *ngIf="columnsVisible['addTarget']">{{ user.um_targets }}</td>
+                                <td *ngIf="columnsVisible['reportingManager']">{{ user.um_reporting_manager }}</td>
+                                <td *ngIf="columnsVisible['action']">
+                                  <label class="switch">
+                                    <input
+                                      type="checkbox"
+                                      [(ngModel)]="user.um_is_active"
+                                    />
+                                    <span class="slider round"></span>
+                                  </label>
+                                </td>
+                              </tr>
+                            </ng-container>
+                            <ng-container *ngIf="filteredUsers.length == 0">
+                              <tr>
+                                <td colspan="8">No data found!</td>
+                              </tr>
+                            </ng-container>
+                          </tbody>
+                        </table>
+                        
+                      </div>
+                      <pagination-controls
+                        (pageChange)="onPageChange($event)"
+                      ></pagination-controls>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

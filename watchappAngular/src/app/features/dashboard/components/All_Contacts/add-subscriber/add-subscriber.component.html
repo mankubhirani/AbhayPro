@@ -1,0 +1,402 @@
+<!-- <p>add-subscriber works!</p> -->
+
+<main id="main" class="main">
+    <!-- jumbotron content  start -->
+    <div class=" pb-5">
+        <h1 class="text_style">Add subscribers</h1>
+        <h3 class="text1">Cylsys</h3>
+        <h4 class="text2">Your audience has<a>1</a> contacts.<a>1</a> of these are subscribers.</h4>
+    </div>
+
+    <!-- jumbotron content end -->
+    <div class="div">
+        <nav class="navbar navbar-expand-lg navbar-light  p-2 ">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav navbaritem">
+
+                    <li class="nav-item dropdown ">
+                        <a class="nav-link   text-light" data-bs-toggle="dropdown">
+                            <span class="d-none d-md-block dropdown-toggle ps-2">Manage contacts</span>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" routerLink="viewContact">View contacts</a>
+                            <a class="dropdown-item" routerLink="unsucscribeContacts">Unsubscribe contacts</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item dropdown ">
+                        <a class="nav-link  text-light" data-bs-toggle="dropdown">
+                            <span class="d-none d-md-block dropdown-toggle ps-2">Add contacts</span>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" routerLink="addSubscribers">Add a subscribers</a>
+                            <a class="dropdown-item" routerLink="importContact">Import contacts</a>
+                        </div>
+                    </li>
+
+
+
+
+
+                </ul>
+            </div>
+
+            <!-- End Profile Dropdown Items -->
+            <!-- End Profile Nav -->
+
+
+        </nav>
+        <!-- <button mat-button [matMenuTriggerFor]="belowMenu">Below</button>
+        <mat-menu #belowMenu="matMenu" yPosition="below">
+        <button mat-menu-item>Item 1</button>
+        <button mat-menu-item>Item 2</button>
+        </mat-menu> -->
+
+
+
+        <!-- <form class="">
+            <input class="form-control border-top-0 border-left-0 border-right-0 fw-bold" type="search"
+                placeholder="Search" aria-label="Search">
+
+        </form> -->
+    </div>
+
+    <!-- start add a subscribers page -->
+    <!-- <form id="subscribers-form" class="add-subscribers-form" [formGroup]="contactsForm" action="# "method="POST"> -->
+        <div class="row mt-4">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <!-- <h2>Add subscribers</h2> -->
+                    <div class=" col-md-6 sub-pairagraph">
+                        <p>Want to subscribe more than one person at a time?
+                            <a routerLink="importContact">Import an audience</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-12">
+
+                    <div class="row">
+
+                        <div class="col-md-8 mb-4 mt-2">
+                            <input type="text" class="form-control w-50" [(ngModel)]="field" name="field"
+                                placeholder="">
+                        </div>
+                        <div class="col-md-4 mb-4 mt-2">
+                            <button class="btn" (click)="ad()" type="button">
+                                ADD
+                            </button>
+                        </div>
+                    </div>
+
+                       </div>
+            </div>
+
+            <div class="col-md-12">
+
+                <div class="row">
+                    <div class="col-md-3 mb-4" >
+                        <form class="" [formGroup]="contactsForm">
+                            <input type="text" class="form-control" formControlName="contact_Email" 
+                                placeholder="contact email">
+
+                        </form>
+
+
+                        <!-- <div
+                            *ngIf="contacts.controls[i].get('contact_Email')?.touched && contacts.controls[i].get('contact_Email')?.invalid">
+                          <div *ngIf="contacts.controls[i].get('contact_Email')?.errors?.['required']"
+                                class="small text-danger text-start ps-3"> refnumber required.</div>
+
+                            <div class="small text-danger ps-3"
+                                *ngIf=" contacts.controls[i].get('contact_Email')?.errors?.['required']">
+                                contact email is required
+
+                            </div>
+                        </div> -->
+
+                    </div>
+
+                    <div class=" col-md-3 " *ngFor="let field of userfield">
+
+                        <input type="text" class="form-control" [placeholder]="field.Column_Name" [name]="field.Column_Name" [(ngModel)]="field.Column_Value">
+
+                    </div>
+
+
+                </div>
+
+                <div class="row  mt-4 ">
+
+                    <!-- <form [formGroup]="contactsForm" (ngSubmit)="addContacts()">
+                        <div formArrayName="contacts">
+                            <div *ngFor="
+                  let passengerGroup of contacts?.controls;
+                      
+                      let i = index
+                    " [formGroupName]="i">
+                                <header hidden>{{ i }}</header>
+
+
+
+
+
+
+
+                                <div class="row">
+                                    <div class="col-md-3 mb-4">
+                                        <input type="text" class="form-control" formControlName="contact_Email"
+                                            placeholder="contact email">
+
+
+                                        <div
+                                            *ngIf="contacts.controls[i].get('contact_Email')?.touched && contacts.controls[i].get('contact_Email')?.invalid">
+                                          <div *ngIf="contacts.controls[i].get('contact_Email')?.errors?.['required']"
+                                                class="small text-danger text-start ps-3"> refnumber required.</div>
+
+                                            <div class="small text-danger ps-3"
+                                                *ngIf=" contacts.controls[i].get('contact_Email')?.errors?.['required']">
+                                                contact email is required
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-2 mb-4">
+                                        <input type="text" class="form-control" formControlName="first_Name"
+                                            placeholder="First name">
+                                             <div class="showInputField"></div>
+                                    </div>
+                                    <div class="col-md-2 mb-4">
+                                        <input type="text" class="form-control" formControlName="last_Name"
+                                            placeholder="Last name">
+                                    </div>
+                                    <div class="col-md-2 mb-4">
+                                        <select class="sub-contry-select  form-select" formControlName="country"
+                                            value="" id="" name="country">
+                                            <option *ngFor="let Item of  this.getAllCountry.Countries">
+                                                {{Item.CountryName}}</option>
+
+                                        </select>
+                                    </div>
+                                     <div class="col-md-2 mb-4">
+                                       <input type="text" class="form-control" formControlName="city"
+                                            placeholder="City">
+                                    </div>
+
+                                    <div class="col-md-1 mb-4">
+                                        <i class="bi bi-plus-circle" (click)="add()" style="font-size: x-large;"></i>
+                                        <i class="bi bi-dash-circle" (click)="remove(i)"
+                                            style="font-size: x-large;"></i>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </form> -->
+
+
+                    <!-- *** -->
+                    <!-- <div class="col-md-3 mb-4">
+                    <input type="text" class="form-control" placeholder="contact email">
+               </div>
+               <div class="col-md-2 mb-4">
+                    <input type="text" class="form-control" placeholder="First name">
+                </div>
+                <div class="col-md-2 mb-4">
+                    <input type="text" class="form-control" placeholder="Last name">
+                </div>
+                <div class="col-md-2 mb-4">
+                    <select class="sub-contry-select  form-select" id="" name="">
+                        <option value="70" selected="selected">India</option>
+            
+                    </select>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <input type="text" class="form-control" placeholder="City">
+                </div> -->
+
+
+                    <!-- **** -->
+
+                    <!-- <div class="col-md-3 mb-4">
+                    <input type="text" class="form-control" placeholder="contact email">
+                   </div>
+                   <div class="col-md-2 mb-4">
+                     <input type="text" class="form-control" placeholder="First name">
+                    </div>
+                    <div class="col-md-2 mb-4">
+                     <input type="text" class="form-control" placeholder="Last name">
+                    </div>
+                    <div class="col-md-2 mb-4">
+                     <select class="sub-contry-select  form-select" id="" name="">
+                         <option value="70" selected="selected">India</option>
+                    
+                     </select>
+                    </div>
+                    <div class="col-md-2 mb-4">
+                     <input type="text" class="form-control" placeholder="City">
+                    </div>
+                -->
+
+                    <!-- *** -->
+
+                    <!-- <div class="col-md-3 mb-4">
+                        <input type="text" class="form-control" placeholder="contact email">
+                    </div>
+                    <div class="col-md-2 mb-4">
+                        <input type="text" class="form-control" placeholder="First name">
+                    </div>
+                    <div class="col-md-2 mb-4">
+                        <input type="text" class="form-control" placeholder="Last name">
+                    </div>
+                    <div class="col-md-2 mb-4">
+                        <select class="sub-contry-select  form-select" id="" name="">
+                            <option value="70" selected="selected">India</option>
+                           
+                        </select>
+                    </div>
+                    <div class="col-md-2 mb-4">
+                        <input type="text" class="form-control" placeholder="City">
+                    </div> -->
+
+
+                    <!-- *** -->
+
+                    <!-- <div class="col-md-3 mb-4">
+                        <input type="text" class="form-control" placeholder="contact email">
+                    </div>
+                    <div class="col-md-2 mb-4">
+                        <input type="text" class="form-control" placeholder="First name">
+                    </div>
+                    <div class="col-md-2 mb-4">
+                        <input type="text" class="form-control" placeholder="Last name">
+                    </div>
+                    <div class="col-md-2 mb-4">
+                        <select class="sub-contry-select  form-select" id="" name="">
+                            
+                        </select>
+                    </div>
+                    <div class="col-md-2 mb-4">
+                        <input type="text" class="form-control" placeholder="City">
+                    </div>
+                -->
+
+                    <!-- **** -->
+
+                    <!-- <div class="col-md-3 mb-4">
+                        <input type="text" class="form-control" placeholder="contact email">
+                    </div>
+                    <div class="col-md-2 mb-4">
+                        <input type="text" class="form-control" placeholder="First name">
+                    </div>
+                    <div class="col-md-2 mb-4">
+                        <input type="text" class="form-control" placeholder="Last name">
+                    </div>
+                    <div class="col-md-2 mb-4">
+                        <select class="sub-contry-select  form-select" id="" name="">
+                            
+                        </select>
+                    </div>
+                    <div class="col-md-2 mb-4">
+                        <input type="text" class="form-control" placeholder="City">
+                    </div> -->
+
+
+                    <div id="new_div_check" class="col-md-12"></div>
+
+
+
+
+                </div>
+            </div>
+
+
+
+
+
+            <div class="col-md-12">
+                <div class="row">
+                    <div class=" col-md-6 sub-form-heading">
+                        <label> Subscription Type</label>
+                        <select class="form-select mb-4" id="" name="">
+                            <option value="70" selected="selected">marketing</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="subscribe-tag">
+                        <div class="subscribe-tag-heading">
+                            <h4 data-dojo-attach-point="header" class="inline">Tags</h4>
+                            <!-- <button><a ">+</a></button> -->
+                            <div class="sub-dropdown-center">
+                                <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <a>+</a>
+                                </button>
+                                <div class="dropdown-menu">
+                                    <input type="text" placeholder="Create or find a tag">
+                                    <p>Choose a Tag:
+                                    <ul>
+                                        <li>
+                                            <p>Anil kumar</p>
+                                        </li>
+                                        <li><a>Manage tags</a></li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <ul data-dojo-attach-point="currentSelectedTagsListContainer"
+                            class="padding-bottom--lv1 padding-top--lv3"></ul>
+                        <p data-dojo-attach-point="noSelectedTags" class="">Add or create a tag</p>
+                    </div>
+                    <div class="section-check-description">
+                        <div class="sub-field-wrapper">
+                            <label class="sub-checkbox">
+                                <div class="checkbox-field-description">
+                                    <input type="checkbox" name="" class="sub-CheckBoxInput">
+                                    <P>These person gave me permission to email them </P>
+                                </div>
+                                <div class="checkbox-description">
+                                    <p>These person will not receive
+                                        a confirmation email from Sendquickmail. Since you're adding this recipient
+                                        manually,they won't have an opt-in IP address or date in your records, so be
+                                        extra
+                                        sure you have permission first. <a>Learn more</a>
+                                    </p>
+                                </div>
+                            </label>
+                        </div>
+
+                        <div class="sub-field-wrapper">
+                            <label class="sub-checkbox">
+                                <div class="checkbox-field-description">
+                                    <input type="checkbox" name="" class="sub-CheckBoxInput">
+                                    <p>this person is already in my audience, update their profile</p>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+
+
+                    <div class="subscribe-btn-section">
+                        <a><button class="button1" (click)="addContacts()" 
+                                type="submit">
+                                subscribe
+                            </button> </a>
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+    <!-- </form> -->
+    <!-- end add a subscribers page -->
+
+</main><!-- End #main -->

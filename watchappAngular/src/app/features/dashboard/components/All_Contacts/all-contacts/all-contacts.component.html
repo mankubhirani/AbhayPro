@@ -1,0 +1,107 @@
+<!-- <p>all-contacts works!</p> -->
+
+<main id="main" class="main">
+    <!-- jumbotron content  start -->
+    <div class=" pb-5">
+      <h1 class="text_style">All contacts</h1>
+      <h3 class="text1">Cylsys</h3>
+      <h4 class="text2">Your audience has<a class="text-blue">1</a> contacts.<a class="text-blue">1</a> of these are subscribers.</h4>
+    </div>
+
+    <!-- jumbotron content end -->
+
+    <div class="card" style="padding: inherit;">
+        <div class="div">
+            <nav class="navbar navbar-expand-lg navbar-light  p-2 ">
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav navbaritem">
+  
+                  <li class="nav-item dropdown ">
+                    <a class="nav-link   text-light"  data-bs-toggle="dropdown">
+                      <span class="d-none d-md-block dropdown-toggle ps-2">Manage contacts</span>
+                    </a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" routerLink="viewContact">View contacts</a>
+                        <a class="dropdown-item" routerLink="unsucscribeContacts" >Unsubscribe contacts</a>
+                      </div>
+                  </li>
+                  
+                  <li class="nav-item dropdown ">
+                    <a class="nav-link  text-light"  data-bs-toggle="dropdown">
+                      <span class="d-none d-md-block dropdown-toggle ps-2">Add contacts</span>
+                    </a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item"  routerLink="addSubscribers">Add a subscribers</a>
+                        <a class="dropdown-item"  routerLink="importContact" >Import contacts</a>
+                      </div>
+                  </li>
+              
+                  
+            
+            
+                
+                </ul>
+              </div>
+                
+                <!-- End Profile Dropdown Items -->
+                  <!-- End Profile Nav -->
+      
+        
+              </nav>
+            <!-- <button mat-button [matMenuTriggerFor]="belowMenu">Below</button>
+            <mat-menu #belowMenu="matMenu" yPosition="below">
+            <button mat-menu-item>Item 1</button>
+            <button mat-menu-item>Item 2</button>
+            </mat-menu> -->
+
+            
+        
+            <form class="">
+                <input class="form-control border-top-0 border-left-0 border-right-0 fw-bold" type="search"
+                placeholder="Search" aria-label="Search">
+            
+            </form>
+        </div>
+    
+        <div class=" mt-5">
+            <table class="table table-bordered">
+              <thead>
+              <tr>
+                <!-- <th scope="col">S.No.</th> -->
+                <th scope="col">Email</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">country</th>
+                <th scope="col">City</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let Item of getAllContact">
+                <!-- <th scope="row">{{Item.contactID}}</th> -->
+                <td>{{Item.contact_Email}}</td>
+                <td>{{Item.first_Name}}</td>
+                <td>{{Item.last_Name}}</td>
+                <td>{{Item.country}}</td>
+                <td>{{Item.city}}</td>
+                </tr>
+              </tbody>
+               
+            </table>
+
+
+            <br>
+            <div class="firstdiv p-2 mt-4 pagetitle" style="display: flex;align-items: center;flex-flow:  row wrap;">
+                <div class="col-md-10">
+                    
+                    <h1 class="companygreeting m-0">Total contacts</h1>
+                </div>
+                <div class="col-md-2">
+                    <h1 class="companygreeting m-0">{{getAllContact.length}}</h1>
+
+                </div>
+            </div>
+    
+
+        </div>
+    </div>
+</main>

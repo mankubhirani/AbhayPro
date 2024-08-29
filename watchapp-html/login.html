@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="assets/css/login.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+  <title>Login - Watch Apps</title>
+
+  <style>
+    body {
+      background-image: linear-gradient(180deg, #ddb373, #3b475a);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- modal start here -->
+  <!-- Button trigger modal -->
+
+  <!-- Modal -->
+  <div class="modal fade" id="requestBtn" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header py-0 justify-content-center">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">
+            <img src="assets/images/product_logo.svg" alt="" />
+            Request for a demo
+          </h1>
+        </div>
+        <div class="modal-body">
+          <form class="demo_request_form">
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Name</label>
+              <input type="Text" class="form-control" id="name" aria-describedby="name" placeholder="Enter name" />
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Email</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                placeholder="Enter email" />
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Phone no.</label>
+              <input type="Text" class="form-control" id="phoneNo" aria-describedby="phoneNo"
+                placeholder="Enter Phone no." />
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Country</label>
+              <select class="form-select" aria-label="Default select example">
+                <option selected>Select Country</option>
+                <option value="1">India</option>
+                <option value="2">U.S</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Any Specific Requirement</label>
+              <input type="Text" class="form-control" id="" aria-describedby=""
+                placeholder="Enter Any Specific Requirement" />
+            </div>
+
+            <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+              <label class="form-check-label" for="exampleCheck1">I’m not a robot</label>
+            </div>
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+              Close
+            </button>
+            <a href="companyregistration.html" type="submit" class="btn btn-success">
+              Please Submit
+            </a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- modal end here -->
+
+  <div class="bg_banner">
+    <img src="assets/images/bg_banner.svg" alt="" style="
+          position: fixed;
+          left: 0;
+          right: 0;
+          top: 0;
+          bottom: 0;
+          height: 100vh;
+          z-index: -1;
+        " />
+    <div class="container">
+      <div class="row login">
+        <div class="col-md-8">
+          <h1 class="pb-5">
+            Watch Apps
+            <img src="assets/images/product_logo.svg" alt="" />
+          </h1>
+          <h2 class="pb-4">
+            It is relative and differs from person-to-person, place-to-place and time-to-time
+          </h2>
+          <p class="pb-5">
+            An Application that streamlines your communication to your
+            targeted audience at the click of a button. An efficient and
+            User-friendly solution for sending bulk emails effortlessly. With
+            rich features like Customizable templates, detailed analytics and
+            seamless integration, ensuring your messages are delivered
+            effectively and professionally. Elevate your Email marketing
+            strategy with our Bulk mailing application, designed to save you
+            time and enhance your outreach capabilities.
+          </p>
+          <button type="button" class="btn btn-outline-light requestBtn" data-bs-toggle="modal"
+            data-bs-target="#requestBtn">
+            Request for a demo
+          </button>
+        </div>
+        <div class="col-md-4 mb-5">
+          <div class="form_card">
+            <div class="card">
+              <div class="card-header">
+                <img src="assets/images/logo.svg" alt="" />
+              </div>
+              <div class="card-body">
+                <form>
+                  <div class="py-4">
+                    <label for="exampleInputEmail1" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                      placeholder="Enter email" />
+                    <div id="emailHelp" class="form-text">
+                      Please enter a valid User ID
+                    </div>
+                  </div>
+                  <div class="py-4">
+                    <label for="exampleInputPassword1" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" />
+                    <div id="passwordHelp" class="form-text">
+                      Please enter a valid Password
+                    </div>
+                  </div>
+
+                  <a href="companyregistration.html" type="submit" class="btn btn-outline-light w-100 loginBtn">
+                    Log in
+                  </a>
+
+                  <div class="forget_password">
+                    <p>
+                      Forget Password?
+                      <a href="forgetpassword.html">Click here</a>
+                    </p>
+                    <p><a href="registration.html">Create Account</a></p>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="row align-items-center">
+            <div class="col-md-8">
+              <ul class="list-unstyled p-0 d-flex align-items-center justify-content-around m-0">
+                <li>
+                  <img src="assets/images/linkedin.svg" alt="" />
+
+                  <img src="assets/images/fb.svg" alt="" class="px-2" />
+
+                  <img src="assets/images/whatsApp.svg" alt="" />
+                  +919967502270
+                </li>
+                <li>
+                  <img src="assets/images/mail.svg" alt="" />reachus@cylsys.com
+                </li>
+                <li>
+                  <img src="assets/images/mail.svg" alt="" />sales@cylsys.com
+                </li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <ul class="list-unstyled p-0 d-flex align-items-center justify-content-around m-0">
+                <li>
+                  <img src="assets/images/14year.svg" alt="" />
+                </li>
+                <li>
+                  <img src="assets/images/iso.svg" alt="" />
+                </li>
+                <li>
+                  <img src="assets/images/companies.svg" alt="" />
+                </li>
+                <li>
+                  <img src="assets/images/iso9001.svg" alt="" />
+                </li>
+                <li>
+                  <img src="assets/images/iso27001.svg" alt="" />
+                </li>
+                <li>
+                  <img src="assets/images/boss.svg" alt="" />
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- script -->
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

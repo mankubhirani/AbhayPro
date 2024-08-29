@@ -1,0 +1,94 @@
+@media (max-width: 767px) {
+
+  .header .nav-tabs .nav-item.show .nav-link,
+  .header .nav-tabs .nav-link.active {
+    background-color: transparent !important;
+    border-color: transparent;
+    color: #fff !important;
+    font-size: 12px;
+    padding: 0;
+    margin: 0;
+  }
+
+  .nav>li>a {
+    padding: 0px 15px;
+    margin: 0 0px;
+    font-size: 18px;
+    font-weight: 800 !important;
+    color: #0a365b !important;
+    border: none !important;
+  }
+
+  #mobileBar.sidebar {
+    position: absolute !important;
+    z-index: 1;
+  }
+
+  td .sidebar {
+    background-color: transparent;
+  }
+
+  .header-top ul li {
+    padding-inline: 0 !important;
+  }
+
+  .nav-tabs {
+    background-color: var(--theme1-bg);
+    border-radius: 0;
+    border-bottom: 0;
+    box-shadow: none;
+  }
+
+  .game-nav-bar.nav-tabs .nav-item {
+    flex: 1 1 auto;
+    text-align: center;
+  }
+
+  .header .nav-tabs .nav-item {
+    margin-bottom: 0;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .nav_mob {
+    background-color: var(--theme2-bg);
+  }
+
+  .nav.nav-tabs {
+    margin-bottom: 0px !important;
+  }
+
+  .home-products-container .row.row5 .col-md-12 a {
+    justify-content: space-between;
+  }
+
+  .suspendedbm1 {
+    background-color: transparent;
+  }
+
+  .suspendedm1.matchmarketlist-on {
+    top: -7px !important;
+    /* width: 138px; */
+    padding: 15px 0 !important;
+    font-size: 12px !important;
+  }
+  .coupon-table tbody tr td {
+    font-size: 12px !important;
+}
+}
+
+@media (min-width: 425px) {
+  .mobileHide {
+    display: none;
+  }
+
+  .mobileShow {
+    display: block;
+  }
+}
+
+@media (max-width: 320px){
+  .suspendedm1.matchmarketlist-on {
+    top: -15px !important;
+  }
+}

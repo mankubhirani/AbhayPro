@@ -1,0 +1,687 @@
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Import File</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="row g-3 align-items-center">
+              <div class="col-4">
+                <label for="inputPassword6" class="col-form-label"
+                  >Select Application</label
+                >
+              </div>
+              <div class="col-8">
+                <select name="" id="" class="form-control">
+                  <option value="">HRMS</option>
+                  <option value="">CRM</option>
+                  <option value="">MailBlitz</option>
+                  <option value="">MISPV</option>
+                </select>
+              </div>
+            </div>
+            <div class="row g-3 align-items-center my-3">
+              <div class="col-4">
+                <label for="inputPassword6" class="col-form-label"
+                  >Import File</label
+                >
+              </div>
+              <div class="col-8">
+                <input type="file" name="" id="" class="form-control" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+<!-- Page content -->
+<div id="content" class="p-3" >
+  <div class="row">
+    <section class="col-md-12">
+      <div class="education">
+        <div class="card mbb ">
+          <div class="card-boby ">
+            <div class="tab-content" id="pills-tabContent">
+              <div id="bank-magement" aria-labelledby="bank-magement-tab">
+                <div class="container-fluid">
+                  <div class="row mt-2">
+                    <div class="col-md-12">
+                      <h2 class="colorp">
+                        <img
+                          src="assets/images/balanceProgressReport.svg"
+                          alt=""
+                        />
+                        Application Check-up
+                      </h2>
+                    </div>
+                    <div class="col-md-12 my-3">
+                      <div class="row align-items-end">
+                     
+                        
+                        <div class="col my-2">
+                          <div class="dropdown w-100">
+                            <label for="">Application Name</label>
+                            <button
+                              (click)="toggleDropdown1()"
+                              class="dropbtn border  rounded-2 w-100" style="padding:0.40rem; width: 90%;"
+                            >
+                              Select
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1"/>
+                              </svg>
+                            </button>
+                            <div
+                              id="myDropdown3"
+                              class="dropdown-content"
+                              [ngClass]="{ show: isDropdownOpen1 }"
+                            >
+                              <a href="#"
+                                ><input type="checkbox" /> Select All</a
+                              >
+                              <a *ngFor="let item of uniqueApplications" href="#"><input type="checkbox" />{{item.appname}}</a>
+                              <!-- <a href="#"><input type="checkbox" /> </a> -->
+                              <!-- <a href="#"><input type="checkbox" />MailBlitz</a>
+                              <a href="#"><input type="checkbox" />CRM</a> -->
+                            </div>
+                          </div>
+                        </div>
+                        <!-- <div class="col my-2">
+                          <div class="dropdown w-100">
+                            <label for="">Server Name</label>
+                            <button
+                              (click)="toggleDropdown2()"
+                              class="dropbtn border  rounded-2 w-100" style="padding:0.40rem; width: 90%;"
+                            >
+                              Select
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1"/>
+                              </svg>
+                            </button>
+                            <div
+                              id="myDropdown4"
+                              class="dropdown-content"
+                              [ngClass]="{ show: isDropdownOpen2 }"
+                            >
+                              <a href="#"
+                                ><input type="checkbox" /> Select All</a
+                              >
+                              <a href="#"
+                                ><input type="checkbox" />Cylsys.com</a
+                              >
+                              <a href="#"><input type="checkbox" />MISPV </a>
+                            </div>
+                          </div>
+                        </div> -->
+                        <div class="col my-2">
+                          <label for="">From Date</label>
+                          <input type="date" class="form-control" />
+                        </div>
+                        <div class="col my-2">
+                          <label for="">To Date</label>
+                          <input type="date" class="form-control" />
+                        </div>
+                      </div>
+                      <div class="row align-items-end">
+                        <div class="col-md-2 my-2">
+                          <div class="dropdown">
+                            <label for="">Select column</label>
+                            <button
+                              (click)="toggleDropdown3()"
+                              class="dropbtn border  rounded-2" style="padding:0.40rem; width: 90%;"
+                            >
+                              Column View
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1"/>
+                              </svg>
+                            </button>
+                            <div
+                              id="myDropdown"
+                              class="dropdown-content"
+                              [ngClass]="{ show: isDropdownOpen3 }"
+                            >
+                            <a href="#">
+                              <input type="checkbox" [(ngModel)]="selectAll" (change)="onSelectAllChange()" /> Select All
+                          </a>
+                          <a href="#">
+                              <input type="checkbox" [(ngModel)]="columnsVisibility.logCode" (change)="onColumnChange()" /> Log Code
+                          </a>
+                          <a href="#">
+                              <input type="checkbox" [(ngModel)]="columnsVisibility.logDetails" (change)="onColumnChange()" /> Log Details
+                          </a>
+                          <a href="#">
+                              <input type="checkbox" [(ngModel)]="columnsVisibility.applicationName" (change)="onColumnChange()" /> Application Name
+                          </a>
+                          <a href="#">
+                              <input type="checkbox" [(ngModel)]="columnsVisibility.serverName" (change)="onColumnChange()" /> Server Name
+                          </a>
+                          <a href="#">
+                              <input type="checkbox" [(ngModel)]="columnsVisibility.occurTime" (change)="onColumnChange()" /> Occur Time
+                          </a>
+                          <a href="#">
+                              <input type="checkbox" [(ngModel)]="columnsVisibility.pageFunction" (change)="onColumnChange()" /> Page / Function
+                          </a>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-2 my-2">
+                          <div class="form-group">
+                            <label for="">Show</label>
+                            <select class="form-control" id="" (change)="updateItemsPerPage($event)">
+                              <option>Show</option>
+                              <option>10</option>
+                              <option>25</option>
+                              <option>50</option>
+                              <option>100</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-md-4 my-2">
+                          <form class="">
+                            <label for="">Search</label>
+                            <input
+                              class="form-control fw-bold"
+                              type="search"
+                              placeholder="Search"
+                              aria-label="Search"
+                            />
+                          </form>
+                        </div>
+                        <div class="col-md-2 my-2">
+                          <!-- Button trigger modal -->
+                          <button
+                            type="button"
+                            class="btn btn-primary w-100 text-center"
+                            data-bs-toggle="modal"
+                            data-bs-target="#exampleModal"
+                          >
+                            Import
+                          </button>
+                        </div>
+                        <div class="col-md-1 my-2">
+                          <img src="assets/images/download.svg" alt="" />
+                        </div>
+                      </div>
+                    </div>
+ 
+                    <div class="col-md-12 my-2">
+                      <ul class="nav nav-tabs nav-tabs-bordered">
+                        <li class="nav-item">
+                          <button
+                            class="nav-link active"
+                            data-bs-toggle="tab"
+                            data-bs-target="#profile-overview"
+                          >
+                            Logs
+                          </button>
+                        </li>
+ 
+                        <li class="nav-item">
+                          <button
+                            class="nav-link"
+                            data-bs-toggle="tab"
+                            data-bs-target="#profile-edit"
+                          >
+                            Health Check-up
+                          </button>
+                        </li>
+ 
+                        <li class="nav-item">
+                          <button
+                            class="nav-link"
+                            data-bs-toggle="tab"
+                            data-bs-target="#profile-change-password"
+                          >
+                            File Summary
+                          </button>
+                        </li>
+                      </ul>
+                      <div class="tab-content pt-2">
+                        <div
+                          class="tab-pane fade show active profile-overview"
+                          id="profile-overview"
+                        >
+                          <div class="row" >
+                            <div class="col-md-12">
+                              <!-- <h6>Application Name : MISPV</h6>
+                              <h6>Server Name : Cylsys.com</h6> -->
+                            </div>
+                            <div class="col-md-12">
+                              <div class="table-responsive " >
+                                <table class="table table-hover mt-3 table-striped">
+                                  <thead>
+                                    <tr class="btn-s">
+                                      <th *ngIf="columnsVisibility.logCode" id="table_Head">App Name</th>
+                                      <th *ngIf="columnsVisibility.logDetails" id="table_Head">&nbsp;&nbsp;Log Level</th>
+                                      <th *ngIf="columnsVisibility.applicationName" id="table_Head"> &nbsp;&nbsp;Message</th>
+                                      <th *ngIf="columnsVisibility.serverName" id="table_Head">Exception Type</th>
+                                      <th *ngIf="columnsVisibility.pageFunction" id="table_Head">Source</th>
+                                      <th *ngIf="columnsVisibility.pageFunction" id="table_Head">Method</th>
+                                      <th *ngIf="columnsVisibility.pageFunction" id="table_Head">&nbsp;&nbsp;Url</th>
+                                      <th *ngIf="columnsVisibility.pageFunction" id="table_Head">&nbsp;&nbsp;Time Stamp</th>
+                                      <th *ngIf="columnsVisibility.pageFunction" id="table_Head">Error Code</th>
+
+
+
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    
+
+                                    <ng-container *ngIf="getApplicationCheckupArr.length != 0">
+                                      <tr *ngFor="let item of getApplicationCheckupArr | paginate: { itemsPerPage: itemsPerPage, currentPage: p }; let i = index">
+                                        <td>{{ item.appname }}</td>
+                                        <td id="for_table_color">
+                                          {{ item.loglevel }}
+                                        </td>
+                                        <td>{{ item.Message }}</td>
+                                        <td>{{ item.ExceptionType }}</td>
+                                       
+                                        <td>{{ item.source }}</td>
+                                        <td>{{ item.method }}</td>
+                                        <td>{{ item.Url }}</td>
+                                        <td>{{ item.timestamp }}</td>
+                                        <td>{{ item.ErrorCode }}</td>
+                                      </tr>
+                                    </ng-container>
+                                    <ng-container *ngIf="getApplicationCheckupArr.length == 0">
+                                      <tr>
+                                        <td colspan="10">No data found!</td>
+                                      </tr>
+                                    </ng-container>
+                                  </tbody>
+                                </table>
+                                
+                              </div>
+                              <br/>
+                              <div class="list">
+                                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                       
+ 
+                        <div
+                          class="tab-pane fade profile-edit pt-3"
+                          id="profile-edit"
+                        >
+                          <div class="row" style="margin-bottom: 6%;">
+                            <!-- last transection -->
+                            <div class="col-md-7 my-3">
+                              <div class="card xs-card-group h-100">
+                                <div class="card-body">
+                                  <div class="row align-items-center">
+                                    <div class="col">
+                                      <h6 class="colorp m-0">
+                                        <img
+                                          src="assets/images/server_info.svg"
+                                          alt=""
+                                        />
+                                        Applications Performance
+                                      </h6>
+                                    </div>
+                                    <div class="col">
+                                      <ul
+                                        class="list-unstyled p-0 m-0 d-flex align-items-center justify-content-between"
+                                      >
+                                        <li>
+                                          <p class="small m-0">
+                                            Last Updated :
+                                            <span class="text-warning"
+                                              >12 April 2024</span
+                                            >
+                                          </p>
+                                        </li>
+                                        <li>
+                                          <p class="small m-0">
+                                            Detail :
+                                            <span class="text-warning">
+                                              <select name="" id="">
+                                                <option value="">
+                                                  10(Hrms)
+                                                </option>
+                                                <option value="">
+                                                  15(Hrms)
+                                                </option>
+                                                <option value="">
+                                                  24(Hrms)
+                                                </option>
+                                              </select>
+                                            </span>
+                                          </p>
+                                        </li>
+                                      </ul>
+                                    </div>
+                                    <div class="col-md-12">
+                                      <!-- <canvas #performanceChart></canvas> -->
+                                      <canvas id="piechart"></canvas>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            
+ 
+
+                      <div class="col-md-5 my-3">
+                              <div class="card xs-card-group h-100">
+                                <div class="card-body">
+                                  <div class="row align-items-center h-100">
+                                    <div class="col">
+                                      <h6 class="colorp m-0">
+                                        <!-- <img src="assets/images/server_info.svg" alt="" /> -->
+                                        Total Server Storage
+                                      </h6>
+                                    </div>
+                                    <div class="col">
+                                      <ul
+                                        class="list-unstyled p-0 m-0 d-flex align-items-center justify-content-between"
+                                      >
+                                        <li>
+                                          <p class="small m-0">
+                                            Last Updated :
+                                            <span class="text-warning"
+                                              >12 April 2024</span
+                                            >
+                                          </p>
+                                        </li>
+                                        <li>
+                                          <img
+                                            src="assets/images/three_dot.svg"
+                                            alt=""
+                                          />
+                                        </li>
+                                      </ul>
+                                    </div>
+                                    <div class="col-md-12">
+                                      <canvas id="myChart"></canvas>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+ 
+                            <div class="col-md-12 my-3">
+                              <div class="education">
+                                <div class="card lg-card">
+                                  <div class="card-body">
+                                    <div class="row align-items-center">
+                                      <div class="col-md-6 my-2">
+                                        <h2 class="colorp m-0">
+                                          <img
+                                            src="assets/images/application_performance.svg"
+                                            alt=""
+                                          />
+                                          Application Performance
+                                        </h2>
+                                      </div>
+                                      <div class="col-md-6 my-2 text-end">
+                                        <p class="small m-0">
+                                          Last Updated :
+                                          <span class="text-warning"
+                                            >12 April 2024</span
+                                          >
+                                        </p>
+                                      </div>
+                                      <div class="col-md-12">
+                                        <div class="table-responsive">
+                                          <table
+                                            class="table table-hover mt-3 table-striped"
+                                          >
+                                            <thead>
+                                              <tr class="btn-s">
+                                                <th id="table_Head">
+                                                  <input type="checkbox" />
+                                                </th>
+                                                <th id="table_Head">
+                                                  App Name
+                                                </th>
+                                                <th id="table_Head">
+                                                  Health Status
+                                                </th>
+                                                <th id="table_Head">CpuUsage</th>
+                                                <th
+                                                  id="table_Head"
+                                                  class="text-center"
+                                                >
+                                                  Memory Usage
+                                                </th>
+                                                <th
+                                                  id="table_Head"
+                                                  class="text-center"
+                                                >
+                                                  Disk Usage
+                                                </th>
+                                                <th
+                                                  id="table_Head"
+                                                  class="text-center"
+                                                >
+                                                  Response Time
+                                                </th>
+                                                <th
+                                                  id="table_Head"
+                                                  class="text-center"
+                                                >
+                                                  Errors
+                                                </th>
+                                                <th
+                                                  id="table_Head"
+                                                  class="text-center"
+                                                >
+                                                  Warnings
+                                                </th>
+                                                <th
+                                                  id="table_Head"
+                                                  class="text-center"
+                                                >
+                                                  Checked At
+                                                </th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                              
+                                              <ng-container *ngIf="healthCheckUpData.length != 0">
+                                                <tr
+                                                  *ngFor="let item of healthCheckUpData | paginate: { itemsPerPage: itemsPerPage, currentPage: p }; let i = index"
+                                                >
+                                                  <td><input type="checkbox" /></td>
+                                                  <td>{{item.appname }}</td>
+                                                  <td id="for_table_color">{{item.HealthStatus}}</td>
+                                                  <td>{{ item.CpuUsage }}</td>
+                                                  <td>{{ item.MemoryUsage }}</td>
+                                                  <td>{{item.DiskUsage}}</td>
+                                                  <td>{{item.ResponseTime}}</td>
+                                                  <td>{{item.Errors}}</td>
+                                                  <td>{{item.Warnings}}</td>
+                                                  <td>{{item.CheckedAt}}</td>
+                                                 
+                                                </tr>
+                                              </ng-container>
+                                              <ng-container *ngIf="healthCheckUpData.length == 0">
+                                                <tr>
+                                                  <td colspan="10">No data found!</td>
+                                                </tr>
+                                              </ng-container>
+                                            
+                                            </tbody>
+                                          </table>
+                                        </div>
+                                        <div class="list">
+                                          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+ 
+                        <div
+                          class="tab-pane fade pt-3"
+                          id="profile-change-password"
+                        >
+                          <div class="row align-items-center h-100">
+                            <div class="col-md-12">
+                              <div class="row">
+                                <div class="col">
+                                  <h6 class="colorp m-0">
+                                    <!-- <img src="assets/images/server_info.svg" alt="" /> -->
+                                    File Summary
+                                  </h6>
+                                </div>
+                                <div class="col">
+                                  <ul
+                                    class="list-unstyled p-0 m-0 d-flex align-items-center justify-content-between"
+                                  >
+                                    <li>
+                                      <p class="small m-0">
+                                        Server :
+                                        <span class="text-warning">
+                                          <select name="" id="">
+                                            <option value="">Server 1</option>
+                                            <option value="">Server 2</option>
+                                            <option value="">Server 3</option>
+                                            <option value="">Server 4</option>
+                                          </select>
+                                        </span>
+                                      </p>
+                                    </li>
+                                    <li>
+                                      <p class="small m-0">
+                                        Last Updated :
+                                        <span class="text-warning"
+                                          >12 April 2024</span
+                                        >
+                                      </p>
+                                    </li>
+                                    <li>
+                                      <img
+                                        src="assets/images/three_dot.svg"
+                                        alt=""
+                                      />
+                                    </li>
+                                  </ul>
+                                </div>
+                              </div>
+                            </div>
+ 
+                            
+ 
+
+<div class="col-4">
+                              <canvas id="myChart1"></canvas>
+                            </div>
+ 
+                            <div class="col-8">
+                              <div class="card xs-card-group h-100">
+                                <div class="card-body">
+                                  <div class="col-md-12">
+                                    <div class="table-responsive">
+                                      <table
+                                        class="table table-hover mt-3 table-striped"
+                                      >
+                                        <thead>
+                                          <tr class="btn-s">
+                                            <th id="table_Head"><input type="checkbox" th/>
+                                            <th id="table_Head">App name</th>
+                                            <th id="table_Head">File Name</th>
+                                            <th id="table_Head" class="">File Path</th>
+                                            <th id="table_Head" class="">File Size</th>
+                                            <th id="table_Head" class=""> File Extension</th>
+                                              
+                                            
+                                            <th id="table_Head" class="">
+                                              Created Date
+                                            </th>
+                                            <th id="table_Head" class="">
+                                              Remark
+                                            </th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <ng-container *ngIf="getFileSummaryData.length != 0">
+                                            <tr *ngFor="let item of getFileSummaryData | paginate: { itemsPerPage: itemsPerPage, currentPage: p }; let i = index">
+                                              <td>
+                                                <input type="checkbox" />
+                                              </td>
+                                              <td id="for_table_color">{{ item.appName }}</td>
+                                              <td>{{ item.filename }}</td>
+                                              <td>{{item.filepath}}</td>
+                                              <td>{{item.filesize}}</td>
+                                              <td>{{item.fileextension}}</td>
+                                              <td>{{item.createddate}}</td>
+                                              <td>{{ item.remark }}</td>
+                                            </tr>
+                                          </ng-container>
+                                          <ng-container *ngIf="getFileSummaryData.length == 0">
+                                            <tr>
+                                              <td class="no-data" colspan="10">No data found! </td>
+                                            </tr>
+                                          </ng-container>
+                                        
+
+                                        
+                                          <!-- <tr *ngFor="let value of getFileSummaryData">
+                                            <td>
+                                              <input type="checkbox" />
+                                            </td>
+                                            <td id="for_table_color">{{value.ApplicationID}}</td>
+                                            <td>{{value.FileName}}</td>
+                                            <td>15</td>
+                                            <td>5</td>
+                                            <td>20</td>
+                                            <td>{{value.CreatedDate}}</td>
+                                          </tr> -->
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                    <div class="list">
+                                      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+       
+      </div>
+    </section>
+  </div>
+</div>
+ 

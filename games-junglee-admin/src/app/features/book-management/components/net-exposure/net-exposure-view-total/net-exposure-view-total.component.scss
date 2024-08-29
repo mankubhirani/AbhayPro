@@ -1,0 +1,104 @@
+.align_thead tbody tr th {
+  vertical-align: middle;
+  font-size: 14px;
+}
+.align_thead tbody tr td {
+  vertical-align: middle;
+  border: 0;
+}
+
+.align_thead tbody tr td a {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.border-5 {
+  border-radius: 5px;
+  border-collapse: separate;
+  // border-spacing: 1;
+}
+
+.accordion-header .fa-plus:before {
+  display: none;
+}
+
+.accordion-header .collapsed .fa-plus:before {
+  display: block;
+}
+
+.accordion-header .fa-minus:before {
+  display: block;
+}
+
+.accordion-header .collapsed .fa-minus:before {
+  display: none;
+}
+
+// .tableRes {
+//   max-height: 48vh;
+// }
+
+// .table > :not(caption) > * > * {
+//   padding: 0;
+//   height: auto;
+// }
+
+.tableFixHead .table > :not(caption) > * > * {
+  padding: 5px;
+  margin: 5px 0;
+}
+
+.tableFixHead {
+  overflow-y: hidden;
+  max-height: none;
+}
+
+// td.col {
+//   border-top: 1px solid #000;
+//   border-bottom: 1px solid #000;
+// }
+
+.tbl-height {
+  min-height: 80px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
+  border: 1px solid #dee2e6 !important;
+}
+
+.tablematchodds {
+  // background-color: $color_1;
+  -moz-border-radius: 15px !important;
+  border-collapse: separate !important;
+  // border: 1px solid black !important;
+  border-spacing: 0;
+  border-radius: 5px;
+  vertical-align: middle;
+  margin-bottom: 25px;
+  height: 100%;
+  tbody {
+    tr {
+      &:nth-child(2) {
+        td {
+          border-top: 1px solid #83c5cb !important;
+        }
+      }
+      &:nth-child(1) {
+        td {
+          border-top: none !important;
+        }
+      }
+      td {
+        padding: 2px 5px;
+        text-align: center;
+        // border-top: 2px solid $color_1;
+        line-height: 12px;
+        // border: none !important;
+        border-bottom: none !important;
+        border-top: none !important;
+      }
+    }
+  }
+}

@@ -1,0 +1,438 @@
+<main id="main" class="main">
+
+  <div class="pagetitle">
+    <h1 class="text_style">Profile</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item" [routerLink]="['/dashboard']">Home</li>
+        <li class="breadcrumb-item" [routerLink]="['/profile']">User Profile</li>
+        <!-- <li class="breadcrumb-item active" [routerLink]="['/profile']">Profile</li> -->
+      </ol>
+    </nav>
+  </div><!-- End Page Title -->
+
+  <section class="section profile">
+    <form >
+    <div class="row">
+      
+        <div class="col-xl-4">
+          <div class="card ">
+            <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+              <img [src]="profilelogo || 'assets/images/photologo.jpeg'" alt="Profile" class="rounded-circle" (load)="logImageSource($event)">
+              <h4 class="mt-3">{{userInfo?.Name}}</h4>
+              <h4 class="mt-1">{{userInfo?.Job}}</h4>
+              <div class="social-links mt-2">
+                <a class="twitter"><i class="bi bi-twitter"></i></a>
+                <a class="facebook"><i class="bi bi-facebook"></i></a>
+                <a class="instagram"><i class="bi bi-instagram"></i></a>
+                <a class="linkedin"><i class="bi bi-linkedin"></i></a>
+              </div>
+            
+          </div>
+        </div>
+        
+</div>
+
+
+      <div class="col-xl-8">
+
+        <div class="card mbb">
+          <div class="card-body pt-3">
+            <!-- Bordered Tabs -->
+            <ul class="nav nav-tabs nav-tabs-bordered">
+
+              <li class="nav-item">
+                <button class="nav-link active" data-bs-toggle="tab"
+                  data-bs-target="#profile-overview">Overview</button>
+              </li>
+
+              <li class="nav-item">
+                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit Profile</button>
+              </li>
+
+              <!-- <li class="nav-item">
+                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-settings">Settings</button>
+                </li> -->
+
+              <li class="nav-item">
+                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Change
+                  Password</button>
+              </li>
+
+            </ul>
+            <div class="tab-content pt-2">
+
+              <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                <h5 class="card-title">About</h5>
+                <p class="small fst-italic">{{about}}</p>
+
+                <h5 class="card-title">Profile Details</h5>
+
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label ">Full Name</div>
+                  <div class="col-lg-9 col-md-8">
+                    {{this.userInfo?.Name}}
+                  </div>
+
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">Company</div>
+                  <div class="col-lg-9 col-md-8">{{userInfo?.CompanyName}}</div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Job</div>
+                    <div class="col-lg-9 col-md-8">{{userInfo?.Job}}</div>
+                  </div>
+
+                <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Country</div>
+                    <div class="col-lg-9 col-md-8">{{userInfo?.Country}}</div>
+                  </div> 
+
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">Address</div>
+                  <div class="col-lg-9 col-md-8">{{userInfo?.PhysicalAddress}}</div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">Phone</div>
+                  <!-- <div class="col-lg-9 col-md-8">{{userInfo?.companyDetails[0].Phone_Number}}</div> -->
+                  <div class="col-lg-9 col-md-8">{{this.userInfo?.PhoneNumber}}</div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">Email</div>
+                  <div class="col-lg-9 col-md-8">{{userInfo?.EmailID}}</div>
+                </div>
+
+              </div>
+
+              <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
+
+                <!-- Profile Edit Form -->
+                <form [formGroup]="editProfile" (ngSubmit)="EditProfile()">
+                  <div class="row mb-3">
+                    <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
+                    <div class="col-md-8 col-lg-9">
+
+                      <div class="pt-2">
+                        <div class="file-input-wrapper">
+                          <input type="text" class="text-field form-control" placeholder="Upload Company Logo"
+                            formControlName="profilelogo" value="{{selectedFile ? selectedFile.name : ProfilePicture}}"
+                            accept=".png, .jpeg, .jpg" readonly>
+                          <input type="file" (change)="onFileSelected($event)" accept="image/*" />
+                          <span class="browse-button">Browse</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <label class="col-md-4 col-lg-3 col-form-label">Full Name</label>
+                    <div class="col-md-8 col-lg-9">
+                      <input name="full name" class=" form-control border " type="text" formControlName="Name" placeholder="Enter your Name"
+                        (keypress)="ValidateAlpha($event)" maxlength="30">
+                      <div *ngIf="f && f?.['Name']?.invalid && f?.['Name']?.touched"
+                        class="small text-danger text-start ps-3">Name is required.</div>
+                    </div>
+                  </div>
+
+                <div class="row mb-3">
+                      <label for="about" class="col-md-4 col-lg-3 col-form-label">About</label>
+                      <div class="col-md-8 col-lg-9">
+                        <textarea name="about" formControlName="about_user" class="form-control" id="about" style="height: 100px"></textarea>
+                      </div>
+                    </div> 
+
+                  <div class="row mb-3">
+                    <label class="col-md-4 col-lg-3 col-form-label">Company Name</label>
+                    <div class="col-md-8 col-lg-9">
+                      <input name="company name" class="form-control border" type="text" formControlName="companyName" maxlength="50"
+                        placeholder="Enter Your company Name" (keypress)="ValidateAlpha($event)">
+
+                      <div *ngIf="f && f?.['companyName']?.invalid && f?.['companyName']?.touched"
+                        class="small text-danger text-start ps-3">Company Name is required.</div>
+                    </div>
+                  </div>
+
+                 <div class="row mb-3">
+                      <label for="Job" class="col-md-4 col-lg-3 col-form-label">Job</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="job" type="text" formControlName="user_job" class="form-control border" id="Job" placeholder="Enter your job">
+                        <div *ngIf="f && f?.['job']?.invalid && f?.['job']?.touched"
+                        class="small text-danger text-start ps-3">userjob is required.</div>
+                      </div>
+                    </div> 
+
+                   <div class="row mb-3">
+                    <label class="col-md-4 col-lg-3 col-form-label">Country</label>
+                    <div class="col-md-8 col-lg-9">
+                      <select class="form-control"  id="country"
+                      formControlName="country" name="India">
+                      <option value="" disabled>
+                        Select Country
+                      </option>
+                      <option *ngFor="let country of allCountryData;" [value]="country.id">
+                        {{ country.name }}
+                      </option>
+                    </select>
+                    </div>
+                  </div> 
+
+                  <div class="row mb-3">
+                    <label class="col-md-4 col-lg-3 col-form-label">Address</label>
+                    <div class="col-md-8 col-lg-9">
+                      <input name="address" type="text" class="form-control border" formControlName="physical_adress"
+                        placeholder="Enter Your Address" maxlength="50">
+                      <div *ngIf="f && f?.['physical_adress']?.invalid && f?.['physical_adress']?.touched"
+                        class="small text-danger text-start ps-3">Address is required.</div>
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <label class="col-md-4 col-lg-3 col-form-label">Phone</label>
+                    <div class="col-md-8 col-lg-9">
+                      <input name="Phone" type="text" class="form-control border" placeholder="Enter Your Phone Number"
+                        formControlName="UserPhoneNo" (keypress)="keyPressNumbers($event)" minlength="10"
+                        maxlength="10">
+                      <div *ngIf="f && f?.['UserPhoneNo']?.invalid && f?.['UserPhoneNo']?.touched"
+                        class="small text-danger text-start ps-3">Phone is required.</div>
+                    </div>
+                  </div>
+
+                  <!-- <div class="row mb-3">
+                    <label class="col-md-4 col-lg-3 col-form-label">Email</label>
+                    <div class="col-md-8 col-lg-9">
+                        <input class="form-control" type="email" formControlName="Email" name="Email"
+                        value="{{userInfo.Email}}" placeholder="Enter Your Email">
+                    </div>
+                  </div> -->
+
+                  <div class="row mb-3">
+                    <label class="col-md-4 col-lg-3 col-form-label">Email</label>
+                    <div class="col-md-8 col-lg-9">
+                      <input name="email" type="email" class="form-control" placeholder="Enter Your Email"
+                        formControlName="Email" maxlength="30">
+                      <div *ngIf="f && f?.['Email']?.invalid && f?.['Email']?.touched"
+                        class="small text-danger text-start ps-3">Email is required.</div>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <label class="col-md-4 col-lg-3 col-form-label">Twitter Profile</label>
+                    <div class="col-md-8 col-lg-9">
+                      <input name="twitter" type="twitter" class="form-control border" placeholder="Enter Your twitter Id"
+                        formControlName="user_twitter_profile" maxlength="30">
+                      <div *ngIf="f && f?.['user_twitter_profile']?.invalid && f?.['user_twitter_profile']?.touched"
+                        class="small text-danger text-start ps-3">Twitter Id is required.</div>
+                    </div>
+                  </div>
+
+          
+ 
+                    <div class="row mb-3">
+                      <label for="Facebook" class="col-md-4 col-lg-3 col-form-label">Facebook Profile</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="facebook" type="text" formControlName="user_facebook_profile" class="form-control border"  id="Facebook" placeholder="Enter Your Facebook Id Id">
+                        <div *ngIf="f && f?.['facebook']?.invalid && f?.['facebook']?.touched"
+                        class="small text-danger text-start ps-3">Facebook Id is required.</div>
+                      </div>
+                    </div>
+ 
+                    <div class="row mb-3">
+                      <label for="Instagram" class="col-md-4 col-lg-3 col-form-label">Instagram Profile</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="instagram" type="text" formControlName="user_instagram_profile" class="form-control border" id="Instagram" placeholder="Enter Your Instagram Id">
+                        <div *ngIf="f && f?.['instagram']?.invalid && f?.['instagram']?.touched"
+                        class="small text-danger text-start ps-3">Instagram Id is required.</div>
+                      </div>
+                    </div>
+ 
+                    <div class="row mb-3">
+                      <label for="Linkedin" class="col-md-4 col-lg-3 col-form-label">Linkedin Profile</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="linkedin" type="text" formControlName="user_linkedin_profile" class="form-control border" id="Linkedin" placeholder="Enter Your Linkedin Id Id">
+                        <div *ngIf="f && f?.['linkedin']?.invalid && f?.['linkedin']?.touched"
+                        class="small text-danger text-start ps-3">Linkedin Id is required.</div>
+                      
+                      </div>
+                    </div> 
+
+                  <div class="text-center">
+                    <button type="submit" class="btn btn-info1" [disabled]="editProfile.invalid" >Save Changes</button>
+                  </div>
+                </form><!-- End Profile Edit Form -->
+
+              </div>
+
+              <!-- <div class="tab-pane fade pt-3" id="profile-settings">
+ 
+                  Settings Form
+                  <form>
+ 
+                    <div class="row mb-3">
+                      <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Email Notifications</label>
+                      <div class="col-md-8 col-lg-9">
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="changesMade" checked>
+                          <label class="form-check-label" for="changesMade">
+                            Changes made to yourmedia1 account
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="newProducts" checked>
+                          <label class="form-check-label" for="newProducts">
+                            Information on new products and services
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="proOffers">
+                          <label class="form-check-label" for="proOffers">
+                            Marketing and promo offers
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="securityNotify" checked disabled>
+                          <label class="form-check-label" for="securityNotify">
+                            Security alerts
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+ 
+                    <div class="text-center">
+                      <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </div>
+                  </form>
+                  End settings Form
+ 
+                </div> -->
+
+              <div class="tab-pane fade pt-3" id="profile-change-password">
+                <!-- Change Password Form -->
+                <form [formGroup]="changePassword" (ngSubmit)="savepassword()">
+
+                  <div class="row mb-3">
+                    <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password<span
+                        class="text-danger">*</span></label>
+                    <div class="col-md-8 col-lg-9">
+                      <div class="input-field">
+                        <input [type]="type" placeholder=" Current Password" name="password" type="password"
+                          class="form-control input-field" id="oldPassword" formControlName="oldPassword"
+                          [ngClass]="{errors:getcontrol('oldPassword')?.errors && getcontrol('oldPassword')?.touched}">
+                        <span (click)="hideShowPass()" class=" fa {{eyeIcon}}"></span>
+                      </div>
+                      <div *ngIf="getcontrol('oldPassword')?.errors && getcontrol('oldPassword')?.touched">
+                        <small class="text-danger" *ngIf="getcontrol('oldPassword')?.errors?.['required']">Password
+                          Required.</small>
+                        <small class="text-danger" *ngIf="getcontrol('oldPassword')?.errors?.['pattern']"> The password
+                          must contain one or more lowercase characters numeric values and uppercase characters.</small>
+
+
+                      </div>
+                      <!-- <div *ngIf="g.invalid && (g.dirty || g.touched)" class="form-text text-danger">
+                        <div *ngIf="g.errors?.['required']">
+                          Field is required
+                        </div>
+                        <div *ngIf="g.errors?.['pattern']">
+                          Password must contain at least one number, one uppercase and a lowercase letter
+                          and at least 8 characters<br>Password cannot contain whitespace
+                        </div>
+
+                      </div> -->
+
+                    </div>
+
+                  </div>
+
+                  <div class="row mb-3">
+                    <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">New Password<span
+                        class="text-danger">*</span></label>
+                    <div class="col-md-8 col-lg-9">
+                      <div class="input-field">
+                        <input name="newpassword" [type]="type1" placeholder="New Password" type="password" maxlength="30"
+                          class="form-control input-field" id="newPassword" formControlName="newPassword"
+                          [ngClass]="{errors:getcontrol('newPassword')?.errors && getcontrol('newPassword')?.touched}">
+                        <span (click)="hideShow()" class=" fa {{eyeIcon1}}"></span>
+                      </div>
+                      <div *ngIf="getcontrol('newPassword')?.errors && getcontrol('newPassword')?.touched">
+                        <small class="text-danger" *ngIf="getcontrol('newPassword')?.errors?.['required']">Password
+                          Required.</small>
+                        <small class="text-danger" *ngIf="getcontrol('newPassword')?.errors?.['pattern']"> The password
+                          must contain one or more lowercase characters numeric values and uppercase characters.</small>
+
+
+                      </div>
+
+                      <!-- <div *ngIf="g.invalid && (g.dirty || g.touched)" class="form-text text-danger">
+                        <div *ngIf="g.errors?.['required']">
+                          Field is required
+                        </div>
+                        <div *ngIf="g.errors?.['pattern']">
+                          Password must contain at least one number, one uppercase and a lowercase letter
+                          and at least 8 characters<br>Password cannot contain whitespace
+                        </div>
+
+                      </div> -->
+
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Re-enter New Password<span
+                        class="text-danger">*</span></label>
+                    <div class="col-md-8 col-lg-9">
+                      <div class="input-field">
+                        <input [type]="type2" placeholder="Confirm Password" name="renewpassword" type="password" maxlength="30"
+                          class="form-control" id="renewPassword" formControlName="confirmPassword"
+                          [ngClass]="{errors:getcontrol('confirmPassword')?.errors && getcontrol('confirmPassword')?.touched}"><span
+                          (click)="hidePass()" class=" fa {{eyeIcon2}}"></span>
+                      </div>
+                      <div *ngIf="changePassword.get('confirmPassword')?.errors?.['passwordMismatch']"
+                        class="text-danger small">Passwords do not match.</div>
+                      <div *ngIf="getcontrol('confirmPassword')?.errors && getcontrol('confirmPassword')?.touched">
+                        <small class="text-danger" *ngIf="getcontrol('confirmPassword')?.errors?.['required']">Password
+                          Required.</small>
+                        <small class="text-danger" *ngIf="getcontrol('confirmPassword')?.errors?.['pattern']"> The
+                          password must contain one or more lowercase characters numeric values and uppercase
+                          characters.</small>
+                      </div>
+
+                      <!-- <div *ngIf="g.invalid && (g.dirty || g.touched)" class="form-text text-danger">
+                        <div *ngIf="g.errors?.['required']">
+                          Field is required
+                        </div>
+                        <div *ngIf="g.errors?.['pattern']">
+                          Password must contain at least one number, one uppercase and a lowercase letter
+                          and at least 8 characters<br>Password cannot contain whitespace
+                        </div>
+                        <div *ngIf='!passwordsMatching && isconfirmPasswordDirty'>
+                          Passwords did not match
+                        </div>
+                      </div> -->
+
+                    </div>
+                  </div>
+
+                  <div class="text-center">
+                    <button type="submit" class="btn btn-info1">Change Password</button>
+                  </div>
+                </form>
+
+                <!-- End Change Password Form -->
+
+              </div>
+
+            </div><!-- End Bordered Tabs -->
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+    
+
+  </form>
+  </section>
+
+</main><!-- End #main -->

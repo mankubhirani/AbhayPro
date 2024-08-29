@@ -1,0 +1,143 @@
+<main id="main" class="main m-0">
+  <section class="section gamedetails">
+    <div class="row pb-1">
+      <div class="col-md-12">
+        <div class="row">
+          <h4 class="text-pink">Account Statement</h4>
+        </div>
+        <br />
+        <div class="col-md-12">
+          <div class="row align-items-end" [formGroup]="accountStmtForm">
+            <div class="col-md-4">
+              <label for="text" class="cassino"><h6>Select Player</h6></label>
+              <select
+                formControlName="playerId"
+                id="ab"
+                class="form-select pointer"
+                style="box-shadow: none"
+              >
+                <option [value]="null">--</option>
+                <option
+                  [value]="market.userId"
+                  *ngFor="let market of playerList"
+                >
+                  {{ market.username }}
+                </option>
+              </select>
+            </div>
+            <div class="col-md-2">
+              <button
+                type="button"
+                class="btn btn-primary mt-3"
+                (click)="loadPlayerData()"
+              >
+                Load
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- <section class="section gamedetails mt-3"> -->
+  <div class="row mt-3">
+    <div class="col-md-12 tablescroll">
+      <div *ngIf="accountStatements.length == 0" class="border text-center p-5">
+        <h6 *ngIf="accountStatements.length == 0 && !isLoading">
+          <hr class="horizonatal" />
+          No data available in table
+        </h6>
+        <hr />
+        <h4 *ngIf="isLoading">Loading...</h4>
+      </div>
+
+      <div class="table-responsive tableRes tableFixHead">
+        <table class="table  b-0 " *ngIf="accountStatements.length > 0">
+          <tbody >
+            <tr class="tableall">
+              <th
+                class="thts"
+                class="cursor-pointer pointer"
+                (click)="toggleSort('createdDate')"
+              >
+                Date
+              </th>
+              <th
+                class="thts"
+                class="cursor-pointer pointer"
+                (click)="toggleSort('fromUsername')"
+              >
+                Credit
+              </th>
+              <th
+                class="thts"
+                class="cursor-pointer pointer"
+                (click)="toggleSort('toUsername')"
+              >
+                Debit
+              </th>
+              <th
+                class="thts"
+                class="cursor-pointer pointer"
+                (click)="toggleSort('amount')"
+              >
+                Balance
+              </th>
+
+              <th
+                class="thts"
+                class="cursor-pointer pointer"
+                (click)="toggleSort('isGiven')"
+              >
+                Description
+              </th>
+            </tr>
+
+            <tr
+              *ngFor="
+                let user of accountStatements
+                  | sort : sortColumn : sortAscending;
+                let i = index
+              "
+            >
+              <td class="tds tdts">
+                {{ user.date | date : "medium" }}
+              </td>
+              <td class="tds tdts">
+                {{ user.credit | indianCurrency }}
+              </td>
+              <td class="tds tdts">
+                {{ user.debit | indianCurrency }}
+              </td>
+              <td
+                [ngClass]="user.isGiven ? 'text-danger' : 'text-success'"
+                class="amountt tds tdts"
+              >
+                {{ user.balance | indianCurrency }}
+              </td>
+              <td class="tds tdts">
+                {{ user.remark }}
+              </td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <!-- <td ></td>
+              <td></td>
+              <td></td>
+              <td></td>
+
+              <td
+                class="text-success text-center"
+                [ngClass]="totalAmount > 0 ? 'text-success' : 'text-danger'"
+              >
+                {{ totalAmount | indianCurrency }}
+              </td> -->
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+</main>

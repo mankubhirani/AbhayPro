@@ -1,0 +1,90 @@
+<!-- <p>un-subscribe-contacts works!</p> -->
+<main id="main" class="main">
+    <!-- jumbotron content  start -->
+    <div class=" pb-5">
+        <h1 class="text_style">Unsubscribe People</h1>
+        <h3 class="text1">Test</h3>
+        <h4 class="text2">Your audience has<a class="color:blue">1</a> contacts.<a class="color:blue">1</a> of these are subscribers.</h4>
+    </div>
+
+    <!-- jumbotron content end -->
+    <div class="div">
+      <nav class="navbar navbar-expand-lg navbar-light  p-2 ">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav navbaritem">
+
+            <li class="nav-item dropdown ">
+              <a class="nav-link   text-light"  data-bs-toggle="dropdown">
+                <span class="d-none d-md-block dropdown-toggle ps-2">Manage contacts</span>
+              </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" routerLink="/viewContact">View contacts</a>
+                  <a class="dropdown-item" routerLink="/unsucscribeContacts" >Unsubscribe contacts</a>
+                </div>
+            </li>
+            
+            <li class="nav-item dropdown ">
+              <a class="nav-link  text-light"  data-bs-toggle="dropdown">
+                <span class="d-none d-md-block dropdown-toggle ps-2">Add contacts</span>
+              </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item"  routerLink="/addSubscribers">Add a subscribers</a>
+                  <a class="dropdown-item"  routerLink="/importContact" >Import contacts</a>
+                </div>
+            </li>
+        
+            
+      
+      
+          
+          </ul>
+        </div>
+          
+          <!-- End Profile Dropdown Items -->
+            <!-- End Profile Nav -->
+
+  
+        </nav>
+      <!-- <button mat-button [matMenuTriggerFor]="belowMenu">Below</button>
+      <mat-menu #belowMenu="matMenu" yPosition="below">
+      <button mat-menu-item>Item 1</button>
+      <button mat-menu-item>Item 2</button>
+      </mat-menu> -->
+
+      
+  
+      <form class="">
+          <input class="form-control border-top-0 border-left-0 border-right-0 fw-bold" type="search"
+          placeholder="Search" aria-label="Search">
+      
+      </form>
+  </div>
+        <!-- <form class="">
+            <input class="form-control border-top-0 border-left-0 border-right-0 fw-bold" type="search"
+                placeholder="Surveys" aria-label="Search">
+            <i class="bi bi-search iconset"></i>
+        </form> -->
+
+        <!-- <h4 class="text_style overview">Unsubscribe people</h4> -->
+        <div class="tblbox1 row mt-4 mb-4">
+
+            <br>
+            <label for="text">Enter email address of people you wish to unsubscribe
+                <span>(one entry per line)</span> </label>
+          
+          <textarea name="" id="" cols="30" rows="10" style="width: 60% ;"></textarea>
+          <br>
+          &nbsp;
+
+         <div class="row">
+
+  
+            <p style="padding: 10px;">People you unsubscribe from your list will not receive confirmation emails from Mailchimp.</p>
+
+      <a (click)="url()"><button type="button" class="btn btn-secondary" style=" width: auto;"> Unsubscribe</button></a>  
+
+        </div>
+         
+        </div>
+   
+</main>

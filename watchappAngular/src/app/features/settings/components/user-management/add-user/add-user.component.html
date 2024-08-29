@@ -1,0 +1,112 @@
+<div id="content" class="p-3">
+  <div class="row">
+    <section class="col-md-12">
+      <div class="education">
+        <div class="card mt-3 mb-5">
+          <div class="card-body">
+            <div class="tab-content" id="pills-tabContent">
+              <div id="bank-management" aria-labelledby="bank-management-tab">
+                <div class="container-fluid">
+                  <div class="row mt-2">
+                    <div class="col-md-12">
+                      <main id="main" class="main">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <h2 class="colorp">
+                              <img src="assets/images/balanceProgressReport.svg" alt=""/>
+                              Add User
+                              <hr>
+                            </h2>
+                          </div>
+                          
+                          <div class="col-md-12">
+                            <div class="mycard p-2">
+                              <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+                                <div class="form-row">
+                                  <div class="form-group col-md-6 mt-4">
+                                    <label for="user_name">Name</label>
+                                    <input
+                                      type="text"
+                                      class="form-control"
+                                      id="user_name"
+                                      formControlName="user_name"
+                                      placeholder="Name"
+                                    />
+                                  </div>
+                                  <div class="form-group col-md-6 mt-4">
+                                    <label for="mobile_no">Mobile No</label>
+                                    <input
+                                      type="number"
+                                      class="form-control"
+                                      id="mobile_no"
+                                      formControlName="mobile_no"
+                                      placeholder="Mobile No"
+                                    />
+                                  </div>
+                                </div>
+                                <div class="form-row">
+                                  <div class="form-group col-md-6 mt-4">
+                                    <label for="role_type">Role Type</label>
+                                    <select class="form-control" id="role_type" formControlName="role_type">
+                                      <option value="" disabled selected>Select</option>
+                                      <option value="1">Head Account Manager</option>
+                                      <option value="2">Account Manager</option>
+                                      <option value="3">Lead Acquisition Specialist</option>
+                                    </select>
+                                  </div>
+                                  <div class="form-group col-md-6 mt-4">
+                                    <label for="email">Email ID</label>
+                                    <input
+                                      type="email"
+                                      class="form-control"
+                                      id="email"
+                                      formControlName="email"
+                                      placeholder="Email ID"
+                                    />
+                                  </div>
+                                </div>
+                                <div class="form-row">
+                                  <div class="form-group col-md-6 mt-4">
+                                    <label for="Password">Password</label>
+                                    <input
+                                      type="password"
+                                      class="form-control"
+                                      id="Password"
+                                      formControlName="Password"
+                                      placeholder="Password"
+                                    />
+                                  </div>
+                                  <div class="form-group col-md-6 mt-4">
+                                    <label for="reporting_manager">Reporting Manager</label>
+                                    <select class="form-control" id="reporting_manager" formControlName="reporting_manager">
+                                      <option value="" disabled selected>Select</option>
+                                      <option value="1">Pawas Goyal</option>
+                                      <option value="2">Rajesh Chandran</option>
+                                    </select>
+                                  </div>
+                                </div>
+
+                                <div class="row">
+                                  <div class="col-md-12 mt-5">
+                                    <button type="submit"  class="btn btn-info1 me-2">Add</button>
+                                    <button type="button" class="btn btn-info1 me-2" (click)="onSaveAndNew()">Save and New</button>
+                                    <button type="button" class="btn btn-info1" (click)="onCancel()">Cancel</button>
+                                  </div>
+                                  </div>
+                                <br /><br />
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </main>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

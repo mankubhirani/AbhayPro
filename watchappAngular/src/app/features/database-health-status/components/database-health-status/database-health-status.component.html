@@ -1,0 +1,562 @@
+<div id="content" class="p-3">
+  <div class="row">
+    <section class="col-md-12">
+      <div class="education">
+        <div class="card">
+          <div class="card-boby">
+            <div class="tab-content" id="pills-tabContent">
+              <div id="bank-magement" aria-labelledby="bank-magement-tab">
+                <div class="container-fluid">
+                  <div class="row mt-2">
+                    <div class="col-md-12">
+                      <h2 class="colorp">
+                        <img
+                          src="assets/images/balanceProgressReport.svg"
+                          alt=""
+                        />
+                       DataBase Health Status
+                      </h2>
+                    </div>
+                    <div class="col-md-12 my-3 ">
+                      <div class="row align-items-center">
+                        <!-- Reduced width for the search bar on the left side -->
+                        <div class="col-md-4 my-2">
+                          <form>
+                            <div class="d-flex align-items-center mt-4">
+                              <input type="search" name="" id="" class="form-control" placeholder="Search" style="width: 80%;">
+                              <button class="btn btn-info ms-2">
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                              </button>
+                            </div>
+                          </form>
+                        </div>
+                      
+                        <!-- Right-side elements -->
+                        <div class="col-md-8 d-flex justify-content-end align-items-center my-2">
+                          <div class="dropdown me-3">
+                            <label for="" class="d-block">Select column</label>
+                            <button onclick="myFunction()" class="dropbtn border py-1 rounded-2">
+                              Column View <i class="bi bi-arrow-down"></i>
+                            </button>
+                            <div id="myDropdown" class="dropdown-content">
+                              <a href="#"><input type="checkbox" /> Select All</a>
+                              <a href="#"><input type="checkbox" /> DataBase Name</a>
+                              <a href="#"><input type="checkbox" /> DataBase Status</a>
+                              <a href="#"><input type="checkbox" /> Instance Status</a>
+                              <a href="#"><input type="checkbox" /> Total CPU Usage MilliSeconds</a>
+                            </div>
+                          </div>
+                      
+                          <div class="form-group me-3">
+                            <label for="">Show</label>
+                            <select class="form-control" style="width: 100px;">
+                              <option>Show</option>
+                              <option>10</option>
+                              <option>25</option>
+                              <option>50</option>
+                              <option>100</option>
+                            </select>
+                          </div>
+                      
+                          <div>
+                            <button type="button" class="btn btn-primary text-center mt-4" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                              Export
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      
+                      
+                      <div class="col-md-12">
+                        <div class="row align-items-end">
+                          <div class="col-md-2">
+                            <label>From Date:</label>
+                            <input
+                              type="date"
+                              [(ngModel)]="fromDate"
+                              name="fromDate"
+                              class="form-control"
+                            />
+                          </div>
+                          <div class="col-md-2">
+                            <label>To Date:</label>
+                            <input
+                              type="date"
+                              [(ngModel)]="toDate"
+                              name="toDate"
+                              class="form-control"
+                            />
+                          </div>
+                          <div class="col-md-2">
+                            <div class="serverIP">
+                              <label>Server IP:</label>
+                              <select
+                                name=""
+                                id=""
+                                class="form-select"
+                                (change)="getIISServerIp($event)"
+                              >
+                                <option value="" selected >---</option>
+                                <option
+                                  *ngFor="let server of ServerIPadress"
+                                  value="{{ server.ServerIPAddress }}"
+                                  class="a"
+                                >
+                                  {{ server.ServerName }} ({{
+                                    server.ServerIPAddress
+                                  }})
+                                </option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-md-2">
+                            <form class="mt-3">
+                              <label for="cars">Server State:</label>
+                              <select
+                                name="cars"
+                                id="cars"
+                                class="form-select"
+                                [(ngModel)]="status"
+                              >
+                                <option value="" selected>---</option>
+                  
+                                <option value="Running">Running</option>
+                                <option value="Stopped">Stopped</option>
+                              </select>
+                            </form>
+                          </div>
+                  
+                          <div class="col-md-2">
+                            <button
+                              class="btn btn-info py-1 rounded-2"
+                              (click)="searchWithServerIp()"
+                            >
+                              Search
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    
+
+<button class="accordion">MS Sql</button>
+<div class="panel">
+<div class="row align-items-end">
+<div class="col-md-12">
+
+</div>
+</div>
+<div class="row">
+
+<div class="col-md-12">
+  <div class="table-responsive">
+    <table class="table table-hover mt-3 table-striped">
+      <thead>
+
+        <tr class="btn-s" *ngIf="!allColumnsHidden">
+          <th *ngIf="columns.DatabaseName" id="table_Head">DataBase Name</th>
+          <th *ngIf="columns.DatabaseStatus" id="table_Head">DataBase Status</th>
+          <th *ngIf="columns.InstanceStatus" id="table_Head">Instance Status</th>
+          <th *ngIf="columns.TotalCPUUsageInMilliseconds" id="table_Head">Total CPU Usage MilliSeconds</th>
+          <th *ngIf="columns.TotalMemoryUsageInMB" id="table_Head">Total Memory Usage In MB</th>
+          <th *ngIf="columns.NumberOfReads" id="table_Head">Number Of Reads</th>
+          <th *ngIf="columns.NumberOfWrites" id="table_Head">Number Of Writes</th>
+          <th *ngIf="columns.TotalSizeMB" id="table_Head">Total Size MB</th>
+          <th *ngIf="columns.UsedSpaceMB" id="table_Head">Used Space MB</th>
+          <th *ngIf="columns.FreeSpaceMB" id="table_Head">Free Space MB</th>
+          <th *ngIf="columns.LastBackupDate" id="table_Head">Last Backup Date</th>
+          <th *ngIf="columns.BackupSizeMB" id="table_Head">Backup Size MB</th>
+          <th *ngIf="columns.BackupStatus" id="table_Head">Backup Status</th>
+          <th *ngIf="columns.RestoreDate" id="table_Head">Restore Date</th>
+          <th *ngIf="columns.LogSizeMB" id="table_Head">LogSize MB</th>
+          <th *ngIf="columns.LogSpaceUsedMB" id="table_Head">Log Space Used MB</th>
+          <th *ngIf="columns.LogSpaceUsedPercent" id="table_Head">Log Space Used Percent</th>
+          <th *ngIf="columns.PointInTimeRecoveryName" id="table_Head">Point In Time Recovery Name</th>
+          <th *ngIf="columns.PointInTimeRecoveryDate" id="table_Head">Point In Time Recovery Date</th>
+          <th *ngIf="columns.last_checked" id="table_Head">Last Checked</th>
+        
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of getDatabaseHealthStatusArr | paginate: { itemsPerPage: itemsPerPage, currentPage: p }; let i = index">
+          <td *ngIf="columns.DatabaseName" id="for_table_color">{{ item.DatabaseName }}</td>
+          <td *ngIf="columns.DatabaseStatus" id="for_table_color">{{ item.DatabaseStatus }}</td>
+          <td *ngIf="columns.InstanceStatus" id="for_table_color">{{ item.InstanceStatus }}</td>
+          <td *ngIf="columns.TotalCPUUsageInMilliseconds">{{ item.TotalCPUUsageInMilliseconds }}</td>
+          <td *ngIf="columns.TotalMemoryUsageInMB">{{ item.TotalMemoryUsageInMB }}</td>
+          <td *ngIf="columns.NumberOfReads">{{ item.NumberOfReads }}</td>
+          <td *ngIf="columns.NumberOfWrites" id="for_table_color">{{ item.NumberOfWrites }}</td>
+          <td *ngIf="columns.TotalSizeMB" id="for_table_color">{{ item.TotalSizeMB }}</td>
+          <td *ngIf="columns.UsedSpaceMB" id="for_table_color">{{ item.UsedSpaceMB }}</td>
+          <td *ngIf="columns.FreeSpaceMB">{{ item.FreeSpaceMB }}</td>
+          <td *ngIf="columns.LastBackupDate">{{ item.LastBackupDate }}</td>
+          <td *ngIf="columns.BackupSizeMB">{{ item.BackupSizeMB }}</td>
+          <td *ngIf="columns.BackupStatus" id="for_table_color">{{ item.BackupStatus }}</td>
+          <td *ngIf="columns.RestoreDate" id="for_table_color">{{ item.RestoreDate }}</td>
+          <td *ngIf="columns.LogSizeMB" id="for_table_color">{{ item.LogSizeMB }}</td>
+          <td *ngIf="columns.LogSpaceUsedMB">{{ item.LogSpaceUsedMB }}</td> 
+          <td *ngIf="columns.LogSpaceUsedPercent">{{ item.LogSpaceUsedPercent }}</td>
+          <td *ngIf="columns.PointInTimeRecoveryName">{{ item.PointInTimeRecoveryName }}</td>
+           <td *ngIf="columns.PointInTimeRecoveryDate">{{ item.PointInTimeRecoveryDate }}</td>
+          <td *ngIf="columns.last_checked">{{ item.last_checked }}</td>
+  
+        </tr>
+      </tbody>
+    </table>
+ 
+
+  </div>
+  <br/>
+  <div class="list">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+<button class="accordion">My Sql</button>
+<div class="panel">
+<div class="row align-items-end">
+<div class="col-md-12">
+<div class="row align-items-end">
+
+
+ 
+</div>
+</div>
+</div>
+<div class="row">
+<!-- last transection -->
+
+
+<div class="col-md-12 my-3">
+<div class="education">
+  <div class="card lg-card">
+    <div class="card-body">
+      <div class="row align-items-center">
+        <div class="col-md-6 my-2">
+          <h2 class="colorp m-0">
+            <!-- <img
+              src="assets/images/application_performance.svg"
+              alt=""
+            /> -->
+            <!-- Application Performance -->
+          </h2>
+        </div>
+        <!-- <div class="col-md-6 my-2 text-end">
+          <p class="small m-0">
+            Last Updated :
+            <span class="text-warning"
+              >12 April 2024</span
+            > -->
+        
+        </div>
+        <div class="col-md-12">
+          <div class="table-responsive">
+            <table
+              class="table table-hover mt-3 table-striped"
+            >
+              <thead>
+               
+                  <th id="table_Head">
+                    Sr. No
+                  </th>
+                  <th id="table_Head">
+                   DataBase Name
+                  </th>
+                  <th id="table_Head">
+                    status
+                  </th>
+                  <th id="table_Head">
+                    Instance
+                  </th>
+                  <th
+                    id="table_Head"
+                    class="text-center"
+                  >
+                  Total CPU Usage
+                  </th>
+                  <th
+                    id="table_Head"
+                    class="text-center"
+                  >
+                  Total Memory Usage
+                  </th>
+                  <th
+                    id="table_Head"
+                    class="text-center"
+                  >
+                  Total Size
+                  </th>
+                  <th
+                    id="table_Head"
+                    class="text-center"
+                  >
+                  Used Space
+                  </th>
+                  <th
+                    id="table_Head"
+                    class="text-center"
+                  >
+                 Free Space
+                  </th>
+              
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                   
+                    1
+                  </td>
+                  <td>Ambit_C</td>
+                  <td id="for_table_color">
+                    Running
+                  </td>
+                  <td>UP</td>
+                  <td>155289</td>
+                  <td>98.12</td>
+                  <td>
+                    456
+                  </td>
+                  <td>45456</td>
+                  <td>4545</td>
+                </tr>
+                <tr>
+                  <td>
+                   
+                    2
+                  </td>
+                  <td>Ambit_C</td>
+                  <td id="for_table_color">
+                    Running
+                  </td>
+                  <td>UP</td>
+                  <td>155289</td>
+                  <td>98.12</td>
+                  <td>
+                    456
+                  </td>
+                  <td>45456</td>
+                  <td>4545</td>
+                </tr>
+                  
+               
+              </tbody>
+            </table>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                  <li class="page-item">
+                    <a class="page-link text-black" href="#"
+                      >Previous</a
+                    >
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link text-black" href="#">1</a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link text-black" href="#">2</a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link text-black" href="#">3</a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link text-black" href="#"
+                      >Next</a
+                    >
+                  </li>
+                </ul>
+              </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+
+
+
+<button class="accordion">Postgre</button>
+<div class="panel">
+<div class="row align-items-end">
+<div class="col-md-12">
+<div class="row align-items-end">
+ 
+</div>
+</div>
+</div>
+<div class="row">
+<!-- last transection -->
+
+
+<div class="col-md-12 my-3">
+<div class="education">
+  <div class="card lg-card">
+    <div class="card-body">
+      <div class="row align-items-center">
+        <div class="col-md-6 my-2">
+          <h2 class="colorp m-0">
+            <!-- <img
+              src="assets/images/application_performance.svg"
+              alt=""
+            /> -->
+            <!-- Application Performance -->
+          </h2>
+        </div>
+        <!-- <div class="col-md-6 my-2 text-end">
+          <p class="small m-0">
+            Last Updated :
+            <span class="text-warning"
+              >12 April 2024</span
+            > -->
+      
+        </div>
+        <div class="col-md-12">
+          <div class="table-responsive">
+            <table
+              class="table table-hover mt-3 table-striped"
+            >
+              <thead>
+               
+                  <th id="table_Head">
+                    Sr. No
+                  </th>
+                  <th id="table_Head">
+                   DataBase Name
+                  </th>
+                  <th id="table_Head">
+                    status
+                  </th>
+                  <th id="table_Head">
+                    Instance
+                  </th>
+                  <th
+                    id="table_Head"
+                    class="text-center"
+                  >
+                  Total CPU Usage
+                  </th>
+                  <th
+                    id="table_Head"
+                    class="text-center"
+                  >
+                  Total Memory Usage
+                  </th>
+                  <th
+                    id="table_Head"
+                    class="text-center"
+                  >
+                  Total Size
+                  </th>
+                  <th
+                    id="table_Head"
+                    class="text-center"
+                  >
+                  Used Space
+                  </th>
+                  <th
+                    id="table_Head"
+                    class="text-center"
+                  >
+                 Free Space
+                  </th>
+              
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                   
+                    1
+                  </td>
+                  <td>Ambit_C</td>
+                  <td id="for_table_color">
+                    Running
+                  </td>
+                  <td>UP</td>
+                  <td>155289</td>
+                  <td>98.12</td>
+                  <td>
+                    456
+                  </td>
+                  <td>45456</td>
+                  <td>4545</td>
+                </tr>
+                <tr>
+                  <td>
+                   
+                    2
+                  </td>
+                  <td>Ambit_C</td>
+                  <td id="for_table_color">
+                    Running
+                  </td>
+                  <td>UP</td>
+                  <td>155289</td>
+                  <td>98.12</td>
+                  <td>
+                    456
+                  </td>
+                  <td>45456</td>
+                  <td>4545</td>
+                </tr>
+                  
+               
+              </tbody>
+            </table>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                  <li class="page-item">
+                    <a class="page-link text-black" href="#"
+                      >Previous</a
+                    >
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link text-black" href="#">1</a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link text-black" href="#">2</a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link text-black" href="#">3</a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link text-black" href="#"
+                      >Next</a
+                    >
+                  </li>
+                </ul>
+              </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+
+
+                    
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+    </section>
+  </div>
+</div>
+

@@ -1,0 +1,148 @@
+<!-- <p>create-segment works!</p> -->
+
+<main id="main" class="main">
+    <div class="card" style="padding: inherit;">
+        <form [formGroup]="createSegment" (ngSubmit)="send()">
+
+
+            <!-- jumbotron content  start -->
+            <div class=" pb-">
+                <h3 class="text1">Create segments</h3>
+            </div>
+
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="text">Name</label>
+                        <br>
+                        <input type="text" class="form-control" formControlName="segmentName">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-6 mt-4">
+                        Criteria
+                    </div>
+                </div>
+                <br>
+
+            </div>
+            <div class="col-md-12">
+         
+                        <div class="row">
+                            <div class="col-md-2" style="text-align: center">
+                                <i class="bi bi-plus-circle" (click)="add()" style="font-size: x-large;"></i>
+                                    <i class="bi bi-dash-circle ms-1" style="font-size: x-large;"></i>
+                            </div>
+
+                            <div class="col-md-3">
+                                <select class=" form-control " style="border-color: gray;padding: 5px;"
+                                    formControlName="contactfieldType">
+                                    <option>Emial Address</option>
+                                    <option> Address</option>
+                                    <option>Country</option>
+                                    <option>Contact Rating</option>
+                                    <option>Emial clint</option>
+                                    <option>Emial marketing engagement</option>
+                                    <option>Emial marketing status</option>
+                                    <option>First name</option>
+                                    <option>Last name</option>
+                                    <option>Location</option>
+                                    <option>Phone number</option>
+                                    <option>Birthday</option>
+                                    <option>Date added</option>
+                                </select>&emsp;
+                            </div>
+                            <div class="col-md-3">
+                                <select class=" form-control" style="border-color: gray;padding: 5px;"
+                                    formControlName="FieldfindBy">
+                                    <option>is</option>
+                                    <option>is not</option>
+                                    <option>contains</option>
+                                    <option>doesn't contains</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control" formControlName="criteria">
+                            </div>
+                        </div>
+                    </div>
+
+                <!-- <div class="col-md-12">
+                    <div formArrayName="segment">
+                        <div *ngFor="
+          let passengerGroup of segment?.controls;
+              
+              let i = index
+            " [formGroupName]="i-1">
+                            <header hidden>{{ i-1 }}</header>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <input type="text" class="form-control" formControlName="criteria">
+                                </div>
+                                <div class="col-md-3">
+                                    <select class=" form-control " style="border-color: gray;padding: 5px;"
+                                    formControlName="contactfieldType">
+                                    <option>Emial Address</option>
+                                    <option> Address</option>
+                                    <option>Country</option>
+                                        <option>Contact Rating</option>
+                                        <option>Emial clint</option>
+                                        <option>Emial marketing engagement</option>
+                                        <option>Emial marketing status</option>
+                                        <option>First name</option>
+                                        <option>Last name</option>
+                                        <option>Location</option>
+                                        <option>Phone number</option>
+                                        <option>Birthday</option>
+                                        <option>Date added</option>
+                                    </select>&emsp;
+                                </div>
+                                <div class="col-md-3">
+                                    <select class=" form-control" style="border-color: gray;padding: 5px;"
+                                    formControlName="FieldfindBy">
+                                    <option>is</option>
+                                    <option>is not</option>
+                                    <option>contains</option>
+                                    <option>doesn't contains</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control" formControlName="criteria">
+                            </div>
+                            <div class="col-md-1" style="text-align: center">
+                                <i class="bi bi-plus-circle" (click)="add()" style="font-size: x-large;"></i>
+                                <i class="bi bi-dash-circle ms-1" (click)="remove(i)" style="font-size: x-large;"></i>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    </div> -->
+    
+
+                <div id="new_chq" class="col-md-12"></div>
+
+
+                <div class="pt-3">
+                    <p>Criteria Pattern : 1</p>
+                </div>
+                <div>
+                    <p>Tip: Comma separated search values can be given. They will be interpreted as 'OR' criteria.</p>
+                </div>
+                <div>
+                    <p>Example Last Name contains Jones, Smith, West will be treated as (Last Name contains Jones) OR
+                        (Last Name contains smith) OR (Last Name contains west).</p>
+                </div>
+
+                <div class="button2 mt-4">
+                    <button type="submit" style="text-decoration: none; color: rgb(255, 255, 255);"
+                        class="btn btn-secondary" [disabled]="createSegment.invalid">Save</button>
+                    <button type="button" class="btn btn-link ms-1"
+                        style="border: .5px solid gray; text-decoration: none;" (click)="url()">Cancel</button>
+                </div>
+                <!-- jumbotron content end -->
+        </form>
+    </div>
+</main>

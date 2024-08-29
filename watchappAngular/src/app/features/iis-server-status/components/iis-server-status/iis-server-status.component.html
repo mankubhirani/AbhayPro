@@ -1,0 +1,334 @@
+<div class="container-fluid"></div>
+<div class="wrapper d-flex align-items-stretch">
+  <!-- Page Content  -->
+  <div id="content" class="p-3">
+    <div class="row">
+      <section class="col-md-12">
+        <div class="education">
+          <div class="card mt-3 mb-5">
+            <div class="card-body">
+              <div class="tab-content" id="pills-tabContent">
+                <div id="bank-management" aria-labelledby="bank-management-tab">
+                  <div class="container-fluid">
+                    <div class="row mt-2">
+                      <div class="col-md-12">
+                        <h2 class="colorp">
+                          <img src="assets/images/balanceProgressReport.svg" alt="" />
+                          IIS Server Status
+                        </h2>
+                      </div>
+                      <div class="col-12 d-flex">
+                        <!-- <div class="col-md-10">
+                          <ul
+                            class="list-unstyled p-0 m-0 d-flex align-items-center justify-content-center"
+                          >
+                            <li class="d-flex align-items-center">
+                              <button class="disabled pr-5 ml-1"></button>
+                              <span class="ml-2">Disabled</span>
+                            </li>
+
+                            <li class="d-flex align-items-center">
+                              <button class="ready ml-3"></button>
+                              <span class="ml-2">Ready</span>
+                            </li>
+                          </ul>
+                        </div> -->
+
+                        <!-- <div class="col-md-2">
+                          <div class="ServerIP">
+                            <select
+                              name=""
+                              id=""
+                              class="dropselect form-select"
+                              (change)="getServerIpForGraph($event)"
+                            >
+                              <option value="" selected>Server IP</option>
+                              <option
+                                *ngFor="let server of ServerIPadress"
+                                value="{{ server.ServerIPAddress }}"
+                                class="a"
+                              >
+                                {{ server.ServerName }} ({{
+                                  server.ServerIPAddress
+                                }})
+                              </option>
+                            </select>
+                          
+                          </div>
+                        </div> -->
+                      </div>
+                      <div class="col-md-12 mt-2">
+                        <!-- <canvas id="pieChart"></canvas> -->
+                        <!-- <canvas id="pieeeeChart" width="500" height="150"></canvas> -->
+                      </div>
+                      <div class="col-md-12">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="row">
+
+                              <div class="col-md-6">
+                                <div class="row">
+                                  <div class="col-md-8 mt-4">
+                                    <form (ngSubmit)="searchTask()">
+                                      <div class="d-flex align-items-center">
+                                        <input 
+                                          type="search" 
+                                          [(ngModel)]="searchQuery" 
+                                          (ngModelChange)="onSearchChange()" 
+                                          name="searchQuery" 
+                                          class="form-control" 
+                                          placeholder="Search" 
+                                          aria-label="Search"
+                                        />
+                                        <button class="btn btn-info ms-2" type="submit">
+                                          <i class="fa fa-search" aria-hidden="true"></i>
+                                        </button>
+                                      </div>
+                                    </form>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <div class="row justify-content-end align-items-end">
+                                  <div class="col-auto">
+                                    <div class="dropdown">
+                                      <button
+                                        (click)="showCheckboxes()"
+                                        class="dropbtn border mt-4 py-1 rounded-2"
+                                      >
+                                        Column View
+                                        <i class="bi bi-arrow-down"></i>
+                                      </button>
+                                      <div
+                                        id="showCheckboxes"
+                                        class="dropdown-content"
+                                        [ngClass]="status ? 'show' : ''"
+                                      >
+                                        <a href="#">
+                                          <input
+                                            type="checkbox"
+                                            (change)="toggleAllCheckboxes($event)"
+                                            checked
+                                          />
+                                          All
+                                        </a>
+                                        <a href="#">
+                                          <input
+                                            type="checkbox"
+                                            (change)="toggleColumn('serial_number')"
+                                            checked
+                                          />
+                                          Sr.No
+                                        </a>
+                                        <a href="#">
+                                          <input
+                                            type="checkbox"
+                                            (change)="toggleColumn('site_name')"
+                                            checked
+                                          />
+                                          Site Name
+                                        </a>
+                                        <a href="#">
+                                          <input
+                                            type="checkbox"
+                                            (change)="toggleColumn('site_path')"
+                                            checked
+                                          />
+                                          Site Path
+                                        </a>
+                                        <a href="#">
+                                          <input
+                                            type="checkbox"
+                                            (change)="toggleColumn('server_state')"
+                                            checked
+                                          />
+                                          Server State
+                                        </a>
+                                        <a href="#">
+                                          <input
+                                            type="checkbox"
+                                            (change)="toggleColumn('application_pool')"
+                                            checked
+                                          />
+                                          Application Pool
+                                        </a>
+                                        <a href="#">
+                                          <input
+                                            type="checkbox"
+                                            (change)="toggleColumn('server_bindings')"
+                                            checked
+                                          />
+                                          Server Bindings
+                                        </a>
+                                        <a href="#">
+                                          <input
+                                            type="checkbox"
+                                            (change)="toggleColumn('last_checked')"
+                                            checked
+                                          />
+                                          Last Checked
+                                        </a>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="col-auto">
+                                    <div class="form-group">
+                                      <select class="form-control" style="margin-top: 21px;" (change)="updateItemsPerPageIIS($event)">
+                                        <option>Show</option>
+                                        <option>10</option>
+                                        <option>25</option>
+                                        <option>50</option>
+                                        <option>100</option>
+                                      </select>
+                                    </div>
+                                  </div>
+
+                                  <div class="col-auto mt-4">
+                                    <button class="btn btn-success mt-6" (click)="exportToExcel()">
+                                      Export
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="row align-items-end">
+                          <div class="col-md-12">
+                            <div class="row align-items-end">
+                              <div class="col-md-2">
+                                <label>From Date:</label>
+                                <input
+                                  type="date"
+                                  [(ngModel)]="fromDate"
+                                  name="fromDate"
+                                  class="form-control"
+                                />
+                              </div>
+                              <div class="col-md-2">
+                                <label>To Date:</label>
+                                <input
+                                  type="date"
+                                  [(ngModel)]="toDate"
+                                  name="toDate"
+                                  class="form-control"
+                                />
+                              </div>
+                              <div class="col-md-2">
+                                <div class="serverIP">
+                                  <label>Server IP:</label>
+                                  <select
+                                    name=""
+                                    id=""
+                                    class="form-select"
+                                    (change)="getIISServerIp($event)"
+                                  >
+                                    <option value="" selected >---</option>
+                                    <option
+                                      *ngFor="let server of ServerIPadress"
+                                      value="{{ server.ServerIPAddress }}"
+                                      class="a"
+                                    >
+                                      {{ server.ServerName }} ({{
+                                        server.ServerIPAddress
+                                      }})
+                                    </option>
+                                  </select>
+                                </div>
+                              </div>
+                              <div class="col-md-2">
+                                <form class="mt-3">
+                                  <label for="cars">Server State:</label>
+                                  <select
+                                    name="cars"
+                                    id="cars"
+                                    class="form-select"
+                                    [(ngModel)]="status"
+                                  >
+                                    <option value="" selected>---</option>
+    
+                                    <option value="Running">Running</option>
+                                    <option value="Stopped">Stopped</option>
+                                  </select>
+                                </form>
+                              </div>
+    
+                              <div class="col-md-2">
+                                <button
+                                  class="btn btn-info py-1 rounded-2"
+                                  (click)="searchWithServerIp()"
+                                >
+                                  Search
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-12 mt-4" *ngIf="!allColumnsHidden">
+                        <div class="table-responsive">
+                          <table class="table table-hover mt-3 table-striped">
+                            <thead>
+                              <tr class="btn-s">
+                                <th id="table_head" *ngIf="columnsIIS.serial_number">
+                                  Sr.NO.
+                                </th>
+                                <th id="table_head" *ngIf="columnsIIS.site_name">
+                                  Site Name
+                                </th>
+                                <th id="table_head" *ngIf="columnsIIS.server_state">
+                                  Server State
+                                </th>
+                                <th id="table_head" *ngIf="columnsIIS.server_state">
+                                  IP Address
+                                </th>
+                                <th id="table_head" *ngIf="columnsIIS.site_path">
+                                  Site Path
+                                </th>
+                               
+                                <th id="table_head" *ngIf="columnsIIS.application_pool">
+                                  Application Pool
+                                </th>
+                                <th id="table_Head" *ngIf="columnsIIS.server_bindings">
+                                  URL
+                                </th>
+                                <th id="table_head" *ngIf="columnsIIS.last_checked">
+                                  Last Checked
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let item of filteredServerStatusArr | paginate: { itemsPerPage: itemsPerPageIIS, currentPage: p }; let i = index">
+                                <td id="for_table_color">{{i+1}}</td>
+                                <td *ngIf="columnsIIS.site_name">{{item.sitename}}</td>
+                                <td *ngIf="columnsIIS.server_state">{{item.serverstate}}</td>
+                                <td *ngIf="columnsIIS.server_state">{{item.server_ipaddress}}</td>
+                                <td *ngIf="columnsIIS.site_path">{{item.sitepath}}</td>
+                                
+                                <td *ngIf="columnsIIS.application_pool">{{item.applicationpool}}</td>
+                                <td *ngIf="columnsIIS.server_bindings">{{item.serverbindings}}</td>
+                                <td *ngIf="columnsIIS.last_checked">{{item.lastchecked}}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <br/>
+                        <div class="d-flex" *ngIf="!isLoading">
+                          <button class="btn rounded-pill" [disabled]="currentPageIIS === 1" (click)="prevIIS()">Prev</button>
+                          <span class="btn btn-pink rounded-pill ps-4 pe-4">{{ currentPageIIS }} / {{ totalPagesIIS }}</span>
+                          <button class="btn rounded-pill" [disabled]="currentPageIIS === totalPagesIIS" (click)="nextIIS()">Next</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

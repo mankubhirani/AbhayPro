@@ -1,0 +1,150 @@
+<div id="content" class="p-3">
+  <div class="row">
+    <section class="col-md-12">
+      <div class="education">
+        <div class="card mt-3 mb-5">
+          <div class="card-boby">
+            <div class="tab-content" id="pills-tabContent">
+              <div id="bank-magement" aria-labelledby="bank-magement-tab">
+                <div class="container-fluid">
+                  <form
+                    [formGroup]="taskSchedulerForm"
+                    (ngSubmit)="addTaskScheduler()"
+                  >
+                    <div class="row mt-2">
+                      <div class="col-md-12">
+                        <h4 class="colorp">
+                          <img
+                            src="assets/images/balanceProgressReport.svg"
+                            alt=""
+                          />
+                          Add Task Scheduler Details
+                        </h4>
+                      </div>
+                      <div class="col-md-12">
+                        <main id="main" class="main">
+                          <div class="row p-3">
+                            <div class="form-group col-md-12">
+                              <h5 class="mt-4">
+                                <b>Task-Scheduler-ID : 8983-8374374-2873</b>
+                              </h5>
+                            </div>
+                            <div class="form-group col-md-6 mt-3">
+                              <label for="">Task Scheduler Name</label>
+                              <input
+                                class="form-control mt-2"
+                                formControlName="taskSchedulerName"
+                                type="text"
+                                placeholder="Server 1 Task Scheduler Collection"
+                              />
+                            </div>
+                             <!-- <div class="form-group col-md-6 mt-3">
+                            <label for="">Utility Icon</label>
+
+                            <input
+                              type="file"
+                              class="form-control mt-2"
+                            />
+                            </div>  -->
+                            <div class="form-group col-md-6 mt-3">
+                              <label for="">Valid From</label>
+                              <input
+                                class="form-control mt-2"
+                                formControlName="validFrom"
+                                type="date"
+                              />
+                            </div>
+                            <div class="form-group col-md-6 mt-3">
+                              <label for="">Valid To</label>
+                              <input
+                                class="form-control mt-2"
+                                formControlName="validTo"
+                                type="date"
+                              />
+                            </div>
+                            <!-- -------------------------Server DropDown------------------------------->
+                            <div class="form-group col-md-6 mt-3" >
+                              <label for="" >Server</label>
+                              <ng-multiselect-dropdown 
+                                #multiSelect
+                                [placeholder]="'Select Server'"
+                                [data]="serverlist"
+                                [settings]="settings"
+                                [disabled]="false"
+                                (onFilterChange)="onFilterChange($event)"
+                                (onDropDownClose)="onDropDownClose($event)"
+                                (onSelect)="onItemSelect($event)"
+                                (onDeSelect)="onDeSelect($event)"
+                                (onSelectAll)="onSelectAll($event)"
+                                (onDeSelectAll)="onDeSelectAll($event)"
+                                formControlName="servers"
+                              >
+                              </ng-multiselect-dropdown>
+                            </div>
+
+                            <!-- ------------------Application-Name------------------ -->
+                            <div class="form-group col-md-6 mt-3">
+                              <label for="">Application Name</label>
+                              <ng-multiselect-dropdown
+                              #multiSelect
+                              [placeholder]="'Select '"
+                              [data]="SetApplicationTypeArr"
+                              [settings]="Application"
+                              [disabled]="false"
+                              (onFilterChange)="onFilterChange($event)"
+                              (onDropDownClose)="onDropDownClose($event)"
+                              (onSelect)="onItemSelect($event)"
+                              (onDeSelect)="onDeSelect($event)"
+                              (onSelectAll)="onSelectAll($event)"
+                              (onDeSelectAll)="onDeSelectAll($event)"
+                              formControlName="applications"
+                            >
+                            </ng-multiselect-dropdown>
+                            </div>
+
+                            <div class="form-group col-md-4 mr-4 mt-5">
+                              Status &nbsp;
+                              <label class="switch">
+                                <!-- <input type="checkbox" checked /> -->
+                                <input
+                                  type="checkbox"
+                                  formControlName="status"
+                                />
+                                <span class="slider round"></span>
+                              </label>
+                            </div>
+
+                            <div class="form-group col-md-12 mt-3">
+                              <label for="">Description</label>
+                              <angular-editor
+                                id="editor1"
+                                formControlName="description"
+                                [config]="config"
+                              >
+                              </angular-editor>
+                            </div>
+                          </div>
+
+                          <div class="col-md-12 mt-3 text-end">
+                            <a
+                              routerLink="/settings/task-scheduler"
+                              class="btn btn-secondary"
+                              >Cancel</a 
+                            >
+                            &nbsp;  <button type="submit" class="btn btn-info1">
+                              Add
+                            </button>
+                          </div>
+                        </main>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

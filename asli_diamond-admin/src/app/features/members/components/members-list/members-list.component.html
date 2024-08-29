@@ -1,0 +1,422 @@
+<!-- <main id="main" class="main m-0">
+  <section class="section dashboard">
+    <div class="row align-items-center">
+      <div class="col-md-3 col-lg-3 col-xl-3">
+        <div class="row">
+
+        </div>
+      </div>
+
+      <div class="col-md-3 col-lg-3 col-xl-2 mt-2">
+        <button
+          (click)="onUserEdit(7)"
+          routerLink="/member/create-member"
+          class="btn btn-pink radius-all"
+        >
+          <i class="fa fa-pen"></i> Create New
+        </button>
+      </div>
+
+      <div class="col-lg-1 col-md-6 col-6 mt-2">
+        <select
+          (change)="updateLimit($event)"
+          class="form-select-sm border-colour bg-dark rounded-3"
+        >
+          <option>100</option>
+          <option>150</option>
+          <option>200</option>
+          <option>250</option>
+        </select>
+      </div>
+      <div class="col-lg-2 col-md-3 col-3 mt-2 text-end">
+        
+        <button class="btn btn-pink rounded-pill" (click)="refreshCall()">
+          <i class="fa fa-redo-alt disnone"></i> Refresh
+        </button>
+      </div>
+      <div class="col-lg-1 col-md-3 col-3 text-end">
+        <button
+          *ngIf="userList.length > 0"
+          type="button"
+          class="btn-sm btn-pink rounded-pill ms-2"
+          (click)="exportExcel()"
+        >
+          Export
+        </button>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-md-12 overflow-auto">
+        <div *ngIf="userList.length == 0" class="border text-center p-5">
+          <h4 *ngIf="userList.length == 0 && !isLoading">No data found</h4>
+          <h4 *ngIf="isLoading">Loading...</h4>
+        </div>
+        <div class="table-responsive tableRes tableFixHead">
+          <table
+            #myTable
+            class="table tableall"
+            *ngIf="userList.length > 0 && !this.isLoading"
+          >
+            <thead>
+              <tr>
+                <th scope="col" class="first">
+                  <i class="fa-sharp fa-regular fa-address-card"></i>
+                </th>
+                <th
+                  scope="col"
+                  class="pointer"
+                  (click)="toggleSort('username')"
+                >
+                  User Name
+                </th>
+                
+                <th
+                  scope="col"
+                  class="text-center pointer"
+                  (click)="toggleSort('creditLimit')"
+                >
+                  Credit Reference
+                </th>
+                <th
+                  scope="col"
+                  class="text-center pointer"
+                  (click)="toggleSort('exposure')"
+                >
+                  U St
+                </th>
+                <th
+                  scope="col"
+                  class="text-center pointer"
+                  (click)="toggleSort('take')"
+                >
+                  B St
+                </th>
+                <th
+                  scope="col"
+                  class="text-center pointer"
+                  (click)="toggleSort('give')"
+                >
+                  Exposure Limit
+                </th>
+                <th
+                  scope="col"
+                  class="text-center pointer"
+                  *ngIf="selectedRoleId != 7"
+                  (click)="toggleSort('partnerShipPercent')"
+                >
+                  Default %
+                </th>
+
+                <th
+                  scope="col"
+                  class="text-center pointer"
+                >
+                  Account Type %
+                </th>
+                <th
+                  *ngIf="clientId == 1 || clientId == 3"
+                  scope="col"
+                  class="text-center pointer"
+                  (click)="toggleSort('give')"
+                >
+                  Casino Total
+                </th>
+              
+                <th scope="col" class="last text-center">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <h1
+                class="text-center"
+                *ngIf="userList.length == 0 && !this.isLoading"
+              >
+                No users Found
+              </h1>
+              <tr
+                *ngFor="
+                  let user of userList | sort : sortColumn : sortAscending;
+                  let i = index
+                "
+              >
+            
+                <td>
+                  <span *ngIf="currentPage == 1">{{ i + 1 }}</span>
+                  <span *ngIf="currentPage > 1">{{
+                    i + 1 + (currentPage - 1) * limit
+                  }}</span>
+                </td>
+                <td
+                  data-tooltip="{{ user.displayName }}"
+                  [ngStyle]="
+                    selectedRoleId == 7
+                      ? { cursor: 'context-menu' }
+                      : { cursor: 'pointer' }
+                  "
+                >
+                  <span (click)="showDownlineTree(user)"
+                    >{{ user.username }}
+                  </span>
+                </td>
+                
+                <td class="text-center">
+                  {{ user.creditLimit | indianCurrency }}
+                </td>
+                <td
+                  (click)="showExposureDetails(user)"
+                  class="text-center pointer"
+                  [ngClass]="user.exposure > 0 ? 'text-danger' : ''"
+                >
+                  {{ user.exposure | indianCurrency }}
+                </td>
+                <td
+                  [ngClass]="user.take > 0 ? 'text-success' : ''"
+                  class="text-center"
+                >
+                  <a
+                    class="pointer text-success text-decoration-none"
+                    *ngIf="user.take > 0"
+                    (click)="adjustWinningsForSingleUser(user, false)"
+                    >{{ user.take | indianCurrency }}</a
+                  >
+                  <span *ngIf="user.take <= 0">{{
+                    user.take | indianCurrency
+                  }}</span>
+                </td>
+                <td
+                  [ngClass]="user.give > 0 ? 'text-danger' : ''"
+                  class="text-center"
+                >
+                  <a
+                    class="pointer text-danger text-decoration-none"
+                    *ngIf="user.give > 0"
+                    (click)="adjustWinningsForSingleUser(user, true)"
+                    >{{ user.give | indianCurrency }}</a
+                  >
+                  <span *ngIf="user.give <= 0">{{
+                    user.give | indianCurrency
+                  }}</span>
+                </td>
+                <td class="text-center" *ngIf="clientId == 1 || clientId == 3">
+                  <span
+                    class="pointer text-success text-decoration-none"
+                    *ngIf="user.casinoWinnings > 0"
+                    >{{ user.casinoWinnings | indianCurrency }}</span
+                  >
+                  <span
+                    class="pointer text-danger"
+                    *ngIf="user.casinoWinnings < 0"
+                    >{{ user.casinoWinnings | indianCurrency }}</span
+                  >
+                  <span *ngIf="user.casinoWinnings == 0">{{
+                    user.casinoWinnings | indianCurrency
+                  }}</span>
+                </td>
+                <td class="text-center">
+                  {{ user.availableCredit | indianCurrency }}
+                </td>
+                <td *ngIf="selectedRoleId != 7" class="text-center">
+                  {{ user.partnerShipPercent | indianCurrency }}
+                </td>
+                
+                
+                <td class="text-center">
+                
+
+                  <a
+                    (click)="onUserEdit(user.roleId)"
+                    routerLink="/member/edit-member/{{ user.userId }}"
+                  >
+                    <i class="fa-sharp fa-solid fa-pen icon-pink pointer"></i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+        <div class="d-flex" *ngIf="userList.length > 0 && !this.isLoading">
+          <button
+            class="btn rounded-pill"
+            [disabled]="currentPage === 1"
+            (click)="prev()"
+          >
+            Prev
+          </button>
+          <span class="btn btn-pink rounded-pill ps-4 pe-4"
+            >{{ currentPage }} / {{ totalPages }}
+          </span>
+          <button
+            class="btn rounded-pill"
+            [disabled]="currentPage === totalPages"
+            (click)="next()"
+          >
+            Next
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</main> -->
+
+
+
+<!-- <div class="container-fluid">
+  <div class="card bg-light my-4">
+    <div class="card-body">
+      <h5
+        class="card-title d-flex align-items-center justify-content-between"
+      >
+        Account List
+        <button class="btn btn-danger" routerLink="/admin/add-account">Add Account</button>
+      </h5>
+      <button class="btn btn-danger my-3 small">PDF</button>
+      <button class="btn btn-success my-3 small m-2">Excel</button>
+
+      <div class="table-responsive small">
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>User Name</th>
+              <th>Credit Referance</th>
+              <th>U St</th>
+              <th>B St</th>
+              <th>Exposure Limit</th>
+              <th>Default %</th>
+              <th>Account Type</th>
+              <th>Casino Total</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td></td>
+              <td>0</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+<div class="container-fluid">
+  <div class="card bg-light my-4">
+    <div class="card-body">
+      <h5
+        class="card-title d-flex align-items-center justify-content-between"
+      >
+        Account List
+        <button class="btn btn-danger" routerLink="/admin/add-account">Add Account</button>
+      </h5>
+      <button class="btn btn-danger my-3 small">PDF</button>
+      <button class="btn btn-success my-3 small m-2">Excel</button>
+
+      <div class="table-responsive small">
+        <div *ngIf="userList.length == 0" class="border text-center p-5">
+          <h4 *ngIf="userList.length == 0 && !isLoading">No data found</h4>
+          <h4 *ngIf="isLoading">Loading...</h4>
+        </div>
+        <table class="table table-bordered table-striped" *ngIf="userList.length > 0 && !this.isLoading">
+          <thead>
+            <tr>
+              <th>User Name</th>
+              <th>Credit Referance</th>
+              <!-- <th>U St</th>
+              <th>B St</th> -->
+              <th>Exposure Limit</th>
+              <th>Default (%)</th>
+              <th>Account Type</th>
+              <th>Casino Total</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="
+            let user of userList | sort : sortColumn : sortAscending;
+            let i = index
+          ">
+              <td class="wrape-text m-10">{{user.username}}</td>
+              <td>{{user.creditLimit}}</td>
+              <!-- <td> - </td>
+              <td> - </td> -->
+              <td>{{user.exposure}}</td>
+              <td>0</td>
+              <td class="text-center">
+                <span 
+                  *ngFor="let role of roles"
+                  (click)="showDownlineTree(user)">
+                </span>
+                <span *ngIf="user.roleId == 2"> ADMIN </span>
+                <span *ngIf="user.roleId == 3"> SUPER MASTER </span>
+                <span *ngIf="user.roleId == 4"> MASTER </span>
+                <span *ngIf="user.roleId == 5"> AGENT </span>
+                <span *ngIf="user.roleId == 6"> DEALER </span>
+                <span *ngIf="user.roleId == 7"> USER </span>
+              </td>
+              <td>{{user.casinoWinnings}}</td>
+              <td class="text-center">
+                <!-- <a
+                  (click)="onUserEdit(user.roleId)"
+                  routerLink="/admin/edit-users/{{ user.userId }}"
+                >
+                  <i class="fa-sharp fa-solid fa-pen icon-pink pointer"></i>
+                </a> -->
+                <div role="group" class="btn-group">
+                  <button type="button" class="btn action-button btn-secondary">D</button> 
+                  <button type="button" class="btn action-button btn-secondary">W</button> 
+                  <button type="button" class="btn action-button btn-secondary">L</button> 
+                  <button type="button" class="btn action-button btn-secondary">C</button> 
+                  <button type="button" class="btn action-button btn-secondary">P</button> 
+                  <button type="button" class="btn action-button btn-secondary">S</button> 
+                  <button type="button" class="btn action-button btn-secondary">More</button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+    </div>
+    <div class="d-flex m-3" *ngIf="userList.length > 0 && !this.isLoading">
+      <button
+        class="btn btn-danger small"
+        [disabled]="currentPage === 1"
+        (click)="prev()"
+      >
+        Prev
+      </button>
+      <span class="btn btn-pink rounded-pill ps-4 pe-4"
+        >{{ currentPage }} / {{ totalPages }}
+      </span>
+      <button
+        class="btn btn-danger small"
+        [disabled]="currentPage === totalPages"
+        (click)="next()"
+      >
+        Next
+      </button>
+    </div>
+  </div>
+</div>

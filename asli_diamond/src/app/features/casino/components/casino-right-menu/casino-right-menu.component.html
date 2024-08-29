@@ -1,0 +1,59 @@
+<div class="row" *ngIf="!isMobileView">
+  <div class="col-md-12 asidenav mobileTableHide casinoRightFixed">
+    <ul class="">
+      <span class="text-color text-center">CATEGORY</span>
+      <li class="mx-2 casinodpdn">
+        <ng-container>
+          <li
+            [ngStyle]="
+              casino.categoryName == currentValue
+                ? { background: 'linear-gradient(90deg, #cd212f 0, #e76f26)' }
+                : { 'background-image': '' }
+            "
+            class="nav-item animate__animated animate__backInLeft mt-2"
+            *ngFor="let casino of casinoMenuList"
+          >
+            <a
+              (click)="onCategorySelected(casino)"
+              class="nav-link pointer"
+              style="border-right: none"
+            >
+              <img width="20px" class="me-2" />
+              <span> {{ casino.categoryName }} </span>
+            </a>
+          </li>
+        </ng-container>
+      </li>
+    </ul>
+  </div>
+</div>
+<div *ngIf="isMobileView">
+  <select
+    class="border-colour bg-dark text-white p-2 rounded-3"
+    style="width: 100%"
+    placeholder="--Select Category --"
+    [(ngModel)]="selectedMenu"
+    (ngModelChange)="onCategorySelected($event)"
+  >
+    <option
+      [ngValue]="null"
+      class="nav-item animate__animated animate__backInLeft mt-2 pointer"
+    >
+      <span> -- Select Category -- </span>
+    </option>
+
+    <option
+      *ngFor="let casino of casinoMenuList"
+      [ngValue]="casino"
+      [ngStyle]="
+        casino.categoryName == currentValue
+          ? { background: 'linear-gradient(90deg, #cd212f 0, #e76f26)' }
+          : { 'background-image': '' }
+      "
+      class="nav-item animate__animated animate__backInLeft mt-2 pointer"
+    >
+      <img width="20px" [src]="casino.imgUrl" />
+      <span> {{ casino.categoryName }} </span>
+    </option>
+  </select>
+</div>

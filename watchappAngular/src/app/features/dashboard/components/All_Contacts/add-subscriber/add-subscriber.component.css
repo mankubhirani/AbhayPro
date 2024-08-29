@@ -1,0 +1,11 @@
+.btn {
+    position: relative;
+  
+    /* top: 20px; */
+    border-radius: 3px;
+    background-color: #716b67;
+    height: 40px;
+    color: #ffffff;
+    width: 142px;
+    border: none;
+  }

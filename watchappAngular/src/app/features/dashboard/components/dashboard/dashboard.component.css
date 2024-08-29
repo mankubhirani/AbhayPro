@@ -1,0 +1,14 @@
+.disabled{
+    background-color: red;
+    height: 15px;
+    width: 35px;
+    border-width: 0px;
+  }
+  .ready{
+    background-color: green;
+    height: 15px;
+    border-width: 0px;
+    width: 55px;
+   
+    
+  }

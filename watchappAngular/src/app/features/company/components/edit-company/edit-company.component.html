@@ -1,0 +1,149 @@
+<form method="post" [formGroup]="editCompany">
+    <div class="row">
+        <div class="col-sm-6">
+            <h2 class="text_style">Company Details</h2>
+            <!-- <div class="sub-pairagraph">
+                <p>Want to subscribe more than one person at a time?
+                    <a href="#">Import an audience</a>
+                </p>
+            </div> -->
+            <div class="sub-forms">
+                <div class="sub-form-heading">
+                    <label>Company URL <span class="sub-req-data">*</span></label>
+                    <input class="form-control" type="url" formControlName="companyURL" name="companyURL" size="25" maxlength="30"
+                        value="">
+                </div>
+                <div *ngIf="companyVail && companyVail?.['companyURL']?.invalid && companyVail?.['companyURL']?.touched"
+                    class="small text-danger text-start ps-3">Invalid Url.</div>
+
+                <div class="sub-form-heading">
+                    <label>Company Name <span class="sub-req-data">*</span></label>
+                    <input type="text" (keypress)="ValidateAlpha($event)" class="form-control" formControlName="companyName" name="companyName" id="" maxlength="30"
+                        size="50" value="">
+                </div>
+                <div *ngIf="companyVail && companyVail?.['companyName']?.invalid && companyVail?.['companyName']?.touched"
+                    class="small text-danger text-start ps-3">Company Name required.</div>
+
+                <div class="sub-form-heading">
+                    <label>Number of Employee <span class="sub-req-data">*</span></label>
+                    <select class="form-select" id="" formControlName="Number_of_Employe"
+                        name="Number_of_Employe">
+                        <option value="" disabled [selected]="true">Select Employee</option>
+                        <option value="0-20">0-20</option>
+                        <option value="20-40">20-40</option>
+                        <option value="40-60">40-60</option>
+                        <option value="60-80">60-80</option>
+                        <option value="80-100">80-100</option>
+                        <option value="100-120">100-120</option>
+                        <option value="120-140">120-140</option>
+                        <option value="140-160">140-160</option>
+                        <option value="160-180">160-180</option>
+                        <option value="180-200">180-200</option>
+                    </select>
+                </div>
+                <div *ngIf="companyVail && companyVail?.['Number_of_Employe']?.invalid && companyVail?.['Number_of_Employe']?.touched"
+                class="text-danger text-start ps-3">Number of Employee required.</div>
+              
+
+                <div class="sub-form-heading">
+                    <label>Address <span class="sub-req-data">*</span></label>
+                    <textarea type="text" id="" formControlName="companyLocation" name="streetAddress" value="" maxlength="60"
+                    placeholder="Company Location" class="form-input" rows="2" style="width: 100%;"></textarea>
+                </div>
+                <div *ngIf="companyVail && companyVail?.['companyLocation']?.invalid && companyVail?.['companyLocation']?.touched"
+                class="text-danger text-start">Address is required</div>
+                    <!-- <select class="sub-contry-select mb-4" id="" value="India" formControlName="adddress"
+                        name="adddress" style="border-radius: 3px">
+                       
+                        <option *ngFor="let Item of getAllCountry.Countries">{{Item.CountryName}}</option>
+
+                    </select> -->
+                    <!-- <option value="" disabled [selected]="true">Select Country</option> -->
+
+                    <!-- <input type="text" id="" formControlName="region" name="region" maxlength="20" value="" placeholder="State/Prov/Region"
+                    class="av-text">
+                    <input type="text" id="" formControlName="city" name="city" maxlength="40" value="" placeholder="City" class="av-text">
+
+                    <input type="text" id="" formControlName="zip" name="zip" maxlength="10" value="" placeholder="Postal/Zip"
+                    class="av-text"> -->
+
+
+                    <!-- <div>
+                    <input type="text" id="" name="" maxlength="10" value="" placeholder="Location"
+                    class="av-text" >
+                     </div> -->
+
+                   
+                    <!-- <input type="text" id="" name="" maxlength="70" value="" placeholder="Address Line 2"
+                        class="av-text">
+                   -->
+
+               
+
+            </div>
+        </div>
+        <div class="col-sm-6" style="padding-top: 37px;">
+            <div class="sub-forms">
+
+                <div class="sub-form-heading">
+                    <label>Company Email <span class="sub-req-data">*</span></label>
+                    <input type="email" formControlName="companyEmail" name="companyEmail" id="" size="25" value="" maxlength="30" [ngClass]="{errors:getcontrol('email')?.errors && getcontrol('email')?.touched}">
+                </div>
+                <div *ngIf="getcontrol('email')?.errors && getcontrol('email')?.touched">
+                    <small class="text-danger" *ngIf="getcontrol('email')?.errors?.['required']">Email is Required.</small>
+                    <small class="text-danger" *ngIf="getcontrol('email')?.errors?.['email']">Please insert a valid email address.</small>
+                   </div>
+                <div *ngIf="companyVail && companyVail?.['companyEmail']?.invalid && companyVail?.['companyEmail']?.touched"
+                    class="small text-danger text-start ps-3">Invalid Email</div>
+
+                <div class="sub-form-heading">
+                    <label> Company Phone Number <span class="sub-req-data">*</span></label>
+                    <input type="text" formControlName="Phone_Number" minlength="10" maxlength="10"
+                        (keypress)="keyPressNumbers($event)" name="Phone_Number" id="" value="" maxlength="10">
+                </div>
+                <div *ngIf="companyVail && companyVail?.['Phone_Number']?.invalid && companyVail?.['Phone_Number']?.touched"
+                    class="small text-danger text-start ps-3">Invalid Phone Number.</div>
+
+                <!-- <div class="sub-form-heading">
+                    <label>Remark</label>
+                    <textarea formControlName="remark" name="remark" class="sub-form-heading  p-3 " cols="77" rows="5"
+                        placeholder="Remark" style="margin-top: 3.5rem;"></textarea>
+                </div> -->
+
+                <div class="sub-form-heading">
+                    <label>Remark</label>
+                    <textarea type="text" id="" formControlName="remark" name="streetAddress" value="" maxlength="50"
+                    placeholder="Remark" class="form-input" rows="6" style="width: 100%;"></textarea>
+                  
+                </div>
+
+                <!-- <div class="sub-form-heading">
+                                    <label class="sub-form-heading" style="margin-top: 28px;">Timezone </label>
+                                    <select class="sub-contry-select mb-4" id="" formControlName="timeZone" name="timeZone"
+                                        style="border-radius: 3px">
+                                       
+                                        <option *ngFor="let Item of timeZone">{{Item.offset}} | {{Item.name}}</option>
+                
+                                    </select>
+                                </div> -->
+                <!-- <option value="" disabled [selected]="true">Select Timezone</option> -->
+
+
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <div class="button2 mt-4">
+            <!-- <a style="color: #ffffff !important;"><button type="submit"
+                    style="text-decoration: none; color: rgb(255, 255, 255);" class="btn btn-secondary"
+                    [disabled]="addCompany.invalid">Register </button></a>&nbsp;&nbsp;
+            <button type="button" class="btn btn-link" style="border: .5px solid gray; text-decoration: none;"
+                (click)="clear()">Cancel</button> -->
+            <button type="submit" class="btn btn-secondary" [disabled]="editCompany.invalid"  (click)="UpdateCompany()">Update</button>&nbsp;&nbsp;
+            <button type="reset" class="btn border bg-light ml-2 mb-1" [routerLink]="['/dashboard']">Cancel</button>
+        </div>
+    </div>
+
+
+</form>

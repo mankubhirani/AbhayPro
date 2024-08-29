@@ -1,0 +1,131 @@
+.outer{
+    height:100vh;
+    background: white
+}
+
+.panel-heading{
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+#forget{
+    min-width: 100px;
+    margin-left: auto;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+a:hover{
+    text-decoration: none;
+}
+
+.form-line-label{
+    padding-left: 10px;
+    margin: 0;
+    cursor: pointer;
+}
+
+.btn{
+    margin-top: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.panel{
+    min-height: 380px;
+    box-shadow: 20px 20px 80px rgb(218, 218, 218);
+    border-radius: 12px;
+    margin-top: 100px;
+}
+
+.input-field{
+    border-radius: 5px;
+    padding: 5px;
+    display:flex;
+    align-items: center;
+    border:1px solid #ddd;
+    cursor: pointer;
+}
+
+.input-field.error{
+    border:1px solid red;
+    color: red;
+}
+
+input[type='text'],
+input[type='password']{
+    /* border:none; */
+    outline: none;
+    box-shadow: none;
+    /* width: 100%; */
+}
+
+.fa-eye-slash.btn{
+    border:none;
+    outline: none;
+    box-shadow: none;
+    /* width: 100%; */
+}
+
+/* .fa{
+    position: relative;
+    margin-left: 290px;
+    } */
+/* img{
+    width:40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    position: relative;
+} */
+
+
+.bodycontainer {
+    background-image: linear-gradient(180deg, #ddb373, #3b475a);
+    /* height: 105vh; */
+  }
+
+  /* Eye icon */
+
+  .pwd{
+	position: relative;
+}
+
+.p-viewer {
+	z-index: 9999;
+	position: absolute;
+	top: 30%;
+	right: 10px;
+}
+.input-container {
+    position: relative;
+}
+
+.eye-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+.modal-title {
+    display: flex;
+    align-items: center;
+}
+
+.modal-title img {
+    width: 25%; 
+    margin-right: 10px; 
+}
+
+.modal-title span {
+    flex: 1; 
+    white-space: nowrap; 
+    
+    text-overflow: ellipsis; 
+}
+
+.modal-header {
+
+    overflow-x: auto; 
+}

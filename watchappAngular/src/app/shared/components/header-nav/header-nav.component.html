@@ -1,0 +1,50 @@
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 p-0">
+        <nav class="navbar navbar-expand-lg navbar-light px-3">
+          
+          <div class="container-fluid">
+            <h2>
+              <b *ngIf="!company_logo">Watch-App</b> <!-- Company logo nahi hai to Watch-App show hoga -->
+              <a routerLink="dashboard" class="logo">
+                <img class="img2" *ngIf="company_logo" [src]="company_logo" alt=""> <!-- Company logo available hai to woh show hoga -->
+              </a>
+            </h2>
+            
+
+            <button type="button" id="sidebarCollapse" class="btn" onclick="toggleSidebar()">
+
+              <img src="assets/images/Drawer.svg" alt="">
+              <span class="sr-only">Toggle Menu</span>
+            </button>
+
+            <button class="btn text-dark border-dark d-inline-block d-lg-none ml-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <i class="fa fa-bars" aria-hidden="true"></i>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="nav navbar-nav ml-auto align-items-md-center align-items-end headerUL">
+                <!-- <li class="nav-item">
+                    <img src="assets/images/notification.svg" alt="" />
+                  </li> -->
+                <li class="nav-item res">
+                  <div class="media ">
+                    <img [src]="profilelogo ? profilelogo : 'assets/images/user-icon.png'" alt="." class="rounded-circle mr-2 img1">
+                    <div class="media-body">
+                      <h6 class="mt-0">{{this.userName}}</h6>
+                      {{curDate|date:'medium'}}
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <a type="btn" routerLink="/login" class="btn btn-info1 ml-5">Sign Out</a>
+                </li>
+              </ul>
+            </div>
+       
+          </div>
+          
+        </nav>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,105 @@
+<div class="container-fluid">
+    <div class="card bg-light my-4">
+      <div class="card-body">
+        <h4 class="card-title">Game Report</h4><br><br>
+
+        <form class="small">
+          <div class="row align-items-end">
+            <div class="col-md-2 my-md-1 my-3">
+              <label for="fromDate" class="form-label">From</label>
+              <input
+                type="date"
+                class="form-control"
+                id="fromDate"
+                aria-describedby="date"
+              />
+            </div>
+            <div class="col-md-2  my-md-1 my-3">
+              <label for="ToDate" class="form-label">To</label>
+              <input
+                type="date"
+                class="form-control"
+                id="ToDate"
+                aria-describedby="date"
+              />
+            </div>
+            <div class="col-md-2  my-md-1 my-3">
+              <label for="disabledSelect" class="form-label">Type</label>
+              <select id="disabledSelect" class="form-select">
+                <option>All</option>
+                <option>Match</option>
+                <option>Famcy</option>
+              </select>
+            </div>
+
+            <div class="col-md-2  my-md-1 my-3">
+              <button type="submit" class="btn btn-primary">Game List</button>
+            </div>
+          </div>
+          <div class="row align-items-end">
+            <div class="col-md-6 my-md-1 my-3">
+              <select id="disabledSelect" class="form-select">
+                <option>All</option>
+                <option>Match</option>
+                <option>Famcy</option>
+              </select>
+            </div>
+
+            <div class="col-md-6 my-md-1 my-3">
+              <button type="submit" class="btn btn-primary">
+                Show Game Report
+              </button>&nbsp;&nbsp;
+              <button type="submit" class="btn btn-primary" style="margin: inherit;">
+                Master Game Report
+              </button>
+            </div>
+          </div>
+        </form>
+
+        <div class="row mt-3">
+          <div class="col-md-6">
+            <div class="table-responsive mt-md-0 small">
+              <table class="table table-bordered table-striped">
+                <thead>
+                  <tr class="line">
+                    <th  style="font-size: larger;">Sr. No</th>
+                    <th  style="font-size: larger;">Name</th>
+                    <th  style="font-size: larger;">Amount</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td colspan="3" class="text-center">
+                      <!-- No data available in table -->
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div><br><br>
+          <div class="col-md-6">
+            <div class="table-responsive mt-md-0 small">
+              <table class="table table-bordered table-striped">
+                <thead>
+                  <tr class="line">
+            
+                    <th style="font-size: larger;">Sr. No</th>
+                    <th  style="font-size: larger;">Name</th>
+                    <th  style="font-size: larger;">Amount</th>
+            
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td colspan="3" class="text-center">
+                      <!-- No data available in table -->
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

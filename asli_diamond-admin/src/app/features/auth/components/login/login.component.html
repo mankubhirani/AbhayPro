@@ -1,0 +1,80 @@
+<div class="login">
+  <div class="wrapper">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="loginInner1">
+            <div class="log-logo m-b-20 text-center">
+              <img
+                src="assets/images/diamond247-logo.png"
+                class="logo-login"
+              />
+            </div>
+            <div class="featured-box-login featured-box-secundary default">
+              <h4 class="text-center">
+                LOGIN <i class="fas fa-hand-point-down"></i>
+              </h4>
+
+              <form [formGroup]="signInForm" (ngSubmit)="onSubmitSignIn()" role="form">
+                <div class="form-group m-b-20">
+                  <input
+                      autocomplete="disabled"
+                      readonly
+                      onfocus="this.removeAttribute('readonly');"
+                      formControlName="username"
+                      type="email"
+                      class="form-control"
+                      id="floatingInput"
+                      placeholder="User Name"
+                    />
+                  <i class="fas fa-user"></i>
+                  <div id="validationServer03Feedback" class="invalid-feedback">
+                    Please provide a valid name.
+                  </div>
+                  <small class="text-danger" style="display: none"></small>
+                </div>
+                <div class="form-group m-b-20">
+                  <input
+            [type]="show ? 'text' : 'password'"
+            readonly
+            onfocus="this.removeAttribute('readonly');"
+            class="form-control"
+            placeholder="Enter Password"
+            formControlName="password"
+          />
+                  <i class="fas fa-key" (click)="show = !show"
+                  [ngClass]="show ? 'fa-key' : 'fas fa-key'"></i>
+                 
+
+                  <small class="text-danger" style="display: none"></small>
+                </div>
+                <div class="form-group text-center mb-0">
+                  <button
+                    type="submit"
+                    [disabled]="signInForm.invalid || isLoading"
+                    class="btn btn-submit btn-login"
+                  >
+                    Login
+                    <i class="ml-2 fas fa-sign-in-alt"  [ngClass]="{ 'fa-spin fa-spinner': isLoading }"></i>
+                  </button>
+                </div>
+                <small class="recaptchaTerms"
+                  >This site is protected by reCAPTCHA and the Google
+                  <a href="https://policies.google.com/privacy"
+                    >Privacy Policy</a
+                  >
+                  and
+                  <a href="https://policies.google.com/terms"
+                    >Terms of Service</a
+                  >
+                  apply.
+                </small>
+                <div class="mt-2 text-center download-apk"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

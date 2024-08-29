@@ -1,0 +1,58 @@
+app-dashboard-header{
+    position: fixed;
+    width: 100%;
+    top: 0%;
+    height: 4rem;
+    z-index: 2;
+}
+
+main{
+    position: absolute;
+    width: 100%;
+    margin-top: 4rem;
+    z-index: 1;
+}
+
+app-dashboard-nav{
+    position:absolute;
+    left: 0%;
+    width: 250px;
+    height: calc(100vh - 4rem);
+    box-shadow: black;
+    border-top: 0.5px solid lightblue;
+    background-color: #f8f9fa;
+
+}
+
+
+/* Header-SideNav */
+app-dashboard-header{
+    position: fixed;
+    width: 100%;
+    top: 0%;
+    height: 4rem;
+    z-index: 2;
+}
+
+main{
+    position: absolute;
+    width: 100%;
+    margin-top: 4rem;
+    z-index: 1;
+}
+
+app-dashboard-nav{
+    position:absolute;
+    left: 0%;
+    width: 250px;
+    height: calc(100vh - 4rem);
+    box-shadow: black;
+    border-top: 0.5px solid lightblue;
+    background-color: #f8f9fa;
+
+}
+.dashboard-route{
+    left: 4rem;
+}
+
+@import'./../../node_modules/font-awesome/css/font-awesome.css'

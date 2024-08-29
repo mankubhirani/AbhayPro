@@ -1,0 +1,118 @@
+<div *ngIf="!(online$ | async)" class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="noInternet">
+        <img src="assets/images/logo.svg" class="col-2" alt="" />
+
+        <h4 class="my-4">
+          Please check your internet connection or try again later !
+        </h4>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <button id="openModal" #openModal [hidden]="true"
+ data-toggle="modal" data-target="#login-modal">
+Hello
+</button> -->
+
+<div
+  id="openModal"
+  *ngIf="inActive"
+  #openModal
+  data-toggle="modal"
+  data-target="#login-modal"
+  tabindex="-1"
+  aria-labelledby="bannerModalLabel"
+  class="modal fade show"
+  style="display: block; background: #00000063; z-index: 99991"
+  aria-modal="true"
+  role="dialog"
+>
+  <div
+    _ngcontent-kxa-c63=""
+    class="modal-dialog modal-sm modal-dialog-centered"
+  >
+    <div _ngcontent-kxa-c63="" class="modal-content">
+      <div _ngcontent-kxa-c63="" class="modal-body p-0">
+        <div class="container">
+          <div class="row">
+            <p class="m-3 txt-bold">Are you still Active ?</p>
+          </div>
+          <div class="row p-4">
+            <div class="col-md-6 col-6">
+              <button
+                class="btn btn-sm bg-pink m-auto text-white"
+                (click)="reloadPage()"
+              >
+                Yes
+              </button>
+            </div>
+            <div class="col-md-6 col-6">
+              <button
+                class="btn btn-sm bg-pink m-auto text-white"
+                (click)="logout()"
+              >
+                Logout
+              </button>
+            </div>
+          </div>
+          <img alt="" width="100%" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  id="openPopup"
+  *ngIf="isUpdate"
+  #openPopup
+  data-toggle="modal"
+  data-target="#refresh-modal"
+  tabindex="-1"
+  aria-labelledby="bannerModalLabel1"
+  class="modal fade show"
+  style="display: block; background: #00000063; z-index: 99991"
+  aria-modal="true"
+  role="dialog"
+>
+  <div class="modal-dialog modal-sm modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body p-0">
+        <div class="container">
+          <div class="row">
+            <p class="m-3 txt-bold">A new update is available</p>
+          </div>
+          <div class="row p-4">
+            <button
+              class="btn btn-sm bg-pink col-3 m-auto text-white"
+              (click)="refreshScreen()"
+            >
+              Update
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-header  *ngIf="!isLoginPage()"></app-header>
+<div class="main">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="sidebar col-md-2" *ngIf="!isLoginPage() && !isMobileView">
+        <app-left-navigation></app-left-navigation>
+      </div>
+      <div class="sidebar col-5 d-md-none d-none" *ngIf="!isLoginPage() && isMobileView" id="mobileBar">
+        <app-left-navigation></app-left-navigation>
+      </div>
+      <div [ngClass]="isLoginPage() ? 'col-md-12' : 'col-md-10'" class="p-0">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <router-outlet *ngIf="online$ | async"></router-outlet> -->

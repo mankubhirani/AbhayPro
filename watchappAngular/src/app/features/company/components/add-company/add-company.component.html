@@ -1,0 +1,234 @@
+<div class="container">
+  <div class="form_wrapper">
+    <div class="form_container">
+      <div class="card-body">
+
+        <form [formGroup]="companyForm" novalidate (ngSubmit)="addCompany()">
+          <div class="card ">
+            <h4 class="mt-4"> &nbsp; &nbsp; Company Information</h4>
+            <hr>
+
+            <div class="card-body p-5">
+              <div class="col-md-12">
+                <div class="row">
+                  <div class="form-group  col-md-6">
+                    <label for="c_name">Company Name <span class="text-danger">*</span>
+                    </label>
+                    <input type="text" class="form-control" id="c_name" placeholder="Company Name"
+                      formControlName="company_name" (keypress)="keyPressAlphabet($event)">
+                    <div
+                      *ngIf="companyVail && companyVail?.['company_name']?.invalid && companyVail?.['company_name']?.touched"
+                      class="small text-danger text-start ps-3">Company Name required!</div>
+                  </div>
+
+                  <div class="form-group col-md-6 ">
+                    <label for="c_email">Company Email <span class="" style="color:red;">*</span>
+                    </label>
+                    <input type="email" class="form-control" id="c_email" formControlName="company_email"
+                      placeholder="Company Email">
+                    <div
+                      *ngIf="companyVail && companyVail?.['company_email']?.invalid && companyVail?.['company_email']?.touched"
+                      class="small text-danger text-start ps-3">Invalid Email!</div>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="c_no">Contact No
+                    </label>
+
+                    <div class="row">
+                      <div class="col-1">
+                        <!-- <select name="dropdown" #countrySelect class="form-control" formControlName="country_code"
+                           (change)="updateDisplayedValue()">
+                            <option value="" selected disabled>Select Country code</option>
+                            <ng-container *ngFor="let code of country_codeList;">
+                              <option [value]="code.phonecode"> {{code.name}} +{{ code.phonecode }} </option>
+                            </ng-container>
+                          </select> -->
+
+                        <select name="dropdown" (change)="updateDisplayedValue($event)" class="form-select w-10"
+                          id="designation" formControlName="country_code">
+                          <option value="null" selected disabled>Country code</option>
+                          <option [value]="code.PhoneCode" *ngFor="let code of countryCodeLIst">{{code.CountryName}} +{{
+                            code.PhoneCode }}</option>
+                        </select>
+                      </div>
+                      <div class="col-2">
+                        <input type="text" name="" readonly maxlength="12" id="" class="form-control border-input"
+                          formControlName="country_code">
+                      </div>
+                      <div class="col-9 pl-0">
+                        <!-- <input  type="text" placeholder="Phone number" class="form-control border-input" autocomplete="off" formControlName="phone" name="phone" id="phone" maxlength="15" /> -->
+
+                        <input type="text" class="form-control" minlength="10" id="c_no" formControlName="phoneNumber"
+                          placeholder="Contact No" (keypress)="keyPressNumbers($event)">
+                        <!-- <div *ngIf="companyVail && companyVail?.['phoneNumber']?.invalid && companyVail?.['phoneNumber']?.touched" class="small text-danger text-start ps-3">Invalid Phone number</div> -->
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="form-group  col-md-6">
+                    <label for="p_name">Website <span class="" style="color:red;">*</span>
+                    </label>
+                    <input type="url" class="form-control" id="p_name" placeholder="Website"
+                      formControlName="company_website">
+                    <div
+                      *ngIf="companyVail && companyVail?.['company_website']?.invalid && companyVail?.['company_website']?.touched"
+                      class="small text-danger text-start ps-3">Website required!</div>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="ind">Industry <span class="" style="color:red;">*</span>
+                    </label>
+                    <select class="form-select" formControlName="idindustry_typ_id" id="inputInd">
+                      <option selected value="" disabled [selected]="true">
+                        Select Industry Type
+                      </option>
+                      <option *ngFor="let industry of industryData" [value]="industry.ci_company_industry_id">
+                        {{ industry.ci_industry_name }}
+                      </option>
+                    </select>
+                    <div *ngIf="companyVail?.['idindustry_typ_id']?.invalid && (companyVail?.['idindustry_typ_id']?.dirty || companyVail?.['idindustry_typ_id']?.touched)">
+                      <div *ngIf="companyVail?.['idindustry_typ_id']?.errors" style="color:red;">
+                        Industry is required.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="emp" class="">Number of Employee <span class="" style="color:red;">*</span>
+                    </label>
+
+                    <select name="" id="ab" class="form-select form-control" formControlName="employee_count_id">
+                      <option value="" disabled [selected]="true">Select here </option>
+                      <option *ngFor="let empl of noOfEmployeesData" [value]="empl.employee_num_id">
+                        {{ empl.number_of_employees }}
+                      </option>
+                    </select>
+                    <div *ngIf="companyVail?.['employee_count_id']?.invalid && (companyVail?.['employee_count_id']?.dirty || companyVail?.['employee_count_id']?.touched)">
+                      <div *ngIf="companyVail?.['employee_count_id']?.errors" style="color:red;">
+                        Number of Employee is required.
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group col-md-6">
+                    <label for="" class="">Company Applicable Tax
+                      <span class="" style="color: red">*</span>
+                    </label>
+
+                    <select name="" id="ab" class="form-select form-control" formControlName="tax_type_id">
+                      <option value="" disabled selected>Select here </option>
+                      <option *ngFor="let tax of taxTypes" [value]="tax.tt_tax_id">
+                        {{ tax.tt_tax_name }}
+                      </option>
+                    </select>
+                    <div *ngIf="companyVail?.['tax_type_id']?.invalid && (companyVail?.['tax_type_id']?.dirty || companyVail?.['tax_type_id']?.touched)">
+                      <div *ngIf="companyVail?.['tax_type_id']?.errors" style="color:red;">
+                        Company Applicable Tax is required.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group  col-md-6">
+                    <label for="tax">Tax Information
+                      <span class="" style="color: red">*</span>
+                    </label>
+                    <input type="text" class="form-control" id="tax" placeholder="Tax Information"
+                      formControlName="tax_information">
+                      <div *ngIf="companyVail?.['tax_information']?.invalid && (companyVail?.['tax_information']?.dirty || companyVail?.['tax_information']?.touched)">
+                        <div *ngIf="companyVail?.['tax_information']?.errors" style="color:red;">
+                          Tax Information is required.
+                        </div>
+                      </div>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for=""> 
+                    </label>
+                    <!-- <div class="custom-file">
+                        <input class="custom-file-input" id="customFile" type="file">
+                        <label class="custom-file-label" for="customFile">Upload Company Logo</label>
+                      </div> -->
+                    <div class="file-input-wrapper">
+                      <input type="text" class="text-field form-control" placeholder="Upload Company Logo"
+                        formControlName="company_logo" value="{{selectedFile ? selectedFile.name : company_logo}}"
+                        accept=".png, .jpeg, .jpg" readonly>
+                      <input type="file" (change)="onFileSelected($event)" accept="image/*" />
+                      <span class="browse-button">Browse</span>
+                      <div
+                        *ngIf="!selectedFile"
+                        class="small text-danger text-start ps-3">Company logo required!</div>
+                    </div>
+                  </div>
+                </div>
+              </div><br>
+            </div>
+            <hr>
+            <h4>
+              &nbsp; &nbsp; Address
+            </h4>
+            <hr>
+
+            <div class="card-body">
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label for="">Country <span class="text-danger">*</span>
+                  </label>
+
+                  <select class="form-control" (change)="changeCountry($event)" class="form-control" id="country"
+                    formControlName="country_id" name="India">
+                    <option value="" disabled>
+                      Select Country
+                    </option>
+                    <option *ngFor="let country of allCountryData;" [value]="country.id">
+                      {{ country.name }}
+                    </option>
+                  </select>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label for="state">State/Province</label>
+                  <select class="form-control" (change)="changeState($event)" id="state" formControlName="state_id">
+                    <option value="" disabled>Select State</option>
+                    <option *ngFor="let state of statesData" [value]="state.state_id">
+                      {{ state.state_name }}
+                    </option>
+                  </select>
+                </div>
+
+                <div class=" col-md-6">
+                  <label for="city">City <span class="text-danger">*</span>
+                  </label>
+                  <select class="form-control" (change)="changeCity($event)" id="city" formControlName="city_id">
+                    <option value="" disabled>Select City</option>
+                    <option *ngFor="let city of cityData" [value]="city.city_id">
+                      {{ city.city_name }}
+                    </option>
+                  </select>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label for="pin">ZIP/PIN Code <span class="text-danger">*</span>
+                  </label>
+                  <input type="text" class="form-control" id="pin" minlength="6" maxlength="6"
+                    placeholder="ZIP/PIN Code" formControlName="pin_code">
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="street">Street Address</label>
+                  <textarea type="text" class="form-control" id="street" placeholder="Street Address"
+                    formControlName="street_address"></textarea>
+                </div>
+              </div>
+
+            </div>
+            <div class="col-md-3">
+              <!-- <a class="p-2"> <button class="btn btn-info1 mb-1" type="submit"
+                      [disabled]="companyForm.invalid">Submit</button></a> -->
+              <a class="p-2"> <button class="btn btn-info1 mb-1" type="submit">Submit</button></a>
+              <a> <button class="btn border ml-2 mb-1" routerLink="/login">Cancel</button></a>
+            </div>
+          </div>
+          <br><br>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+</div>

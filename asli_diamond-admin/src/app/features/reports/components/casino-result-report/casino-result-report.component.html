@@ -1,0 +1,94 @@
+<div class="container-fluid">
+    <div class="card bg-light my-4">
+      <div class="card-body">
+        <h5 class="card-title">Casino Result Report</h5><br><br>
+
+        <form class="small">
+          <div class="row align-items-end">
+            <div class="col-md-2 col-4 my-md-4 my-3">
+              <input
+                type="date"
+                class="form-control"
+                id="ToDate"
+                aria-describedby="date"
+              />
+            </div>
+            <div class="col-md-2 col-4 my-md-4 my-3">
+              <select id="disabledSelect" class="form-select">
+                <option>1 Day Teenpatti</option>
+                <option>Test Teenpatti</option>
+                <option>20-20 Teenpatti</option>
+                <option>Open Teenpatti</option>
+              </select>
+            </div>
+            <div class="col-md-2 col-4 my-md-4 my-3">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </div>
+        </form>
+
+        <div class="row">
+          <div class="col-md-6 col-5">
+            <label
+              for="disabledSelect"
+              class="form-label d-flex align-items-center small"
+              >Show
+              <select id="disabledSelect" class="form-select w-auto py-0">
+                <option>10</option>
+              </select>
+              entries</label
+            >
+          </div>
+          <div class="col-md-6 col-7 text-end">
+            <label
+              for="ToDate"
+              class="form-label d-inline-flex align-items-center small"
+              >Search:
+              <input
+                type="search"
+                class="form-control col py-0"
+                id="search"
+                aria-describedby="search"
+            /></label>
+          </div>
+        </div>
+
+        <div class="table-responsive mt-md-0 small">
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th>Round ID</th>
+                <th>Winner</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td colspan="2" class="text-center">
+                  No data available in table
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="row align-items-center my-2">
+          <div class="col-md-6 col-6">
+            <label
+              for="disabledSelect"
+              class="form-label d-flex align-items-center m-0 small"
+              >Show
+              <span class="mx-2">0</span>
+              to
+              <span class="mx-2">0</span>
+              of
+              <span class="mx-2">0</span>
+              entries
+            </label>
+          </div>
+          <div class="col-md-6 col-6 text-end">
+            <button class="btn btn-danger small">Previous</button>
+            <button class="btn btn-danger small">Next</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

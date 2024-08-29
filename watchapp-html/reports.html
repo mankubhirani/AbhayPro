@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>WatchApp</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <style>
+      .dropdown-toggle {
+        cursor: pointer;
+        padding: 5px 10px;
+        border: 1px solid #ccc;
+      }
+      .dropbtn {
+        background-color: inherit;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+      }
+
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }
+
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 301px;
+        overflow: auto;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+      }
+
+      .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+      }
+
+      .dropdown a:hover {
+        background-color: #ddd;
+      }
+
+      .show {
+        display: block;
+      }
+
+      .show {
+        display: block;
+      }
+      .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+      }
+
+      .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: 0.4s;
+        transition: 0.4s;
+      }
+
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: 0.4s;
+        transition: 0.4s;
+      }
+
+      input:checked + .slider {
+        background-color: #ddb373;
+      }
+
+      input:focus + .slider {
+        box-shadow: 0 0 1px #000000;
+      }
+
+      input:checked + .slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+      }
+
+      /* Rounded sliders */
+      .slider.round {
+        border-radius: 34px;
+      }
+
+      .slider.round:before {
+        border-radius: 50%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12 p-0">
+          <nav class="navbar navbar-expand-lg navbar-light px-3">
+            <h1>
+              <a href="dashboard.html" class="logo"
+                ><img src="assets/images/logo.png" alt=""
+              /></a>
+            </h1>
+            <div class="container-fluid">
+              <button type="button" id="sidebarCollapse" class="btn">
+                <img src="assets/images/Drawer.svg" alt="" />
+                <span class="sr-only">Toggle Menu</span>
+              </button>
+
+              <button
+                class="btn text-dark border-dark d-inline-block d-lg-none ml-auto"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                <i class="fa fa-bars" aria-hidden="true"></i>
+              </button>
+
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul
+                  class="nav navbar-nav ml-auto align-items-md-center align-items-end headerUL"
+                >
+                  <!-- <li class="nav-item">
+                      <img src="assets/images/notification.svg" alt="" />
+                    </li> -->
+                  <li class="nav-item">
+                    <div class="media">
+                      <img
+                        src="assets/images/avtar.svg"
+                        class="mr-3"
+                        alt="..."
+                      />
+                      <div class="media-body">
+                        <h6 class="mt-0">kumar Saurabh</h6>
+                        21 June 2023, 16:40
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <a type="btn" href="login.html" class="btn btn-info">Sign Out</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <div class="wrapper d-flex align-items-stretch">
+      <nav id="sidebar" class="active bg-imp">
+        <ul class="list-unstyled components mb-5">
+          <li class="active">
+            <div class="accordion" id="accordionExample">
+              <div class="bg-imp">
+                <div class="card-header border-0" id="SalesheadingOne">
+                  <h2 class="mb-0 colorp borderRadiusBottom">
+                    <a href="dashboard.html">Dashboard</a>
+                  </h2>
+                </div>
+
+                <div class="card-header border-0" id="SalesheadingOne">
+                  <h2 class="mb-0 colorp borderRadiusBottom">
+                    <a href="task_details.html">Task Scheduler Details</a>
+                  </h2>
+                </div>
+
+                <div class="card-header border-0" id="SalesheadingOne">
+                  <h2 class="mb-0 BgcolorOrange borderRadiusBottom">
+                    <a href="logs.html"> Application Check-up</a>
+                  </h2>
+                </div>
+                <div class="card-header border-0" id="SalesheadingOne">
+                  <h2 class="mb-0 BgcolorOrange borderRadiusBottom">
+                    <a href="auto_clear_logs.html"> Auto Clear Logs </a>
+                  </h2>
+                </div>
+                <div class="card-header border-0" id="SalesheadingOne">
+                  <h2 class="mb-0 BgcolorOrange borderRadiusBottom">
+                    <a href="auto_clear_logs.html" class="active"> Reports </a>
+                  </h2>
+                </div>
+                <div class="card-header border-0" id="SalesheadingOne">
+                  <h2 class="mb-0 BgcolorOrange borderRadiusBottom">
+                    <a href="setting.html">Setting</a>
+                  </h2>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Page Content  -->
+      <div id="content" class="p-3">
+        <div class="row">
+          <div class="row text-center">
+            <!-- <div class="col-md-3 col-6 my-3">
+              <div class="card mycard">
+                <i class="fa fa-dashboard fa-5x text-secondary mt-3"></i>
+                <div class="card-body">
+                  <a href="" class="btn btn-info1 btn-sm btn-block"
+                    >Dashboard</a
+                  >
+                </div>
+              </div>
+            </div> -->
+            <div class="col-md-3 col-6 my-3">
+              <div class="card mycard">
+                <i class="fa fa-files-o fa-5x text-secondary mt-3"></i>
+                <div class="card-body">
+                  <a
+                    href=""
+                    class="btn btn-info1 btn-sm btn-block"
+                    >File Summary Report</a
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 col-6 my-3">
+              <div class="card mycard">
+                <i class="fa fa-info-circle fa-5x text-secondary mt-3"></i>
+                <div class="card-body">
+                  <a
+                    href=""
+                    class="btn btn-info1 btn-sm btn-block"
+                    >Application wise Logs</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="assets/js/include.js"></script>
+    <script src="assets/js/custom.js"></script>
+
+    <script>
+      /* When the user clicks on the button, 
+      toggle between hiding and showing the dropdown content */
+      function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+      }
+
+      // Close the dropdown if the user clicks outside of it
+      window.onclick = function (event) {
+        if (!event.target.matches(".dropbtn")) {
+          var dropdowns = document.getElementsByClassName("dropdown-content");
+          var i;
+          for (i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains("show")) {
+              openDropdown.classList.remove("show");
+            }
+          }
+        }
+      };
+    </script>
+  </body>
+</html>

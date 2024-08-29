@@ -1,0 +1,198 @@
+<!-- Page Content  -->
+<div id="content" class="p-3">
+  <div class="row">
+    <section class="col-md-12">
+      <div class="education">
+        <div class="card mt-3 mb-5">
+          <div class="card-boby">
+            <div class="tab-content" id="pills-tabContent">
+              <div id="bank-magement" aria-labelledby="bank-magement-tab">
+                <div class="container-fluid">
+                  <div class="row mt-2">
+                    <div class="col-md-12">
+                      <h4 class="colorp">
+                        <img
+                          src="assets/images/balanceProgressReport.svg"
+                          alt=""
+                        />
+                        Task Scheduler
+                      </h4>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="row">
+                            <div class="col-md-5">
+                              <div class="row">
+                                <div class="col-md-10 mt-4">
+                                  <form class="">
+                                     <input
+                                      class="form-control fw-bold"
+                                      type="search"
+                                      placeholder="Search"
+                                      aria-label="Search"
+                                      />  
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-7">
+                              <div class="row">
+                                <div class="col-md-4">
+                                  <!-- items.component.html -->
+                                  <div class="dropdown">
+                                    <button (click)="toggleDropdown()" class="dropbtn border mt-4 py-1 rounded-2 form-select">
+                                      Column View <i class="bi bi-arrow-down"></i>
+                                    </button>
+                                    <div id="hidecheckbox" class="dropdown-content" [ngClass]="status ? 'show' : ''">
+                                      <a href="#">
+                                        <input type="checkbox" (change)="toggleAllColumns($event)" [checked]="selectAllChecked" /> Select All
+                                      </a>
+                                      <a href="#">
+                                        <input type="checkbox" (change)="toggleColumn('taskSchedulerName')" [checked]="columnVisibility.taskSchedulerName" />
+                                        Task Scheduler Name
+                                      </a>
+                                      <a href="#">
+                                        <input type="checkbox" (change)="toggleColumn('validFrom')" [checked]="columnVisibility.validFrom" />
+                                        Valid From
+                                      </a>
+                                      <a href="#">
+                                        <input type="checkbox" (change)="toggleColumn('validTo')" [checked]="columnVisibility.validTo" />
+                                        Valid To
+                                      </a>
+                                      <a href="#">
+                                        <input type="checkbox" (change)="toggleColumn('server')" [checked]="columnVisibility.server" />
+                                        Server
+                                      </a>
+                                      <a href="#">
+                                        <input type="checkbox" (change)="toggleColumn('application')" [checked]="columnVisibility.application" />
+                                        Application
+                                      </a>
+                                      <a href="#">
+                                        <input type="checkbox" (change)="toggleColumn('status')" [checked]="columnVisibility.status" />
+                                        Status
+                                      </a>
+                                      <a href="#">
+                                        <input type="checkbox" (change)="toggleColumn('action')" [checked]="columnVisibility.action" />
+                                        Action
+                                      </a>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-md-2">
+                                  <div class="form-group">
+                                    <select
+                                      class="form-control show-dropdown"
+                                      id=""
+                                      [(ngModel)]="selectedOption"
+                                      (ngModelChange)="onSelectionChange()"
+                                    >
+                                      <option>Show</option>
+                                      <option>5</option>
+                                      <option>10</option>
+                                      <option>25</option>
+                                      <option>50</option>
+                                      <option>100</option>
+                                    </select>
+                                  </div>
+                                </div>
+
+                                <div class="col-md-2 mt-4">
+                                  <div class="form-Action">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      Actions
+                                  </button>
+                                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                      <button class="dropdown-item">Edit</button>
+                                      <button class="dropdown-item">Delete</button>
+                                  </div>
+                                  </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                  <a
+                                    type="button"
+                                    class="btn btn-info1 mt-4"
+                                    style="color: white"
+                                    routerLink="/settings/add-task-scheduler"
+                                    >+Task Scheduler</a
+                                  >
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-12 mt-4">
+                      <div class="table-responsive">
+                        <table class="table table-hover mt-3 table-striped">
+                          <thead>
+                            <tr class="btn-s">
+                              <th id="table_Head">
+                                <input type="checkbox" (change)="toggleAllCheckboxes($event)" />
+                              </th>
+                              <th id="table_Head" *ngIf="columnVisibility.taskSchedulerName">Task Scheduler Name</th>
+                              <th id="table_Head" *ngIf="columnVisibility.validFrom">Valid From</th>
+                              <th id="table_Head" *ngIf="columnVisibility.validTo">Valid To</th>
+                              <th id="table_Head" *ngIf="columnVisibility.server">Server</th>
+                              <th id="table_Head" *ngIf="columnVisibility.application">Application</th>
+                              <th id="table_Head" *ngIf="columnVisibility.status">Status</th>
+                              <th id="table_Head" *ngIf="columnVisibility.action">Action</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <ng-container *ngIf="taskGetSchedulerArr.length != 0">
+                              <tr *ngFor="let value of taskGetSchedulerArr | paginate: { itemsPerPage: selectedOption, currentPage: p }">
+                                <td><input type="checkbox" #checkbox /></td>
+                                <td *ngIf="columnVisibility.taskSchedulerName">{{ value.TaskName }}</td>
+                                <td *ngIf="columnVisibility.validFrom">{{ value.ValidFrom | date : 'short' }}</td>
+                                <td *ngIf="columnVisibility.validTo">{{ value.ValidTo | date : 'short' }}</td>
+                                <td *ngIf="columnVisibility.server">{{ value.Id }}</td>
+                                <td *ngIf="columnVisibility.application">{{ value.ApplicationId }}</td>
+                                <td class="one" *ngIf="columnVisibility.status">
+                                  <label class="switch">
+                                    <input type="checkbox" checked />
+                                    <span class="slider round"></span>
+                                  </label>
+                                </td>
+                                <td *ngIf="columnVisibility.action">
+                                  <div class="">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      Actions
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                      <button class="dropdown-item">Edit</button>
+                                      <button class="dropdown-item">Delete</button>
+                                      <button class="dropdown-item">Reboot</button>
+                                      <button class="dropdown-item">Start</button>
+                                      <button class="dropdown-item">Stop</button>
+                                    </div>
+                                  </div>
+                                </td>
+                              </tr>
+                            </ng-container>
+                            <ng-container *ngIf="taskGetSchedulerArr.length == 0">
+                              <tr>
+                                <td colspan="8">No data found!</td>
+                              </tr>
+                            </ng-container>
+                          </tbody>
+                        </table>
+                        
+                      </div>
+                      <pagination-controls
+                        (pageChange)="p = $event"
+                      ></pagination-controls>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

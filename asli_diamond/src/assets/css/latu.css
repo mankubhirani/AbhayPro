@@ -1,0 +1,14 @@
+@font-face {
+  font-family: Montserrat;
+  src: url("../fonts/Nunito/static/Nunito-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: Montserrat;
+  src: url("../fonts/Nunito/static/Nunito-Bold.ttf") format("truetype");
+  font-weight: bold;
+}
+@font-face {
+  font-family: Montserrat;
+  src: url("../fonts/Nunito/static/Nunito-Light.ttf") format("truetype");
+  font-weight: lighter;
+}

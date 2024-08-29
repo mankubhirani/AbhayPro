@@ -1,0 +1,101 @@
+/* Dropdown Button */
+.dropbtn{
+    background-color: #ffffff;
+    color: #000000;
+    padding: 10px 16px;
+    font-size: 16px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .dropbtn:hover {
+    background-color: #f9f9f9;
+  }
+  
+  /* Dropdown Content (Hidden by Default) */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    z-index: 1;
+  }
+  
+  /* Links inside the dropdown */
+  .dropdown-content label {
+    display: block;
+    padding: 10px 16px;
+    text-decoration: none;
+    color: #000000;
+  }
+  
+  .dropdown-content label:hover {
+    background-color: #f9f9f9;
+  }
+  
+  /* Show the dropdown menu on hover */
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  /* Style the dropdown menu items (checkboxes) */
+  .dropdown-content input[type="checkbox"] {
+    margin-right: 5px;
+  }
+  #show {
+    width: 70px;
+  }
+  
+  
+  /* action */
+  
+  /* Style for the dropdown container */
+  .dropdown1 {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown1 button {
+    background-color: #6c757d;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    min-width: 100px;
+    z-index: 1;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    border-radius: 4px;
+    padding: 0;
+  }
+  
+  /* Show the dropdown menu when the button is clicked */
+  .show {
+    display: block;
+  }
+  
+  
+  .dropdown-item {
+    padding: 0.5rem 1rem;
+    display: block;
+    text-decoration: none;
+    color: #333;
+  }
+  
+  /* Style for dropdown items on hover */
+  .dropdown-item:hover {
+    background-color: #f1f1f1;
+  }
+  .mbb{
+    margin-bottom: 5rem;
+  }

@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>WatchApp</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("#txtEditor").Editor();
+      });
+    </script>
+    <style>
+      .dropdown-toggle {
+        cursor: pointer;
+        padding: 5px 10px;
+        border: 1px solid #ccc;
+      }
+      #termsservices {
+        display: none;
+      }
+
+      .show {
+        display: block;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12 p-0">
+          <nav class="navbar navbar-expand-lg navbar-light px-3">
+            <h1>
+              <a href="dashboard.html" class="logo"
+                ><img src="assets/images/logo.png" alt=""
+              /></a>
+            </h1>
+            <div class="container-fluid">
+              <button type="button" id="sidebarCollapse" class="btn">
+                <img src="assets/images/Drawer.svg" alt="" />
+                <span class="sr-only">Toggle Menu</span>
+              </button>
+
+              <button
+                class="btn text-dark border-dark d-inline-block d-lg-none ml-auto"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                <i class="fa fa-bars" aria-hidden="true"></i>
+              </button>
+
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul
+                  class="nav navbar-nav ml-auto align-items-md-center align-items-end headerUL"
+                >
+                  <!-- <li class="nav-item">
+                    <img src="assets/images/notification.svg" alt="" />
+                  </li> -->
+                  <li class="nav-item">
+                    <div class="media">
+                      <img
+                        src="assets/images/avtar.svg"
+                        class="mr-3"
+                        alt="..."
+                      />
+                      <div class="media-body">
+                        <h6 class="mt-0">kumar Saurabh</h6>
+                        21 June 2023, 16:40
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <a type="btn" href="login.html" class="btn btn-info">Sign Out</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <div class="wrapper d-flex align-items-stretch">
+      <nav id="sidebar" class="active bg-imp">
+        <ul class="list-unstyled components mb-5">
+          <li class="active">
+            <div class="accordion" id="accordionExample">
+              <div class="bg-imp">
+                <div class="card-header border-0" id="SalesheadingOne">
+                  <h2 class="mb-0 colorp borderRadiusBottom">
+                    <a href="dashboard.html">Dashboard</a>
+                  </h2>
+                </div>
+                <div class="card-header border-0" id="SalesheadingOne">
+                  <h2 class="mb-0 colorp borderRadiusBottom">
+                    <a href="task_details.html" class="active"
+                      >Task Scheduler Details</a
+                    >
+                  </h2>
+                </div>
+
+                <div class="card-header border-0" id="SalesheadingOne">
+                  <h2 class="mb-0 BgcolorOrange borderRadiusBottom">
+                    <a href="logs.html"> Application Check-up</a>
+                  </h2>
+                </div>
+                <div class="card-header border-0" id="SalesheadingOne">
+                  <h2 class="mb-0 BgcolorOrange borderRadiusBottom">
+                    <a href="auto_clear_logs.html"> Auto Clear Logs </a>
+                  </h2>
+                </div>
+                <div class="card-header border-0" id="SalesheadingOne">
+                  <h2 class="mb-0 BgcolorOrange borderRadiusBottom">
+                    <a href="reports.html"> Reports </a>
+                  </h2>
+                </div>
+                <div class="card-header border-0" id="SalesheadingOne">
+                  <h2 class="mb-0 BgcolorOrange borderRadiusBottom">
+                    <a href="setting.html">Setting</a>
+                  </h2>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Page Content  -->
+      <div id="content" class="p-3">
+        <div class="row">
+          <section class="col-md-12">
+            <div class="education">
+              <div class="card mt-3 mb-5">
+                <div class="card-boby">
+                  <div class="tab-content" id="pills-tabContent">
+                    <div id="bank-magement" aria-labelledby="bank-magement-tab">
+                      <div class="container-fluid">
+                        <div class="row mt-2">
+                          <div class="col-md-12">
+                            <h2 class="colorp">
+                              <img
+                                src="assets/images/balanceProgressReport.svg"
+                                alt=""
+                              />
+                              Task Details
+                            </h2>
+                          </div>
+                          <div class="col-md-12">
+                            <main id="main" class="main">
+                              <div class="row p-3">
+                                <div class="form-group col-md-12">
+                                  <h5 class="mt-4">
+                                    <b>App-Id - 8983-8374374-2873</b>
+                                  </h5>
+                                </div>
+                                <div class="form-group col-md-12">
+                                  <h5 class="mt-4">
+                                    <b>App-Name - WatchApp</b>
+                                  </h5>
+                                </div>
+
+                                <div class="form-group col-md-6 mt-3">
+                                  <label for="">App Icon</label>
+
+                                  <input
+                                    type="file"
+                                    class="form-control mt-2"
+                                  />
+                                </div>
+                                <div class="form-group col-md-6 mt-3">
+                                  <label for="">Valid From</label>
+                                  <input
+                                    class="form-control mt-2"
+                                    type="date"
+                                  />
+                                </div>
+                                <div class="form-group col-md-6 mt-3">
+                                  <label for="">Valid To</label>
+                                  <input
+                                    class="form-control mt-2"
+                                    type="date"
+                                  />
+                                </div>
+
+                                <div class="form-group col-md-6 mt-3">
+                                  <label for="">Server</label>
+                                  <div class="multiselect form-group">
+                                    <div
+                                      class="selectBox form-control"
+                                      onclick="showCheckboxes1()"
+                                    >
+                                      <select
+                                        class="custom-select border-bottom"
+                                      >
+                                        <option>Select Channel</option>
+                                      </select>
+                                      <div class="overSelect"></div>
+                                    </div>
+                                    <div id="Channel" class="checkstyle col">
+                                      <label for="one0">
+                                        <input type="checkbox" id="one0" />
+                                        Select All Server</label
+                                      >
+                                      <label for="two0">
+                                        <input type="checkbox" id="two0" />
+                                        Server 1</label
+                                      >
+                                      <label for="three0">
+                                        <input type="checkbox" id="three0" />
+                                        Server 2</label
+                                      >
+                                      <label for="four0">
+                                        <input type="checkbox" id="four0" />
+                                        Server 3</label
+                                      >
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div class="form-group col-md-6 mt-3">
+                                  <label for="">Application Type</label>
+                                  <div class="multiselect form-group">
+                                    <div
+                                      class="selectBox form-control"
+                                      onclick="showCheckboxes()"
+                                    >
+                                      <select
+                                        class="custom-select border-bottom"
+                                      >
+                                        <option>Select App</option>
+                                      </select>
+                                      <div class="overSelect"></div>
+                                    </div>
+                                    <div id="Access" class="checkstyle col">
+                                      <label for="one0">
+                                        <input type="checkbox" id="one0" />
+                                        Select All</label
+                                      >
+                                      <label for="two0">
+                                        <input type="checkbox" id="two0" />
+                                        Mobile App</label
+                                      >
+                                      <label for="three0">
+                                        <input type="checkbox" id="three0" />
+                                        Web App</label
+                                      >
+                                      <label for="four0">
+                                        <input type="checkbox" id="four0" />
+                                        Console App</label
+                                      >
+                                      <label for="five0">
+                                        <input type="checkbox" id="five0" />
+                                        Other</label
+                                      >
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div class="col-md-3 mt-3" id="dropdown1">
+                                  <label for="">App User</label>
+                                  <div class="multiselect form-group">
+                                    <div
+                                      class="selectBox form-control"
+                                      onclick="showCheckboxes3()"
+                                    >
+                                      <select
+                                        class="custom-select border-bottom"
+                                      >
+                                        <option>Select User</option>
+                                      </select>
+                                      <div class="overSelect"></div>
+                                    </div>
+                                    <div id="user" class="checkstyle col">
+                                      <label for="one0">
+                                        <input type="checkbox" id="one0" />
+                                        Select Users</label
+                                      >
+                                      <label for="two0">
+                                        <input type="checkbox" id="two0" />
+                                        <b>Amit Rai</b>(amit@example.com)</label
+                                      >
+                                      <label for="three0">
+                                        <input type="checkbox" id="three0" />
+                                        <b>Anurudh Shrivastava</b
+                                        >(anurudh@example.com)</label
+                                      >
+                                      <label for="four0">
+                                        <input type="checkbox" id="four0" />
+                                        <b>Kumar Shaurab</b
+                                        >(kumar@example.com)</label
+                                      >
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div class="col-md-3 mt-5">
+                                  <p>
+                                    <a
+                                      class="mt-3"
+                                      href="add_user.html"
+                                      id="addUserButton"
+                                      >Add User</a
+                                    >
+                                  </p>
+                                </div>
+                                <div class="form-group col-md-4 mr-4 mt-5">
+                                  Status &nbsp;
+                                  <label class="switch">
+                                    <input type="checkbox" checked />
+                                    <span class="slider round"></span>
+                                  </label>
+                                </div>
+
+                                <div class="form-group col-md-12 mt-3">
+                                  <label for="">Description</label>
+                                  <textarea
+                                    name="editor1"
+                                    id="editor1"
+                                    rows="10"
+                                    cols="80"
+                                  ></textarea>
+                                </div>
+
+                                <!-- <div class="col-md-12 mt-4">
+                                  <div class="row">
+                                    <div class="col-md-12">
+                                      <h5>
+                                        Link With App -
+                                        https://plug-channel.cylsys.com/add_user.html?(CompanyID=8983-8374374-2873
+                                        && AppID=8983-8374374-2873)
+                                      </h5>
+                        
+                                      
+                                    </div>
+                                    
+                                  </div>
+                                </div> -->
+                              </div>
+
+                              <div class="col-md-12 mt-3 text-end">
+                                <a
+                                  href="application_master.html"
+                                  class="btn btn-secondary"
+                                  >Cancel</a
+                                >
+                                <a
+                                  href="application_master.html"
+                                  class="btn btn-info1"
+                                  >Add</a
+                                >
+                              </div>
+                            </main>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="assets/js/include.js"></script>
+    <script src="assets/js/custom.js"></script>
+
+    <script>
+      function myFunction() {
+        var x = document.getElementById("termsservices");
+        if (x.style.display === "none") {
+          x.style.display = "block";
+        } else {
+          x.style.display = "none";
+        }
+      }
+    </script>
+
+    <script>
+      var expanded = false;
+
+      function showCheckboxes() {
+        var checkboxes = document.getElementById("Access");
+        if (!expanded) {
+          checkboxes.style.display = "block";
+          expanded = true;
+        } else {
+          checkboxes.style.display = "none";
+          expanded = false;
+        }
+      }
+    </script>
+
+    <script>
+      var expanded = false;
+
+      function showCheckboxes1() {
+        var checkboxes = document.getElementById("Channel");
+        if (!expanded) {
+          checkboxes.style.display = "block";
+          expanded = true;
+        } else {
+          checkboxes.style.display = "none";
+          expanded = false;
+        }
+      }
+      function showCheckboxes3() {
+        var checkboxes = document.getElementById("user");
+        if (!expanded) {
+          checkboxes.style.display = "block";
+          expanded = true;
+        } else {
+          checkboxes.style.display = "none";
+          expanded = false;
+        }
+      }
+    </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var urlCheckbox = document.getElementById("urlCheckbox");
+        var urlDropdown = document.getElementById("urlDropdown");
+
+        urlCheckbox.addEventListener("change", function () {
+          if (urlCheckbox.checked) {
+            urlDropdown.style.display = "block";
+          } else {
+            urlDropdown.style.display = "none";
+          }
+        });
+      });
+    </script>
+    <script>
+      const urlCheckbox = document.getElementById("urlCheckbox");
+      const noUrlNeededCheckbox = document.getElementById(
+        "no-url-needed-checkbox"
+      );
+      const dropdown1 = document.getElementById("dropdown1");
+
+      const addUserButton = document.getElementById("addUserButton");
+
+      noUrlNeededCheckbox.addEventListener("change", function () {
+        if (noUrlNeededCheckbox.checked) {
+          dropdown1.style.display = "block";
+          dropdown2.style.display = "block";
+          addUserButton.style.display = "block";
+        } else {
+          dropdown1.style.display = "none";
+          dropdown2.style.display = "none";
+          addUserButton.style.display = "none";
+        }
+      });
+    </script>
+    <script>
+      // CKEditor initialization
+      CKEDITOR.replace("editor1");
+
+      // Save button click event
+      document
+        .getElementById("saveButton")
+        .addEventListener("click", function () {
+          var content = CKEDITOR.instances.editor1.getData();
+          console.log(content); // You can do something with the content here, like sending it to a server.
+        });
+    </script>
+    <script>
+      // CKEditor initialization
+      CKEDITOR.replace("txtEditor");
+    </script>
+  </body>
+</html>

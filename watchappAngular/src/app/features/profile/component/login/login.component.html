@@ -1,0 +1,264 @@
+<div class="bodycontainer" id="content">
+  <!-- modal start here -->
+  <!-- Button trigger modal -->
+
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="requestBtn"
+    data-bs-backdrop="static"
+    data-bs-keyboard="false"
+    tabindex="-1"
+    aria-labelledby="staticBackdropLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog ">
+      <div class="modal-content">
+        <div class="modal-header py-0 justify-content-center">
+          <h2 class="modal-title fs-5" id="staticBackdropLabel">
+            <img src="assets/img/product_logo.svg" alt="" class="w-25" />
+           <span>Request for a demo</span> 
+          </h2>
+        </div>
+        <div class="modal-body">
+          <form class="demo_request_form">
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Name</label>
+              <input
+                type="Text"
+                class="form-control"
+                id="name"
+                aria-describedby="name"
+                placeholder="Enter name"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Email</label>
+              <input
+                type="email"
+                class="form-control"
+                id="exampleInputEmail1"
+                aria-describedby="emailHelp"
+                placeholder="Enter email"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label"
+                >Phone no.</label
+              >
+              <input
+                type="Text"
+                class="form-control"
+                id="phoneNo"
+                aria-describedby="phoneNo"
+                placeholder="Enter Phone no."
+              />
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label"
+                >Country</label
+              >
+              <select class="form-select" aria-label="Default select example">
+                <option selected>Select Country</option>
+                <option value="1">India</option>
+                <option value="2">U.S</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label"
+                >Any Specific Requirement</label
+              >
+              <input
+                type="Text"
+                class="form-control"
+                id=""
+                aria-describedby=""
+                placeholder="Enter Any Specific Requirement"
+              />
+            </div>
+  
+            <div class="mb-3 form-check">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                id="exampleCheck1"
+              />
+              <label class="form-check-label" for="exampleCheck1"
+                >I’m not a robot</label
+              >
+            </div>
+            <button
+              type="button"
+              class="btn btn-danger"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <a href="dashboard.html" type="submit" class="btn btn-success">
+              Please Submit
+            </a>
+          </form>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  <!-- modal end here -->
+
+  <div class="bg_banner">
+    <img
+      src="assets/img/bg_banner.svg"
+      alt=""
+      style="
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        height: 150vh;
+        z-index: 0;
+      "
+    />
+    <div class="container">
+      <div class="row login">
+        <div class="col-md-8">
+          <h1 class="pb-4">
+           Watch App <img src="assets/img/product_logo.svg" alt="" />
+          </h1>
+          <h2 class="pb-3">
+            It is relative and differs from person-to-person, place-to-place and time-to-time
+          </h2>
+          <p class="pb-3">
+            An Application that streamlines your communication to your
+            targeted audience at the click of a button. An efficient and
+            User-friendly solution for sending bulk emails effortlessly. With
+            rich features like Customizable templates, detailed analytics and
+            seamless integration, ensuring your messages are delivered
+            effectively and professionally. Elevate your Email marketing
+            strategy with our Bulk mailing application, designed to save you
+            time and enhance your outreach capabilities.
+          </p>
+          <button type="button" class="btn btn-outline-light requestBtn" data-bs-toggle="modal"
+            data-bs-target="#requestBtn" style="position: relative; z-index: 1;">
+            Request for a demo
+          </button>
+        </div>
+        <div class="col-md-4 mb-5">
+          <div class="form_card">
+            <div class="card">
+              <div class="card-header">
+                <img src="assets/img/logo.svg" alt="" />
+              </div>
+              <div class="card-body">
+                <form [formGroup]="loginForm" novalidate (ngSubmit)="submitLoginForm()">
+                  <div class="py-4">
+                    <label for="exampleInputEmail1" class="form-label"
+                      >Email</label
+                    >
+                    <!-- <input
+                      type="email"
+                      class="form-control"
+                      id="exampleInputEmail1"
+                      aria-describedby="emailHelp"
+                      placeholder="Enter your email address"
+                      formControlName="email" 
+                      
+                      id="email_id"
+                    /> -->
+                    <input type="text" class="form-control" autocomplete="off" placeholder="Email" formControlName="email" name="email" maxlength="40" [ngClass]="{errors:getcontrol('email')?.errors && getcontrol('email')?.touched}">
+                      <div *ngIf="getcontrol('email')?.errors && getcontrol('email')?.touched">
+                        <small class="text-danger" *ngIf="getcontrol('email')?.errors?.['required']">Email is Required.</small>
+                        <small class="text-danger" *ngIf="getcontrol('email')?.errors?.['email']">Please insert a valid email address.</small>
+                       </div>
+                    
+                    <!-- <div id="emailHelp" class="form-text">
+                      Please enter a valid User ID
+                    </div> -->
+                  </div>
+                  <div class="py-4 position-relative">
+                    <label for="exampleInputPassword1" class="form-label">Password</label>
+                    <div class="input-container">
+                        <input [type]="type" autocomplete="off" placeholder="Password" class="form-control" formControlName="password" name="password" maxlength="30" [ngClass]="{errors:getcontrol('password')?.errors && getcontrol('password')?.touched}">
+                        <span (click)="hideShowPass()" class="fa eye-icon" [class.fa-eye-slash]="!isText"  [class.fa-eye]="isText"></span>
+                    </div>
+                    <!-- <div *ngIf="getcontrol('password')?.errors && getcontrol('password')?.touched" class="error-message">
+                        <small class="text-danger" *ngIf="getcontrol('password')?.errors?.['required']">Password Required.</small>
+                        <small class="text-danger" *ngIf="getcontrol('password')?.errors?.['pattern']">The password must contain one or more lowercase characters, numeric values, and uppercase characters.</small>
+                    </div> -->
+                </div>
+                
+                <!-- </div> -->
+
+                  <button
+                    type="submit"
+                    class="btn btn-outline-light w-100 loginBtn"
+                    [disabled]="loginForm.invalid"
+                  >
+                    Log in
+                  </button>
+
+                  <div class="forget_password">
+                    <p>Forget Password? <a routerLink="/forget">Click here</a></p><br>
+                    <p>Don't have an account?&nbsp;<a routerLink="/signUp">Sign Up</a></p>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="row align-items-center">
+            <div class="col-md-8">
+              <ul
+                class="list-unstyled p-0 d-flex align-items-center justify-content-around m-0"
+              >
+                <li>
+                  <img src="assets/img/linkedin.svg" alt="" />
+
+                  <img src="assets/img/fb.svg" alt="" class="px-2" />
+
+                  <img src="assets/img/whatsApp.svg" alt="" />
+                  +919967502270
+                </li>
+                <li>
+                  <img
+                    src="assets/img/mail.svg"
+                    alt=""
+                  /> reachus@cylsys.com
+                </li>
+                <li>
+                  <img src="assets/img/mail.svg" alt="" /> sales@cylsys.com
+                </li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <ul
+                class="list-unstyled p-0 d-flex align-items-center justify-content-around m-0"
+              >
+                <li>
+                  <img src="assets/img/14year.svg" alt="" />
+                </li>
+                <li>
+                  <img src="assets/img/iso.svg" alt="" />
+                </li>
+                <li>
+                  <img src="assets/img/companies.svg" alt="" />
+                </li>
+                <li>
+                  <img src="assets/img/iso9001.svg" alt="" />
+                </li>
+                <li>
+                  <img src="assets/img/iso27001.svg" alt="" />
+                </li>
+                <li>
+                  <img src="assets/img/boss.svg" alt="" />
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
